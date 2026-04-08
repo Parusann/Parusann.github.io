@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parusan Natheeswaran — Portfolio</title>
+<meta name="description" content="Computer Engineering student building AI-driven, full-stack, and scalable backend systems.">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- Noise Overlay -->
+<canvas id="noise" class="noise"></canvas>
+
+<!-- Interactive Grid Background -->
+<canvas id="grid-canvas" class="grid-canvas"></canvas>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">parusan.dev</a>
+    <button class="mob-tog" aria-label="Toggle menu">
+      <span class="mob-line"></span>
+      <span class="mob-line"></span>
+      <span class="mob-line"></span>
+    </button>
+    <div class="nav-links">
+      <a href="#hero" data-nav>Home</a>
+      <a href="#about" data-nav>About</a>
+      <a href="#projects" data-nav>Projects</a>
+      <a href="#experience" data-nav>Experience</a>
+      <a href="#skills" data-nav>Skills</a>
+      <a href="#contact" data-nav>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="hero" class="hero">
+  <div class="hero-bg">
+    <img src="assets/hero-bg.jpg" alt="" class="hero-bg-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-gradient"></div>
+  </div>
+  <div class="hero-content" data-scroll>
+    <div class="hero-greet anim-text">// hello world</div>
+    <h1 class="hero-name">
+      <span class="anim-text">I'm </span><span class="hero-highlight anim-text">Parusan</span>
+      <br>
+      <span class="anim-text">Natheeswaran.</span>
+    </h1>
+    <p class="hero-tag anim-text">Computer Engineering student building AI-driven, full-stack, and scalable backend systems.</p>
+    <div class="hero-seek anim-text">
+      <span class="pulse-dot"></span>
+      Seeking internship &amp; co-op opportunities
+    </div>
+    <div class="hero-btns anim-text">
+      <a href="#projects" class="btn btn-primary">View Projects <span class="btn-arrow">&#8595;</span></a>
+      <a href="#contact" class="btn btn-glass">Get in Touch</a>
+    </div>
+    <div class="hero-links anim-text">
+      <a href="https://github.com/Parusann" target="_blank" rel="noopener"><span class="link-arrow">&rarr;</span> GitHub</a>
+      <a href="https://www.linkedin.com/in/parusan/" target="_blank" rel="noopener"><span class="link-arrow">&rarr;</span> LinkedIn</a>
+      <a href="mailto:pnatheeswaran@torontomu.ca"><span class="link-arrow">&rarr;</span> Email</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span class="scroll-text">SCROLL</span>
+    <span class="scroll-chevron">&darr;</span>
+  </div>
+  <!-- Marquee pinned to bottom of hero viewport -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <span class="marquee-item"><span class="marquee-icon">&#9889;</span> FULL-STACK DEVELOPMENT</span>
+        <span class="marquee-item"><span class="marquee-icon">&#129504;</span> AI &amp; MACHINE LEARNING</span>
+        <span class="marquee-item"><span class="marquee-icon">&#128187;</span> SCALABLE BACKENDS</span>
+        <span class="marquee-item"><span class="marquee-icon">&#127959;</span> SYSTEMS DESIGN</span>
+        <span class="marquee-item"><span class="marquee-icon">&#128640;</span> REACT &amp; TYPESCRIPT</span>
+        <span class="marquee-item"><span class="marquee-icon">&#128051;</span> DOCKER &amp; DEVOPS</span>
+        <span class="marquee-item"><span class="marquee-icon">&#128273;</span> LLM INTEGRATION</span>
+        <span class="marquee-item"><span class="marquee-icon">&#127918;</span> GAME DEVELOPMENT</span>
+      </div>
+      <div class="marquee-content" aria-hidden="true">
+        <span class="marquee-item"><span class="marquee-icon">&#9889;</span> FULL-STACK DEVELOPMENT</span>
+        <span class="marquee-item"><span class="marquee-icon">&#129504;</span> AI &amp; MACHINE LEARNING</span>
+        <span class="marquee-item"><span class="marquee-icon">&#128187;</span> SCALABLE BACKENDS</span>
+        <span class="marquee-item"><span class="marquee-icon">&#127959;</span> SYSTEMS DESIGN</span>
+        <span class="marquee-item"><span class="marquee-icon">&#128640;</span> REACT &amp; TYPESCRIPT</span>
+        <span class="marquee-item"><span class="marquee-icon">&#128051;</span> DOCKER &amp; DEVOPS</span>
+        <span class="marquee-item"><span class="marquee-icon">&#128273;</span> LLM INTEGRATION</span>
+        <span class="marquee-item"><span class="marquee-icon">&#127918;</span> GAME DEVELOPMENT</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header" data-scroll>
+      <div class="slabel anim-text">About Me</div>
+      <h2 class="stitle anim-text">Engineer who builds end to end.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text" data-scroll>
+        <p class="anim-text">I'm a <strong>Computer Engineering</strong> student at Toronto Metropolitan University with a focus on building software that's both technically deep and practically useful.</p>
+        <p class="anim-text">My interests span <strong>applied AI</strong>, <strong>scalable backend systems</strong>, and <strong>full-stack development</strong>. I like taking a problem from concept all the way to a deployed, working product — whether that's an AI-powered recommendation engine or a high-concurrency URL shortening service.</p>
+        <p class="anim-text">Beyond engineering, I bring experience leading teams as a shift manager and collaborating cross-functionally from my time with game development. I'm looking for roles where I can contribute to meaningful systems and keep growing as a builder.</p>
+      </div>
+      <div class="about-cards" data-scroll>
+        <div class="hl-card glass-card anim-text">
+          <div class="hl-icon">&#9889;</div>
+          <h4>Full-Stack Builder</h4>
+          <p>Flask, React, PostgreSQL, REST APIs — comfortable across the entire stack</p>
+        </div>
+        <div class="hl-card glass-card anim-text">
+          <div class="hl-icon">&#129504;</div>
+          <h4>AI &amp; ML Integration</h4>
+          <p>Real experience with LLM orchestration, local AI (Ollama), speech recognition, and conversational AI</p>
+        </div>
+        <div class="hl-card glass-card anim-text">
+          <div class="hl-icon">&#127959;</div>
+          <h4>Systems Thinker</h4>
+          <p>Designed for scale — Redis caching, Docker containers, concurrent architecture</p>
+        </div>
+        <div class="hl-card glass-card anim-text">
+          <div class="hl-icon">&#127918;</div>
+          <h4>Cross-Functional</h4>
+          <p>Game dev at Riot Games, team leadership, QA, and product-focused collaboration</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-header" data-scroll>
+      <div class="slabel anim-text">Featured Projects</div>
+      <h2 class="stitle anim-text">Things I've built.</h2>
+      <p class="ssub anim-text">Each project is a mini case study — here's the problem, the solution, and the engineering behind it.</p>
+    </div>
+    <div class="proj-grid">
+
+      <!-- Xenolinguist -->
+      <div class="proj-card glass-card" data-scroll>
+        <div class="proj-vis">
+          <div class="mock">
+            <div class="mock-window">
+              <div class="mock-top">
+                <span class="mock-dot red"></span><span class="mock-dot yellow"></span><span class="mock-dot green"></span>
+                <span class="mock-url">xenolinguist</span>
+              </div>
+              <div class="mock-body">
+                <div class="mock-tabs">
+                  <span class="mock-tab active">Samples</span>
+                  <span class="mock-tab">Numbers</span>
+                  <span class="mock-tab">Vocab</span>
+                </div>
+                <div class="mock-content">
+                  <div class="mock-label">&#9654; Sample #1</div>
+                  <div class="mock-code">keth nara vos ildrim<br>solun beth kareth ven</div>
+                </div>
+                <div class="mock-ai">
+                  <div class="mock-ai-label">&#129504; AI Analysis</div>
+                  <div class="mock-ai-result">Detected SOV word order pattern...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-badge featured">&#9733; Featured</div>
+          <h3>Xenolinguist</h3>
+          <p class="proj-sum">AI-powered language decoding workbench inspired by Project Hail Mary — decode unknown languages from scratch with a local AI research partner.</p>
+          <div class="proj-tech">
+            <span class="ttag">React 19</span><span class="ttag">TypeScript</span><span class="ttag">Node.js</span><span class="ttag">Express</span><span class="ttag">Ollama</span><span class="ttag">Tailwind CSS</span><span class="ttag">Vite</span>
+          </div>
+          <ul class="proj-hl">
+            <li>Six-phase decoding workflow from samples to full translation</li>
+            <li>Local AI via Ollama with multi-model routing and streaming chat</li>
+            <li>Sandbox mode with AI-generated constructed languages to practice</li>
+            <li>Command palette, keyboard shortcuts, undo system, and audio recording</li>
+          </ul>
+          <div class="proj-links">
+            <a href="https://github.com/Parusann/Xenolinguist" target="_blank" rel="noopener" class="btn btn-primary btn-sm">GitHub &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bingery -->
+      <div class="proj-card glass-card" data-scroll>
+        <div class="proj-vis">
+          <div class="mock">
+            <div class="mock-window">
+              <div class="mock-top">
+                <span class="mock-dot red"></span><span class="mock-dot yellow"></span><span class="mock-dot green"></span>
+                <span class="mock-url">bingery.app</span>
+              </div>
+              <div class="mock-body">
+                <div class="mock-search">&#128269; Search 200+ anime titles...</div>
+                <div class="mock-grid-sm">
+                  <div class="mock-card-sm"></div><div class="mock-card-sm"></div><div class="mock-card-sm"></div>
+                  <div class="mock-card-sm"></div><div class="mock-card-sm"></div><div class="mock-card-sm"></div>
+                </div>
+                <div class="mock-chat">
+                  <div class="chat-msg user">recommend something like AoT</div>
+                  <div class="chat-msg ai">Based on your preferences, try Vinland Saga...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-badge">&#9733; Featured</div>
+          <h3>Bingery</h3>
+          <p class="proj-sum">AI-powered anime discovery platform with personalized recommendations, live search, and collaborative genre voting.</p>
+          <div class="proj-tech">
+            <span class="ttag">Python</span><span class="ttag">Flask</span><span class="ttag">React</span><span class="ttag">PostgreSQL</span><span class="ttag">Claude API</span>
+          </div>
+          <ul class="proj-hl">
+            <li>25+ REST endpoints with JWT auth and 6 relational models</li>
+            <li>Claude API with custom tool-use for real-time recommendations</li>
+            <li>AniList GraphQL integration for enriched anime data</li>
+            <li>Deployed on Render with GitHub CI/CD pipeline</li>
+          </ul>
+          <div class="proj-links">
+            <a href="https://github.com/Parusann/bingery" target="_blank" rel="noopener" class="btn btn-primary btn-sm">GitHub &rarr;</a>
+            <a href="#" class="btn btn-glass btn-sm">Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- URL Shortener -->
+      <div class="proj-card glass-card" data-scroll>
+        <div class="proj-vis">
+          <div class="mock url-mock">
+            <div class="arch-row"><div class="arch-node highlight">Client<span>HTTP Request</span></div></div>
+            <div class="arch-arrow">&darr;</div>
+            <div class="arch-row"><div class="arch-node highlight">Go API<span>REST Handlers</span></div></div>
+            <div class="arch-arrow">&darr;</div>
+            <div class="arch-row">
+              <div class="arch-node redis">Redis<span>Cache Layer</span></div>
+              <div class="arch-node pg">PostgreSQL<span>Persistent Store</span></div>
+            </div>
+            <div class="arch-arrow">&darr;</div>
+            <div class="arch-row"><div class="arch-node">Docker<span>Containerized</span></div></div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-badge">Backend</div>
+          <h3>Distributed URL Shortener</h3>
+          <p class="proj-sum">Scalable backend service designed for high concurrency, low latency, and efficient caching with containerized deployment.</p>
+          <div class="proj-tech">
+            <span class="ttag">Go</span><span class="ttag">Redis</span><span class="ttag">PostgreSQL</span><span class="ttag">Docker</span><span class="ttag">REST APIs</span>
+          </div>
+          <ul class="proj-hl">
+            <li>Handles 10,000+ concurrent redirect requests</li>
+            <li>50% latency reduction via Redis caching layer</li>
+            <li>Indexed PostgreSQL backend for persistent storage</li>
+            <li>Fully containerized with Docker for deployment</li>
+          </ul>
+          <div class="proj-links">
+            <a href="https://github.com/Parusann/distributed-url-shortener" target="_blank" rel="noopener" class="btn btn-primary btn-sm">GitHub &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bookstore -->
+      <div class="proj-card glass-card" data-scroll>
+        <div class="proj-vis">
+          <div class="mock">
+            <div class="mock-window">
+              <div class="mock-top">
+                <span class="mock-dot red"></span><span class="mock-dot yellow"></span><span class="mock-dot green"></span>
+                <span class="mock-url">BookManager v1</span>
+              </div>
+              <div class="mock-body bk-layout">
+                <div class="bk-sidebar">
+                  <div class="bk-nav-item active"></div>
+                  <div class="bk-nav-item"></div>
+                  <div class="bk-nav-item"></div>
+                  <div class="bk-nav-item"></div>
+                </div>
+                <div class="bk-content">
+                  <div class="bk-grid">
+                    <div class="bk-item"></div><div class="bk-item"></div>
+                    <div class="bk-item"></div><div class="bk-item"></div>
+                    <div class="bk-item"></div><div class="bk-item"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="proj-info">
+          <div class="proj-badge">OOP Design</div>
+          <h3>Bookstore Management System</h3>
+          <p class="proj-sum">Java desktop application focused on inventory workflows, authentication, and maintainable OOP design using the State pattern.</p>
+          <div class="proj-tech">
+            <span class="ttag">Java</span><span class="ttag">Java Swing</span><span class="ttag">UML</span><span class="ttag">OOP Design</span>
+          </div>
+          <ul class="proj-hl">
+            <li>5,000+ book catalog with secure authentication</li>
+            <li>State Design Pattern for customer status transitions</li>
+            <li>Dynamic reward points system boosting retention by 20%</li>
+            <li>File-based data persistence for offline use</li>
+          </ul>
+          <div class="proj-links">
+            <a href="https://github.com/Parusann/BookStoreApp" target="_blank" rel="noopener" class="btn btn-primary btn-sm">GitHub &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="section">
+  <div class="container">
+    <div class="section-header" data-scroll>
+      <div class="slabel anim-text">Experience</div>
+      <h2 class="stitle anim-text">Where I've worked.</h2>
+    </div>
+    <div class="exp-list">
+      <div class="exp-card glass-card" data-scroll>
+        <div class="exp-meta">
+          <div class="exp-date">Oct 2024 &ndash; Present</div>
+          <div class="exp-type">Remote</div>
+        </div>
+        <div class="exp-body">
+          <h4>Machine Learning Engineer</h4>
+          <div class="exp-company">Outlier AI &middot; Oakland, CA</div>
+          <div class="exp-desc">Developed and optimized speech recognition and conversational AI models across 20+ projects. Led end-to-end workflows from EDA to deployment, earning 70+ acknowledgments for AI capability improvements.</div>
+        </div>
+      </div>
+      <div class="exp-card glass-card" data-scroll>
+        <div class="exp-meta">
+          <div class="exp-date">May &ndash; Aug 2024</div>
+          <div class="exp-type">Remote</div>
+        </div>
+        <div class="exp-body">
+          <h4>Game Developer</h4>
+          <div class="exp-company">Riot Games &middot; Los Angeles, CA</div>
+          <div class="exp-desc">Implemented a new playable character within a 3-month deadline, collaborating cross-functionally to prototype features. Reduced crash rates by 15% by resolving 50+ critical bugs with engineering and QA teams.</div>
+        </div>
+      </div>
+      <div class="exp-card glass-card" data-scroll>
+        <div class="exp-meta">
+          <div class="exp-date">Dec 2025 &ndash; Present</div>
+          <div class="exp-type">On-site</div>
+        </div>
+        <div class="exp-body">
+          <h4>Shift Manager</h4>
+          <div class="exp-company">Town of Milton &middot; Milton, ON</div>
+          <div class="exp-desc">Supervise 10+ staff per shift, managing operations, safety oversight, and resolving 50+ weekly customer inquiries through effective delegation and conflict resolution.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section-header" data-scroll>
+      <div class="slabel anim-text">Tech Stack</div>
+      <h2 class="stitle anim-text">What I work with.</h2>
+    </div>
+    <div class="sk-grid" data-scroll>
+      <div class="sk-cat glass-card anim-text">
+        <div class="sk-icon">&#128187;</div>
+        <h4>Languages</h4>
+        <div class="sk-pills">
+          <span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">JavaScript</span><span class="pill">Java</span><span class="pill">C++</span><span class="pill">C</span><span class="pill">Go</span><span class="pill">Swift</span><span class="pill">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="sk-cat glass-card anim-text">
+        <div class="sk-icon">&#128295;</div>
+        <h4>Web &amp; Backend</h4>
+        <div class="sk-pills">
+          <span class="pill">Flask</span><span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">Vite</span><span class="pill">Tailwind CSS</span><span class="pill">REST APIs</span><span class="pill">PostgreSQL</span><span class="pill">Redis</span><span class="pill">Docker</span>
+        </div>
+      </div>
+      <div class="sk-cat glass-card anim-text">
+        <div class="sk-icon">&#129504;</div>
+        <h4>AI &amp; Data</h4>
+        <div class="sk-pills">
+          <span class="pill">Machine Learning</span><span class="pill">Conversational AI</span><span class="pill">LLM Integration</span><span class="pill">Ollama</span><span class="pill">EDA</span><span class="pill">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="sk-cat glass-card anim-text">
+        <div class="sk-icon">&#128736;</div>
+        <h4>Tools &amp; Platforms</h4>
+        <div class="sk-pills">
+          <span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">MATLAB</span><span class="pill">Visual Studio</span><span class="pill">SwiftUI</span><span class="pill">AppKit</span><span class="pill">CI/CD</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="certs-section" data-scroll>
+      <div class="slabel anim-text">Certifications</div>
+      <div class="certs">
+        <div class="cert glass-card anim-text">&#128051; Docker Foundations</div>
+        <div class="cert glass-card anim-text">&#128025; Career Essentials in GitHub</div>
+        <div class="cert glass-card anim-text">&#129302; Generative AI by Microsoft</div>
+        <div class="cert glass-card anim-text">&#128203; Atlassian IT Service Management</div>
+      </div>
+    </div>
+
+    <div class="learn-section" data-scroll>
+      <div class="slabel anim-text">Currently Learning</div>
+      <div class="learn-grid">
+        <div class="learn-item glass-card anim-text">
+          <div class="learn-icon">&#9729;&#65039;</div>
+          <h4>Cloud Architecture</h4>
+          <p>AWS, Kubernetes, and cloud-native infrastructure patterns</p>
+        </div>
+        <div class="learn-item glass-card anim-text">
+          <div class="learn-icon">&#129504;</div>
+          <h4>LLM App Development</h4>
+          <p>Agentic patterns, tool-use orchestration, and AI-powered workflows</p>
+        </div>
+        <div class="learn-item glass-card anim-text">
+          <div class="learn-icon">&#127959;</div>
+          <h4>System Design</h4>
+          <p>Distributed systems, message queues, and scalability patterns</p>
+        </div>
+        <div class="learn-item glass-card anim-text">
+          <div class="learn-icon">&#129408;</div>
+          <h4>Exploring Rust</h4>
+          <p>Systems programming with memory safety and high performance</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-header" data-scroll>
+      <div class="slabel anim-text">Get in Touch</div>
+      <h2 class="stitle anim-text">Let's connect.</h2>
+      <p class="ssub anim-text">I'm actively looking for internship and co-op opportunities in software engineering, AI, and systems. Feel free to reach out.</p>
+    </div>
+    <div class="con-grid" data-scroll>
+      <a href="mailto:pnatheeswaran@torontomu.ca" class="con-card glass-card anim-text">
+        <div class="con-icon">&#9993;&#65039;</div>
+        <div><div class="con-label">Email</div><div class="con-val">pnatheeswaran@torontomu.ca</div></div>
+      </a>
+      <a href="https://www.linkedin.com/in/parusan/" target="_blank" rel="noopener" class="con-card glass-card anim-text">
+        <div class="con-icon">&#128188;</div>
+        <div><div class="con-label">LinkedIn</div><div class="con-val">linkedin.com/in/parusan</div></div>
+      </a>
+      <a href="https://github.com/Parusann" target="_blank" rel="noopener" class="con-card glass-card anim-text">
+        <div class="con-icon">&#128025;</div>
+        <div><div class="con-label">GitHub</div><div class="con-val">github.com/Parusann</div></div>
+      </a>
+      <a href="tel:6475077278" class="con-card glass-card anim-text">
+        <div class="con-icon">&#128241;</div>
+        <div><div class="con-label">Phone</div><div class="con-val">(647) 507-7278</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 Parusan Natheeswaran &mdash; Built with purpose.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
