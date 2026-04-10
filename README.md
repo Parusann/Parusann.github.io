@@ -337,9 +337,11 @@ Current live URL:
 
 ## Social Preview Asset
 
-A matching social/share image is included in this repo at [assets/social-preview.svg](assets/social-preview.svg).
+A matching social/share image is included in this repo at [assets/social-preview.png](assets/social-preview.png).
 
-If you want GitHub links to this repository to have a custom visual preview, upload that file in the repository's social preview settings.
+The editable source artwork also lives at [assets/social-preview.svg](assets/social-preview.svg).
+
+If you want GitHub links to this repository to have a custom visual preview, upload the PNG file in the repository's social preview settings.
 
 ## Customization Ideas
 
