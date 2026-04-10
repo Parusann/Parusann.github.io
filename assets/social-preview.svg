@@ -1,0 +1,111 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Parusan Natheeswaran social preview</title>
+  <desc id="desc">Social preview artwork for the portfolio repository.</desc>
+  <defs>
+    <linearGradient id="bg" x1="110" y1="80" x2="1080" y2="570" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07100E"/>
+      <stop offset="0.52" stop-color="#0D1915"/>
+      <stop offset="1" stop-color="#111713"/>
+    </linearGradient>
+    <radialGradient id="leftGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(250 210) rotate(39.4) scale(410 280)">
+      <stop stop-color="#2E8F52" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#2E8F52" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rightGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(980 160) rotate(121) scale(320 250)">
+      <stop stop-color="#D9A33A" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#D9A33A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="224" y1="148" x2="670" y2="378" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#73D96A"/>
+      <stop offset="1" stop-color="#D9A33A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" rx="28" fill="url(#bg)"/>
+
+  <g opacity="0.4">
+    <path d="M0 120H1200" stroke="#17352B"/>
+    <path d="M0 220H1200" stroke="#17352B"/>
+    <path d="M0 320H1200" stroke="#17352B"/>
+    <path d="M0 420H1200" stroke="#17352B"/>
+    <path d="M0 520H1200" stroke="#17352B"/>
+    <path d="M120 0V630" stroke="#17352B"/>
+    <path d="M240 0V630" stroke="#17352B"/>
+    <path d="M360 0V630" stroke="#17352B"/>
+    <path d="M480 0V630" stroke="#17352B"/>
+    <path d="M600 0V630" stroke="#17352B"/>
+    <path d="M720 0V630" stroke="#17352B"/>
+    <path d="M840 0V630" stroke="#17352B"/>
+    <path d="M960 0V630" stroke="#17352B"/>
+    <path d="M1080 0V630" stroke="#17352B"/>
+  </g>
+
+  <rect width="1200" height="630" rx="28" fill="url(#leftGlow)"/>
+  <rect width="1200" height="630" rx="28" fill="url(#rightGlow)"/>
+
+  <g>
+    <rect x="72" y="64" width="186" height="36" rx="18" fill="rgba(17,31,26,0.88)" stroke="#274D3D"/>
+    <circle cx="92" cy="82" r="5" fill="#73D96A"/>
+    <text x="110" y="88" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="700">parusan.dev</text>
+  </g>
+
+  <text x="72" y="170" fill="#ECF5EB" font-family="'Segoe UI', Arial, sans-serif" font-size="54" font-weight="800">Parusan Natheeswaran</text>
+  <text x="72" y="226" fill="url(#accent)" font-family="'Segoe UI', Arial, sans-serif" font-size="31" font-weight="700">
+    <tspan x="72" dy="0">Portfolio for software engineering,</tspan>
+    <tspan x="72" dy="36">AI, and systems work</tspan>
+  </text>
+
+  <text x="72" y="318" fill="#A8B8B4" font-family="'Segoe UI', Arial, sans-serif" font-size="23">
+    <tspan x="72" dy="0">Computer Engineering student building AI-driven, full-stack,</tspan>
+    <tspan x="72" dy="36">and scalable backend systems with a product-minded approach.</tspan>
+  </text>
+
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="19" font-weight="600">
+    <rect x="72" y="390" width="170" height="44" rx="22" fill="rgba(46,143,82,0.16)" stroke="#336746"/>
+    <text x="109" y="418" fill="#73D96A">AI + ML</text>
+    <rect x="256" y="390" width="180" height="44" rx="22" fill="rgba(46,143,82,0.16)" stroke="#336746"/>
+    <text x="300" y="418" fill="#73D96A">Full-Stack</text>
+    <rect x="450" y="390" width="170" height="44" rx="22" fill="rgba(217,163,58,0.14)" stroke="#8A672B"/>
+    <text x="494" y="418" fill="#E0B95B">Backends</text>
+    <rect x="634" y="390" width="206" height="44" rx="22" fill="rgba(217,163,58,0.14)" stroke="#8A672B"/>
+    <text x="676" y="418" fill="#E0B95B">Systems Design</text>
+  </g>
+
+  <g>
+    <rect x="72" y="480" width="404" height="84" rx="22" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+    <text x="98" y="514" fill="#ECF5EB" font-family="'Segoe UI', Arial, sans-serif" font-size="19" font-weight="700">Open to internship and co-op opportunities</text>
+    <text x="98" y="541" fill="#93A6A2" font-family="'Segoe UI', Arial, sans-serif" font-size="15.5">
+      <tspan x="98" dy="0">Portfolio includes featured projects, experience,</tspan>
+      <tspan x="98" dy="20">and technical highlights.</tspan>
+    </text>
+  </g>
+
+  <g>
+    <rect x="744" y="110" width="374" height="404" rx="26" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="772" y="140" width="318" height="40" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(115,217,106,0.14)"/>
+    <circle cx="796" cy="160" r="6" fill="#FF5F57"/>
+    <circle cx="818" cy="160" r="6" fill="#FFBD2E"/>
+    <circle cx="840" cy="160" r="6" fill="#28CA42"/>
+    <text x="886" y="166" fill="#7F9691" font-family="Consolas, 'Courier New', monospace" font-size="15">featured work</text>
+
+    <rect x="772" y="204" width="146" height="102" rx="18" fill="rgba(46,143,82,0.12)" stroke="rgba(115,217,106,0.2)"/>
+    <text x="796" y="238" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="700">Xenolinguist</text>
+    <text x="796" y="265" fill="#B8C5C2" font-family="'Segoe UI', Arial, sans-serif" font-size="12.5">
+      <tspan x="796" dy="0">AI research</tspan>
+      <tspan x="796" dy="20">workflow</tspan>
+    </text>
+
+    <rect x="944" y="204" width="146" height="102" rx="18" fill="rgba(217,163,58,0.11)" stroke="rgba(217,163,58,0.2)"/>
+    <text x="980" y="238" fill="#E0B95B" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="700">Bingery</text>
+    <text x="969" y="265" fill="#B8C5C2" font-family="'Segoe UI', Arial, sans-serif" font-size="12.5">
+      <tspan x="969" dy="0">AI product</tspan>
+      <tspan x="969" dy="20">build</tspan>
+    </text>
+
+    <rect x="772" y="332" width="318" height="150" rx="22" fill="rgba(10,19,17,0.88)" stroke="rgba(115,217,106,0.14)"/>
+    <text x="798" y="364" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="14.5" font-weight="700">// custom static portfolio</text>
+    <text x="798" y="397" fill="#ECF5EB" font-family="'Segoe UI', Arial, sans-serif" font-size="16.5" font-weight="600">Canvas-based interaction design</text>
+    <text x="798" y="425" fill="#ECF5EB" font-family="'Segoe UI', Arial, sans-serif" font-size="16.5" font-weight="600">Responsive layout and motion system</text>
+    <text x="798" y="453" fill="#ECF5EB" font-family="'Segoe UI', Arial, sans-serif" font-size="16.5" font-weight="600">Project-first storytelling</text>
+  </g>
+</svg>
