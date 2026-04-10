@@ -1,0 +1,125 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Parusan Natheeswaran portfolio banner</title>
+  <desc id="desc">Decorative README banner for the Parusan Natheeswaran portfolio repository.</desc>
+  <defs>
+    <linearGradient id="bg" x1="80" y1="60" x2="1160" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07100E"/>
+      <stop offset="0.55" stop-color="#0D1915"/>
+      <stop offset="1" stop-color="#101713"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(310 230) rotate(43.4526) scale(448.631 328.405)">
+      <stop stop-color="#2E8F52" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#2E8F52" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1020 190) rotate(113.543) scale(366.819 290.347)">
+      <stop stop-color="#D9A33A" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#D9A33A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#73D96A"/>
+      <stop offset="1" stop-color="#D9A33A"/>
+    </linearGradient>
+    <linearGradient id="cardStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="rgba(115,217,106,0.35)"/>
+      <stop offset="1" stop-color="rgba(217,163,58,0.28)"/>
+    </linearGradient>
+    <filter id="blur" x="-120" y="-120" width="1520" height="880" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="36"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="640" rx="28" fill="url(#bg)"/>
+  <g opacity="0.42">
+    <path d="M0 120H1280" stroke="#17352B"/>
+    <path d="M0 220H1280" stroke="#17352B"/>
+    <path d="M0 320H1280" stroke="#17352B"/>
+    <path d="M0 420H1280" stroke="#17352B"/>
+    <path d="M0 520H1280" stroke="#17352B"/>
+    <path d="M120 0V640" stroke="#17352B"/>
+    <path d="M240 0V640" stroke="#17352B"/>
+    <path d="M360 0V640" stroke="#17352B"/>
+    <path d="M480 0V640" stroke="#17352B"/>
+    <path d="M600 0V640" stroke="#17352B"/>
+    <path d="M720 0V640" stroke="#17352B"/>
+    <path d="M840 0V640" stroke="#17352B"/>
+    <path d="M960 0V640" stroke="#17352B"/>
+    <path d="M1080 0V640" stroke="#17352B"/>
+    <path d="M1200 0V640" stroke="#17352B"/>
+  </g>
+
+  <rect width="1280" height="640" rx="28" fill="url(#glowLeft)"/>
+  <rect width="1280" height="640" rx="28" fill="url(#glowRight)"/>
+
+  <g opacity="0.6" filter="url(#blur)">
+    <circle cx="316" cy="212" r="86" fill="#2E8F52"/>
+    <circle cx="1060" cy="168" r="72" fill="#D9A33A"/>
+  </g>
+
+  <g>
+    <rect x="72" y="74" width="180" height="34" rx="17" fill="rgba(17,31,26,0.84)" stroke="#264E3E"/>
+    <text x="102" y="96" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="700">parusan.dev</text>
+    <circle cx="89" cy="91" r="5" fill="#73D96A"/>
+  </g>
+
+  <text x="74" y="176" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="62" font-weight="800">Parusan Natheeswaran</text>
+  <text x="74" y="238" fill="url(#accent)" font-family="'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700">Portfolio Repository</text>
+
+  <text x="74" y="304" fill="#A7B8B3" font-family="'Segoe UI', Arial, sans-serif" font-size="26">
+    <tspan x="74" dy="0">Computer Engineering student building AI-driven,</tspan>
+    <tspan x="74" dy="38">full-stack, and scalable backend systems.</tspan>
+  </text>
+
+  <g>
+    <rect x="74" y="372" width="332" height="48" rx="24" fill="rgba(17,31,26,0.92)" stroke="#315B49"/>
+    <circle cx="104" cy="396" r="7" fill="#73D96A"/>
+    <text x="124" y="404" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="600">Open to internship and co-op roles</text>
+  </g>
+
+  <g font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="700">
+    <rect x="74" y="458" width="146" height="42" rx="21" fill="rgba(46,143,82,0.14)" stroke="#316A45"/>
+    <text x="103" y="484" fill="#73D96A">AI + ML</text>
+    <rect x="234" y="458" width="164" height="42" rx="21" fill="rgba(46,143,82,0.14)" stroke="#316A45"/>
+    <text x="267" y="484" fill="#73D96A">Full-Stack</text>
+    <rect x="414" y="458" width="152" height="42" rx="21" fill="rgba(46,143,82,0.14)" stroke="#316A45"/>
+    <text x="450" y="484" fill="#73D96A">Backends</text>
+    <rect x="582" y="458" width="196" height="42" rx="21" fill="rgba(217,163,58,0.14)" stroke="#88662B"/>
+    <text x="618" y="484" fill="#E0B95B">Systems Design</text>
+  </g>
+
+  <g>
+    <rect x="788" y="102" width="428" height="438" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
+    <rect x="820" y="136" width="364" height="42" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(115,217,106,0.14)"/>
+    <circle cx="844" cy="157" r="6" fill="#FF5F57"/>
+    <circle cx="866" cy="157" r="6" fill="#FFBD2E"/>
+    <circle cx="888" cy="157" r="6" fill="#28CA42"/>
+    <text x="928" y="163" fill="#7C9490" font-family="Consolas, 'Courier New', monospace" font-size="15">featured-projects</text>
+
+    <rect x="820" y="198" width="164" height="122" rx="18" fill="rgba(46,143,82,0.12)" stroke="rgba(115,217,106,0.22)"/>
+    <text x="844" y="232" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="700">Xenolinguist</text>
+    <text x="844" y="262" fill="#B4C2BE" font-family="'Segoe UI', Arial, sans-serif" font-size="13.5">
+      <tspan x="844" dy="0">AI language decoding</tspan>
+      <tspan x="844" dy="24">with local LLM</tspan>
+      <tspan x="844" dy="24">workflows</tspan>
+    </text>
+
+    <rect x="1002" y="198" width="164" height="122" rx="18" fill="rgba(217,163,58,0.11)" stroke="rgba(217,163,58,0.22)"/>
+    <text x="1027" y="232" fill="#E0B95B" font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="700">Bingery</text>
+    <text x="1027" y="262" fill="#B4C2BE" font-family="'Segoe UI', Arial, sans-serif" font-size="13.5">
+      <tspan x="1027" dy="0">AI recommendations</tspan>
+      <tspan x="1027" dy="24">search, and</tspan>
+      <tspan x="1027" dy="24">full-stack APIs</tspan>
+    </text>
+
+    <rect x="820" y="342" width="364" height="166" rx="22" fill="rgba(10,19,17,0.88)" stroke="rgba(115,217,106,0.14)"/>
+    <text x="848" y="378" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="700">// engineering profile</text>
+    <text x="848" y="412" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600">Applied AI</text>
+    <text x="848" y="444" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600">Scalable backends</text>
+    <text x="848" y="476" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600">Product-minded full-stack</text>
+    <text x="848" y="500" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600">development</text>
+    <text x="848" y="524" fill="#91A5A0" font-family="'Segoe UI', Arial, sans-serif" font-size="13.5">
+      <tspan x="848" dy="0">Custom static site with canvas effects, motion,</tspan>
+      <tspan x="848" dy="20">glassmorphism, responsive layouts, and</tspan>
+      <tspan x="848" dy="20">curated case studies.</tspan>
+    </text>
+  </g>
+</svg>
