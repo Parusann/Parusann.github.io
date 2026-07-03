@@ -179,42 +179,30 @@
       <!-- Bingery -->
       <div class="proj-card glass-card" data-scroll>
         <div class="proj-vis">
-          <div class="mock">
-            <div class="mock-window">
-              <div class="mock-top">
-                <span class="mock-dot red"></span><span class="mock-dot yellow"></span><span class="mock-dot green"></span>
-                <span class="mock-url">bingery.app</span>
-              </div>
-              <div class="mock-body">
-                <div class="mock-search">&#128269; Search 200+ anime titles...</div>
-                <div class="mock-grid-sm">
-                  <div class="mock-card-sm"></div><div class="mock-card-sm"></div><div class="mock-card-sm"></div>
-                  <div class="mock-card-sm"></div><div class="mock-card-sm"></div><div class="mock-card-sm"></div>
-                </div>
-                <div class="mock-chat">
-                  <div class="chat-msg user">recommend something like AoT</div>
-                  <div class="chat-msg ai">Based on your preferences, try Vinland Saga...</div>
-                </div>
-              </div>
+          <div class="proj-shot-frame">
+            <div class="mock-top">
+              <span class="mock-dot red"></span><span class="mock-dot yellow"></span><span class="mock-dot green"></span>
+              <span class="mock-url">bingery.fly.dev</span>
             </div>
+            <img src="assets/bingery-hero.jpg" alt="Bingery landing page — cinematic dark UI with an AI recommendation card and a top-rated anime shelf" class="proj-shot" width="1280" height="800" loading="lazy">
           </div>
         </div>
         <div class="proj-info">
-          <div class="proj-badge">&#9733; Featured</div>
+          <div class="proj-badge featured">&#9733; Featured</div>
           <h3>Bingery</h3>
-          <p class="proj-sum">AI-powered anime discovery platform with personalized recommendations, live search, and collaborative genre voting.</p>
+          <p class="proj-sum">AI-powered anime discovery and tracking platform — a conversational guide that understands taste ("recommend me something like Re:Zero"), backed by a custom similarity engine and a studio-grade design system. Live as an installable PWA.</p>
           <div class="proj-tech">
-            <span class="ttag">Python</span><span class="ttag">Flask</span><span class="ttag">React</span><span class="ttag">PostgreSQL</span><span class="ttag">Claude API</span>
+            <span class="ttag">Python</span><span class="ttag">Flask</span><span class="ttag">React</span><span class="ttag">TypeScript</span><span class="ttag">Tailwind CSS</span><span class="ttag">Claude API</span><span class="ttag">Fly.io</span>
           </div>
           <ul class="proj-hl">
-            <li>25+ REST endpoints with JWT auth and 6 relational models</li>
-            <li>Claude API with custom tool-use for real-time recommendations</li>
-            <li>AniList GraphQL integration for enriched anime data</li>
-            <li>Deployed on Render with GitHub CI/CD pipeline</li>
+            <li>AI Guide chat: Claude tool-use grounded by an IDF-weighted tag-similarity engine over a 13,000-title catalog</li>
+            <li>Personalized recommendations from an 8-signal taste profile — ratings, watchlist, fan-genre votes, review text</li>
+            <li>Hand-built design system: motion tokens, glassmorphism, fluid type, full reduced-motion support</li>
+            <li>30+ REST endpoints with JWT auth, AniList GraphQL sync, and 590+ automated tests written TDD-first</li>
           </ul>
           <div class="proj-links">
             <a href="https://github.com/Parusann/bingery" target="_blank" rel="noopener" class="btn btn-primary btn-sm">GitHub &rarr;</a>
-            <a href="#" class="btn btn-glass btn-sm">Live Demo</a>
+            <a href="https://bingery.fly.dev" target="_blank" rel="noopener" class="btn btn-glass btn-sm">Live Demo &rarr;</a>
           </div>
         </div>
       </div>
