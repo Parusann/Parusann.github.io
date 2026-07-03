@@ -23,10 +23,8 @@
     for (var i = 0; i < hidden.length; i++) hidden[i].classList.add('on');
   }
   // Fire from an unconditional top-level timer (not gated on the `load`
-  // event) so content is revealed even in environments where `load` is
-  // delayed/consumed or a resource stalls. The `load` path stays as a
-  // second belt. main.js runs synchronously at body-end, so this timer
-  // is guaranteed to be scheduled.
+  // event) so content is revealed even where `load` is delayed/consumed or
+  // a resource stalls. `load` stays as a second belt.
   setTimeout(revealAllFailsafe, 800);
   window.addEventListener('load', function () {
     setTimeout(revealAllFailsafe, 600);
