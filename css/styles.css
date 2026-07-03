@@ -813,6 +813,25 @@ nav.scrolled {
   max-width: 320px;
 }
 
+/* Real screenshot in the project visual slot, framed like a mock window */
+.proj-shot-frame {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 12px;
+  border: 1px solid rgba(115, 217, 106, 0.15);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  background: rgba(7, 11, 11, 0.9);
+}
+
+.proj-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .mock-window {
   border-radius: 12px;
   border: 1px solid rgba(115, 217, 106, 0.15);
