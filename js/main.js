@@ -1,389 +1,361 @@
 /* ============================================
-   PARUSAN.DEV — Main JavaScript
-   Interactive grid, scroll animations, noise, parallax
+   PARUSAN.DEV — Monograph interactions
+   Printed grid re-inked by the cursor · static grain
+   IO reveals · plate tilt · nav state
+   All systems honor prefers-reduced-motion.
    ============================================ */
 
 (function () {
   'use strict';
 
-  // ==========================================
-  // INTERACTIVE GRID BACKGROUND
-  // Grid that's blurred/dim by default, lights up near cursor
-  // ==========================================
-  const gridCanvas = document.getElementById('grid-canvas');
-  const gridCtx = gridCanvas.getContext('2d');
-  let mouseX = -1000;
-  let mouseY = -1000;
-  let gridAnimFrame;
+  var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function resizeGrid() {
-    gridCanvas.width = window.innerWidth;
-    gridCanvas.height = window.innerHeight;
+  // ==========================================
+  // REVEAL FAILSAFE — registered before any
+  // other module so it survives even if one of
+  // them throws. Content must never stay
+  // invisible: if the observer never fires (or
+  // the script errors), force-reveal shortly
+  // after load.
+  // ==========================================
+  function revealAllFailsafe() {
+    var hidden = document.querySelectorAll('.rv:not(.on)');
+    for (var i = 0; i < hidden.length; i++) hidden[i].classList.add('on');
   }
+  // Fire from an unconditional top-level timer (not gated on the `load`
+  // event) so content is revealed even in environments where `load` is
+  // delayed/consumed or a resource stalls. The `load` path stays as a
+  // second belt. main.js runs synchronously at body-end, so this timer
+  // is guaranteed to be scheduled.
+  setTimeout(revealAllFailsafe, 800);
+  window.addEventListener('load', function () {
+    setTimeout(revealAllFailsafe, 600);
+  });
 
-  function drawGrid() {
-    const w = gridCanvas.width;
-    const h = gridCanvas.height;
-    const spacing = 60;
-    const radius = 250; // How far the cursor effect reaches
-    const scrollY = window.scrollY;
+  // ==========================================
+  // GRID — printed graph paper. Baseline is a
+  // static print; the cursor re-inks nearby
+  // lines. Loop idles out when the mouse rests.
+  // ==========================================
+  (function initGrid() {
+    var canvas = document.getElementById('grid-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var SPACING = 44;
+    var RADIUS = 220;
+    var BASE_ALPHA = 0.055;
+    var mx = -1000, my = -1000;
+    var lastMove = 0;
+    var running = false;
+    var w = 0, h = 0;
 
-    gridCtx.clearRect(0, 0, w, h);
-
-    // Draw vertical lines
-    for (let x = 0; x <= w; x += spacing) {
-      gridCtx.beginPath();
-      gridCtx.moveTo(x, 0);
-      gridCtx.lineTo(x, h);
-
-      // Calculate distance from cursor for this line
-      const dist = Math.abs(x - mouseX);
-      const intensity = Math.max(0, 1 - dist / radius);
-      const alpha = 0.03 + intensity * 0.2;
-
-      gridCtx.strokeStyle = `rgba(46, 143, 82, ${alpha})`;
-      gridCtx.lineWidth = intensity > 0.1 ? 1 : 0.5;
-      gridCtx.stroke();
+    function resize() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = window.innerWidth;
+      h = window.innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw();
     }
 
-    // Draw horizontal lines
-    for (let y = 0; y <= h; y += spacing) {
-      gridCtx.beginPath();
-      gridCtx.moveTo(0, y);
-      gridCtx.lineTo(w, y);
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      var x, y, dist, t;
 
-      const dist = Math.abs(y - mouseY);
-      const intensity = Math.max(0, 1 - dist / radius);
-      const alpha = 0.03 + intensity * 0.2;
+      for (x = 0; x <= w; x += SPACING) {
+        dist = Math.abs(x - mx);
+        t = Math.max(0, 1 - dist / RADIUS);
+        ctx.strokeStyle = 'rgba(31, 107, 69, ' + (BASE_ALPHA + t * 0.16) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(x + 0.5, 0);
+        ctx.lineTo(x + 0.5, h);
+        ctx.stroke();
+      }
 
-      gridCtx.strokeStyle = `rgba(46, 143, 82, ${alpha})`;
-      gridCtx.lineWidth = intensity > 0.1 ? 1 : 0.5;
-      gridCtx.stroke();
-    }
+      for (y = 0; y <= h; y += SPACING) {
+        dist = Math.abs(y - my);
+        t = Math.max(0, 1 - dist / RADIUS);
+        ctx.strokeStyle = 'rgba(31, 107, 69, ' + (BASE_ALPHA + t * 0.16) + ')';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, y + 0.5);
+        ctx.lineTo(w, y + 0.5);
+        ctx.stroke();
+      }
 
-    // Draw intersection glow points
-    for (let x = 0; x <= w; x += spacing) {
-      for (let y = 0; y <= h; y += spacing) {
-        const dx = x - mouseX;
-        const dy = y - mouseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const intensity = Math.max(0, 1 - dist / radius);
-
-        if (intensity > 0.05) {
-          gridCtx.beginPath();
-          gridCtx.arc(x, y, 1.5 + intensity * 3, 0, Math.PI * 2);
-          gridCtx.fillStyle = `rgba(115, 217, 106, ${intensity * 0.6})`;
-          gridCtx.fill();
-
-          // Outer glow
-          if (intensity > 0.3) {
-            gridCtx.beginPath();
-            gridCtx.arc(x, y, 4 + intensity * 8, 0, Math.PI * 2);
-            gridCtx.fillStyle = `rgba(46, 143, 82, ${intensity * 0.08})`;
-            gridCtx.fill();
+      // Re-inked intersections near the pen
+      if (mx > -500) {
+        for (x = 0; x <= w; x += SPACING) {
+          for (y = 0; y <= h; y += SPACING) {
+            var dx = x - mx, dy = y - my;
+            var d = Math.sqrt(dx * dx + dy * dy);
+            var it = Math.max(0, 1 - d / RADIUS);
+            if (it > 0.08) {
+              ctx.beginPath();
+              ctx.arc(x, y, 1 + it * 1.6, 0, Math.PI * 2);
+              ctx.fillStyle = 'rgba(31, 107, 69, ' + it * 0.4 + ')';
+              ctx.fill();
+            }
           }
         }
       }
     }
 
-    gridAnimFrame = requestAnimationFrame(drawGrid);
-  }
+    function loop() {
+      draw();
+      if (performance.now() - lastMove > 1600) {
+        running = false; // print settles
+        return;
+      }
+      requestAnimationFrame(loop);
+    }
 
-  // Track mouse position
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+    function wake() {
+      lastMove = performance.now();
+      if (!running) {
+        running = true;
+        requestAnimationFrame(loop);
+      }
+    }
 
-  document.addEventListener('mouseleave', () => {
-    mouseX = -1000;
-    mouseY = -1000;
-  });
+    window.addEventListener('resize', resize);
+    resize();
 
-  window.addEventListener('resize', resizeGrid);
-  resizeGrid();
-  drawGrid();
+    if (!REDUCED) {
+      document.addEventListener('mousemove', function (e) {
+        mx = e.clientX;
+        my = e.clientY;
+        wake();
+      }, { passive: true });
+
+      document.addEventListener('mouseleave', function () {
+        mx = -1000;
+        my = -1000;
+        wake();
+      });
+    }
+  })();
 
   // ==========================================
-  // NOISE OVERLAY (Film grain effect)
+  // GRAIN — one static frame of paper texture.
+  // No animation loop; it's printed matter.
   // ==========================================
-  const noiseCanvas = document.getElementById('noise');
-  const noiseCtx = noiseCanvas.getContext('2d');
-  let noiseData = [];
-  let noiseFrame = 0;
+  (function initGrain() {
+    var canvas = document.getElementById('grain');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
 
-  function setupNoise() {
-    noiseCanvas.width = window.innerWidth;
-    noiseCanvas.height = window.innerHeight;
-    noiseData = [];
-
-    for (let i = 0; i < 10; i++) {
-      const idata = noiseCtx.createImageData(noiseCanvas.width, noiseCanvas.height);
-      const buffer32 = new Uint32Array(idata.data.buffer);
-      for (let j = 0; j < buffer32.length; j++) {
-        if (Math.random() < 0.08) {
-          buffer32[j] = 0xff000000;
+    function paint() {
+      var w = canvas.width = window.innerWidth;
+      var h = canvas.height = window.innerHeight;
+      var idata = ctx.createImageData(w, h);
+      var buf = new Uint32Array(idata.data.buffer);
+      for (var i = 0; i < buf.length; i++) {
+        if (Math.random() < 0.05) {
+          // ink-colored speck, very low alpha (ABGR)
+          buf[i] = (14 << 24) | (29 << 16) | (33 << 8) | 27;
         }
       }
-      noiseData.push(idata);
+      ctx.putImageData(idata, 0, 0);
     }
-  }
 
-  function paintNoise() {
-    if (noiseFrame >= 9) noiseFrame = 0;
-    else noiseFrame++;
-    if (noiseData[noiseFrame]) {
-      noiseCtx.putImageData(noiseData[noiseFrame], 0, 0);
-    }
-  }
-
-  function loopNoise() {
-    paintNoise();
-    setTimeout(() => requestAnimationFrame(loopNoise), 1000 / 20);
-  }
-
-  let noiseResizeThrottle;
-  window.addEventListener('resize', () => {
-    clearTimeout(noiseResizeThrottle);
-    noiseResizeThrottle = setTimeout(setupNoise, 200);
-  });
-
-  setupNoise();
-  loopNoise();
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(paint, 200);
+    });
+    paint();
+  })();
 
   // ==========================================
-  // SCROLL ANIMATIONS (Intersection Observer)
+  // REVEALS — IntersectionObserver, ink-in.
   // ==========================================
-  function initScrollAnimations() {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+  (function initReveals() {
+    var containers = document.querySelectorAll('[data-reveal]');
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // If it's a container with anim-text children, reveal them
-          const animChildren = entry.target.querySelectorAll('.anim-text');
-          if (animChildren.length > 0) {
-            animChildren.forEach((child, i) => {
-              setTimeout(() => {
-                child.classList.add('visible');
-              }, i * 100); // Stagger by 100ms each
-            });
-          }
-
-          // If the element itself has anim classes
-          entry.target.classList.add('visible');
-
-          observer.unobserve(entry.target);
+    function reveal(container) {
+      var items = container.querySelectorAll('.rv');
+      items.forEach(function (el, i) {
+        if (REDUCED) {
+          el.classList.add('on');
+        } else {
+          setTimeout(function () { el.classList.add('on'); }, i * 50);
         }
       });
-    }, observerOptions);
+    }
 
-    // Observe all scroll-triggered elements
-    document.querySelectorAll('[data-scroll]').forEach((el) => {
-      observer.observe(el);
-    });
+    if (!('IntersectionObserver' in window)) {
+      containers.forEach(reveal);
+      return;
+    }
 
-    // Observe project cards
-    document.querySelectorAll('.proj-card').forEach((el, i) => {
-      el.style.transitionDelay = `${i * 0.15}s`;
-      observer.observe(el);
-    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        reveal(entry.target);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-    // Observe experience cards
-    document.querySelectorAll('.exp-card').forEach((el, i) => {
-      el.style.transitionDelay = `${i * 0.15}s`;
-      observer.observe(el);
+    containers.forEach(function (c) { io.observe(c); });
+
+    // Reveal anything already above the fold on the first frame, without
+    // waiting for the observer's async callback (fixes hero-invisible-on-load).
+    requestAnimationFrame(function () {
+      containers.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        if (r.top < (window.innerHeight || 0) * 0.92) {
+          reveal(c);
+          io.unobserve(c);
+        }
+      });
     });
-  }
+  })();
 
   // ==========================================
-  // PARALLAX EFFECT ON HERO
+  // NAVBAR — scrolled state + active section.
+  // rAF-throttled; offsets cached on resize.
   // ==========================================
-  function initParallax() {
-    const heroBgImg = document.querySelector('.hero-bg-img');
-    const heroContent = document.querySelector('.hero-content');
+  (function initNavbar() {
+    var navbar = document.getElementById('navbar');
+    var links = document.querySelectorAll('.nav-links a[data-nav]');
+    var sections = [];
+    var ticking = false;
 
-    if (!heroBgImg) return;
+    function measure() {
+      sections = [];
+      document.querySelectorAll('section[id]').forEach(function (s) {
+        sections.push({ id: s.id, top: s.offsetTop });
+      });
+    }
 
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const heroHeight = window.innerHeight;
+    function update() {
+      ticking = false;
+      var sy = window.scrollY;
+      navbar.classList.toggle('scrolled', sy > 8);
 
-      if (scrollY < heroHeight) {
-        // Parallax: image moves slower than scroll
-        const parallaxOffset = scrollY * 0.4;
-        heroBgImg.style.transform = `translateY(${parallaxOffset}px) scale(1.1)`;
+      var current = '';
+      for (var i = 0; i < sections.length; i++) {
+        if (sy >= sections[i].top - 120) current = sections[i].id;
+      }
+      links.forEach(function (link) {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
 
-        // Fade out hero content as you scroll
-        const opacity = 1 - (scrollY / heroHeight) * 1.5;
-        heroContent.style.opacity = Math.max(0, opacity);
-        heroContent.style.transform = `translateY(${scrollY * 0.2}px)`;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
       }
     }, { passive: true });
-  }
+
+    window.addEventListener('resize', function () {
+      measure();
+      update();
+    });
+
+    measure();
+    update();
+  })();
 
   // ==========================================
-  // NAVBAR SCROLL EFFECT
+  // MOBILE MENU
   // ==========================================
-  function initNavbar() {
-    const navbar = document.getElementById('navbar');
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a[data-nav]');
-
-    window.addEventListener('scroll', () => {
-      // Add scrolled class
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-
-      // Active section highlighting
-      let current = '';
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 100;
-        if (window.scrollY >= sectionTop) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    }, { passive: true });
-  }
-
-  // ==========================================
-  // MOBILE MENU TOGGLE
-  // ==========================================
-  function initMobileMenu() {
-    const toggle = document.querySelector('.mob-tog');
-    const navLinks = document.querySelector('.nav-links');
-
+  (function initMobileMenu() {
+    var toggle = document.querySelector('.mob-tog');
+    var navLinks = document.querySelector('.nav-links');
     if (!toggle || !navLinks) return;
 
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('open');
-      navLinks.classList.toggle('open');
+    function setOpen(open) {
+      toggle.classList.toggle('open', open);
+      navLinks.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(!toggle.classList.contains('open'));
     });
 
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        toggle.classList.remove('open');
-        navLinks.classList.remove('open');
-      });
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { setOpen(false); });
     });
-  }
+  })();
 
   // ==========================================
-  // SMOOTH SCROLL FOR ANCHOR LINKS
+  // SMOOTH ANCHOR SCROLL — respects reduced
+  // motion; keeps the hash without a jump.
   // ==========================================
-  function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
+  (function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        var target = document.querySelector(anchor.getAttribute('href'));
+        if (!target) return;
         e.preventDefault();
-        const target = document.querySelector(anchor.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        var top = target.getBoundingClientRect().top + window.scrollY - 72;
+        window.scrollTo({ top: top, behavior: REDUCED ? 'auto' : 'smooth' });
+        history.replaceState(null, '', anchor.getAttribute('href'));
       });
     });
-  }
+  })();
 
   // ==========================================
-  // ADVANCED GLASSMORPHISM — 3D Tilt + Glare
-  // Uses requestAnimationFrame for smooth 60fps
+  // PLATE TILT — only elements marked
+  // [data-tilt]. Max 3°, lerped rAF, glare via
+  // CSS vars. Reading surfaces never tilt.
   // ==========================================
-  function initGlassCards() {
-    const cards = document.querySelectorAll('.glass-card');
+  (function initTilt() {
+    if (REDUCED) return;
+    var plates = document.querySelectorAll('[data-tilt]');
 
-    cards.forEach((card) => {
-      let rafId = null;
-      let currentX = 0;
-      let currentY = 0;
-      let targetRotateX = 0;
-      let targetRotateY = 0;
-      let currentRotateX = 0;
-      let currentRotateY = 0;
-      let isHovering = false;
+    plates.forEach(function (el) {
+      var rafId = null;
+      var tx = 0, ty = 0;   // target rotation
+      var cx = 0, cy = 0;   // current rotation
+      var hovering = false;
 
-      // Smooth interpolation loop
-      function animateTilt() {
-        // Lerp towards target (0.15 = smoothing factor, lower = smoother)
-        currentRotateX += (targetRotateX - currentRotateX) * 0.12;
-        currentRotateY += (targetRotateY - currentRotateY) * 0.12;
-
-        // Apply transform directly — no CSS transition fighting
-        card.style.transform = `perspective(800px) rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg) translateY(-2px)`;
-
-        // Keep looping while hovering or still animating back to 0
-        if (isHovering || Math.abs(currentRotateX) > 0.01 || Math.abs(currentRotateY) > 0.01) {
-          rafId = requestAnimationFrame(animateTilt);
+      function animate() {
+        cx += (tx - cx) * 0.12;
+        cy += (ty - cy) * 0.12;
+        el.style.transform = 'perspective(700px) rotateX(' + cx.toFixed(3) + 'deg) rotateY(' + cy.toFixed(3) + 'deg) translateY(-4px)';
+        if (hovering || Math.abs(cx) > 0.01 || Math.abs(cy) > 0.01) {
+          rafId = requestAnimationFrame(animate);
         } else {
-          // Snap to exact zero
-          currentRotateX = 0;
-          currentRotateY = 0;
-          card.style.transform = '';
+          el.style.transform = '';
           rafId = null;
         }
       }
 
-      card.addEventListener('mouseenter', () => {
-        isHovering = true;
-        // Mark card as tilt-ready to override slow scroll transitions
-        card.classList.add('tilt-ready');
-        if (!rafId) {
-          rafId = requestAnimationFrame(animateTilt);
-        }
+      function wake() {
+        if (!rafId) rafId = requestAnimationFrame(animate);
+      }
+
+      el.addEventListener('mouseenter', function () {
+        hovering = true;
+        wake();
       });
 
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        // Set CSS custom properties for the radial gradient glare
-        card.style.setProperty('--mouse-x', `${x}px`);
-        card.style.setProperty('--mouse-y', `${y}px`);
-
-        // Calculate target tilt (max 6 degrees)
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        targetRotateX = ((y - centerY) / centerY) * -6;
-        targetRotateY = ((x - centerX) / centerX) * 6;
+      el.addEventListener('mousemove', function (e) {
+        var rect = el.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        el.style.setProperty('--mx', x + 'px');
+        el.style.setProperty('--my', y + 'px');
+        tx = ((y - rect.height / 2) / (rect.height / 2)) * -3;
+        ty = ((x - rect.width / 2) / (rect.width / 2)) * 3;
       });
 
-      card.addEventListener('mouseleave', () => {
-        isHovering = false;
-        targetRotateX = 0;
-        targetRotateY = 0;
-        card.style.setProperty('--mouse-x', '50%');
-        card.style.setProperty('--mouse-y', '50%');
-        // The animation loop will smoothly return to 0 and then stop
-        if (!rafId) {
-          rafId = requestAnimationFrame(animateTilt);
-        }
+      el.addEventListener('mouseleave', function () {
+        hovering = false;
+        tx = 0;
+        ty = 0;
+        el.style.setProperty('--mx', '50%');
+        el.style.setProperty('--my', '50%');
+        wake();
       });
     });
-  }
-
-  // ==========================================
-  // INITIALIZE EVERYTHING
-  // ==========================================
-  document.addEventListener('DOMContentLoaded', () => {
-    initScrollAnimations();
-    initParallax();
-    initNavbar();
-    initMobileMenu();
-    initSmoothScroll();
-    initGlassCards();
-  });
+  })();
 
 })();
