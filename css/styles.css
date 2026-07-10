@@ -1743,6 +1743,593 @@ footer {
 }
 
 /* ============================================
+   RESEARCH PAPERS — the archive (fig. 03)
+   Cards, beamline trajectory, and detail dialog
+   all render from js/papers-data.js.
+   ============================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.papers-intro p {
+  color: var(--sub);
+  max-width: 640px;
+}
+
+.papers-note {
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--faint);
+  border-left: 2px solid var(--pen);
+  padding: 2px 0 2px 14px;
+  margin-top: 18px;
+  max-width: 640px;
+}
+
+.papers-tools {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
+.papers-count {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+}
+
+/* Beamline — the research trajectory. A beam
+   passes through one station per paper. */
+.beam-cap {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 26px;
+}
+
+#papers-beamline {
+  margin: 56px 0 52px;
+}
+
+.beamline-wrap {
+  position: relative;
+}
+
+.beam-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 4px;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.beam-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2px;
+  height: 1px;
+  background: var(--rule-strong);
+}
+
+/* The pulse — a particle streak riding the beam.
+   Transform-only, so it stays off the layout path. */
+.beam-track::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg,
+    rgba(31, 107, 69, 0) 0%,
+    rgba(31, 107, 69, 0) calc(100% - 130px),
+    rgba(31, 107, 69, 0.45) calc(100% - 16px),
+    var(--pen) 100%);
+  transform: translateX(-101%);
+  animation: beamPulse 8s linear infinite;
+}
+
+@keyframes beamPulse {
+  0%   { transform: translateX(-101%); }
+  60%  { transform: translateX(101%); }
+  100% { transform: translateX(101%); }
+}
+
+.beamline {
+  display: flex;
+  gap: 28px;
+  position: relative;
+  list-style: none;
+}
+
+.beam-node {
+  flex: 1;
+  min-width: 0;
+}
+
+.beam-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 0 4px 6px 0;
+}
+
+.beam-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--pen);
+  transition: background var(--fast) ease, box-shadow var(--fast) ease;
+}
+
+.beam-btn:hover .beam-dot,
+.beam-btn:focus-visible .beam-dot,
+.beam-btn.hl .beam-dot {
+  background: var(--pen);
+  box-shadow: 0 0 0 5px rgba(31, 107, 69, 0.14);
+}
+
+.beam-stage {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pen);
+  margin-top: 12px;
+}
+
+.beam-short {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.beam-year {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--faint);
+}
+
+/* Paper cards — vellum plates over faint graph paper */
+.papers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.paper-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 28px 28px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-brd);
+  border-radius: 14px;
+  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-hi);
+}
+
+/* Scoped past `.js .rv.on` (0,3,0) so the reveal ink-in and the
+   hover motion coexist: the reveal keeps opacity/transform, the
+   lift rides the separate `translate` property. */
+.papers-grid .paper-card {
+  transition: opacity var(--slow) var(--ease), transform var(--slow) var(--ease),
+              translate var(--fast) var(--ease), border-color var(--fast) ease;
+}
+
+.paper-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, var(--grid-ink) 0 1px, transparent 1px 44px),
+    repeating-linear-gradient(90deg, var(--grid-ink) 0 1px, transparent 1px 44px);
+  pointer-events: none;
+}
+
+/* Track flourish — a thin particle track inks in
+   along the top edge on hover. */
+.paper-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pen), rgba(31, 107, 69, 0));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--slow) var(--ease);
+}
+
+.papers-grid .paper-card:hover,
+.papers-grid .paper-card.hl {
+  translate: 0 -2px;
+  border-color: var(--glass-brd-h);
+}
+
+.paper-card:hover::after,
+.paper-card.hl::after {
+  transform: scaleX(1);
+}
+
+.pc-main,
+.pc-side {
+  position: relative;
+}
+
+.paper-cap {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--faint);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.pstatus {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--pen);
+  border: 1px dashed rgba(31, 107, 69, 0.55);
+  border-radius: 999px;
+  padding: 3px 11px;
+  white-space: nowrap;
+}
+
+.paper-card h3 {
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.paper-kind {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--faint);
+  margin-bottom: 14px;
+}
+
+.pk-type {
+  color: var(--pen);
+}
+
+.paper-sum {
+  font-size: 14.5px;
+  color: var(--sub);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.pc-side {
+  margin-top: auto;
+}
+
+.paper-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 16px;
+}
+
+.paper-tags .pill {
+  font-size: 11px;
+  padding: 4px 11px;
+}
+
+.paper-meta {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+  margin-bottom: 20px;
+}
+
+.paper-meta span {
+  color: var(--pen);
+  padding: 0 7px;
+}
+
+.paper-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Featured paper — full-width plate, spec panel right */
+.paper-card.featured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 40px;
+  padding: 32px 36px;
+}
+
+.paper-card.featured h3 {
+  font-size: 29px;
+}
+
+.paper-card.featured .paper-sum {
+  font-size: 15.5px;
+  margin-bottom: 0;
+}
+
+.paper-card.featured .pc-side {
+  margin-top: 0;
+  border-left: 1px solid var(--rule);
+  padding-left: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Detail dialog — the manuscript record */
+.paper-dialog {
+  width: min(720px, calc(100vw - 40px));
+  max-height: min(84vh, 780px);
+  overflow-y: auto;
+  margin: auto;
+  background: var(--raised);
+  color: var(--ink);
+  border: 1px solid var(--rule-strong);
+  border-radius: 14px;
+  padding: 34px 38px 38px;
+  box-shadow: 0 24px 80px rgba(27, 33, 29, 0.28);
+}
+
+.paper-dialog::backdrop {
+  background: rgba(27, 33, 29, 0.45);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.paper-dialog[open] {
+  animation: pdIn 280ms var(--ease);
+}
+
+@keyframes pdIn {
+  from { opacity: 0; transform: translateY(10px); }
+}
+
+body.dialog-open {
+  overflow: hidden;
+}
+
+.pd-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pd-head .paper-cap {
+  margin-bottom: 0;
+}
+
+.pd-close {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  color: var(--sub);
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color var(--fast) ease, border-color var(--fast) ease;
+}
+
+.pd-close:hover {
+  color: var(--pen);
+  border-color: var(--pen);
+}
+
+#pd-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.pd-label {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pen);
+  margin: 24px 0 8px;
+}
+
+.pd-body {
+  font-size: 15px;
+  color: var(--sub);
+  line-height: 1.7;
+}
+
+.paper-dialog .paper-tags {
+  margin-bottom: 0;
+}
+
+.pd-disclaimer {
+  margin-top: 28px;
+  padding: 14px 16px;
+  border: 1px dashed var(--rule-strong);
+  border-radius: 10px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--faint);
+  line-height: 1.7;
+}
+
+.pd-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+/* Papers — responsive */
+@media (max-width: 960px) {
+  .papers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .paper-card.featured {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 26px 28px 28px;
+  }
+
+  .paper-card.featured .pc-side {
+    border-left: none;
+    border-top: 1px solid var(--rule);
+    padding-left: 0;
+    padding-top: 22px;
+  }
+
+  .paper-card.featured .paper-sum {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .beamline {
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .beam-track {
+    left: 6px;
+    right: auto;
+    top: 4px;
+    bottom: 4px;
+    width: 1px;
+    height: auto;
+    overflow: visible;
+    border-radius: 0;
+    background: var(--rule-strong);
+  }
+
+  .beam-track::before,
+  .beam-track::after {
+    display: none;
+  }
+
+  .beam-btn {
+    display: grid;
+    grid-template-columns: 13px 1fr;
+    column-gap: 16px;
+    row-gap: 3px;
+    align-items: start;
+  }
+
+  .beam-dot {
+    grid-row: 1 / 4;
+    margin-top: 3px;
+  }
+
+  .beam-stage {
+    margin-top: 2px;
+  }
+
+  .paper-dialog {
+    padding: 24px 20px 28px;
+  }
+
+  #pd-title {
+    font-size: 22px;
+  }
+}
+
+/* Papers — reduced motion: the beam settles, plates stay put */
+@media (prefers-reduced-motion: reduce) {
+  .beam-track::after {
+    animation: none;
+    display: none;
+  }
+
+  .paper-card::after {
+    display: none;
+  }
+
+  .papers-grid .paper-card:hover,
+  .papers-grid .paper-card.hl {
+    translate: none;
+  }
+
+  .beam-dot {
+    transition: none;
+  }
+
+  .paper-dialog[open] {
+    animation: none;
+  }
+}
+
+/* Papers — solid surfaces under reduced transparency / high contrast */
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .paper-card {
+    background: var(--raised);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Papers — print */
+@media print {
+  .paper-dialog,
+  .beam-track::after {
+    display: none;
+  }
+
+  .paper-card {
+    break-inside: avoid;
+  }
+}
+
+/* ============================================
    NARROW PHONES
    ============================================ */
 @media (max-width: 520px) {

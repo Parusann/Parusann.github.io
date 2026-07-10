@@ -4,6 +4,11 @@ DESIGN-REVAMP-PROMPT.md
 # Design handoff bundles from Claude design — transient, not versioned
 Parusan's Portfolio Elevation*/
 
+# Local tooling & working notes — never published with the site
+.claude/
+graphify-out/
+CLAUDE.md
+
 # OS noise
 .DS_Store
 Thumbs.db

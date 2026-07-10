@@ -1,0 +1,6 @@
+# Binary assets — never apply EOL normalization (would corrupt them)
+*.pdf   binary
+*.zip   binary
+*.jpg   binary
+*.jpeg  binary
+*.png   binary

@@ -77,6 +77,7 @@
       <a href="#hero" data-nav>Home</a>
       <a href="#about" data-nav>About</a>
       <a href="#projects" data-nav>Projects</a>
+      <a href="#papers" data-nav>Papers</a>
       <a href="#experience" data-nav>Experience</a>
       <a href="#skills" data-nav>Skills</a>
       <a href="#contact" data-nav>Contact</a>
@@ -332,11 +333,35 @@
   </div>
 </section>
 
+<!-- Research Papers — everything below the header renders from js/papers-data.js -->
+<section id="papers" aria-labelledby="papers-title">
+  <div class="container">
+    <div class="section-header" data-reveal>
+      <div class="flabel rv">fig. 03 — research papers</div>
+      <h2 class="ftitle rv" id="papers-title">Research Papers.</h2>
+      <p class="fsub rv">Independent technical manuscripts exploring CERN physics, antimatter precision systems, and collider searches for invisible matter.</p>
+    </div>
+    <div class="papers-intro" data-reveal>
+      <p class="rv">This archive collects long-form technical papers written to practice professional scientific synthesis: turning complex experimental programs into clear arguments, structured evidence, and polished research artifacts.</p>
+      <p class="papers-note rv">These are independent portfolio manuscripts and are not peer-reviewed journal publications.</p>
+      <div class="papers-tools rv">
+        <a class="btn btn-line btn-sm" href="assets/papers/cern-research-papers-pdfs.zip" download>Download All PDFs <span class="btn-arrow">&darr;</span></a>
+        <span class="papers-count" id="papers-count"></span>
+      </div>
+    </div>
+    <div id="papers-beamline" data-reveal></div>
+    <div id="papers-grid" data-reveal></div>
+    <noscript>
+      <p class="papers-note">The interactive archive needs JavaScript &mdash; or <a href="assets/papers/cern-research-papers-pdfs.zip" download><u>download all papers as a ZIP</u></a>.</p>
+    </noscript>
+  </div>
+</section>
+
 <!-- Experience -->
 <section id="experience">
   <div class="container">
     <div class="section-header" data-reveal>
-      <div class="flabel rv">fig. 03 — experience</div>
+      <div class="flabel rv">fig. 04 — experience</div>
       <h2 class="ftitle rv">Where I've worked.</h2>
     </div>
     <div class="exp-list" data-reveal>
@@ -389,7 +414,7 @@
 <section id="skills">
   <div class="container">
     <div class="section-header" data-reveal>
-      <div class="flabel rv">fig. 04 — tech stack</div>
+      <div class="flabel rv">fig. 05 — tech stack</div>
       <h2 class="ftitle rv">What I work with.</h2>
     </div>
     <div class="sk-grid" data-reveal>
@@ -462,7 +487,7 @@
   <div class="container">
     <div class="contact-grid" data-reveal>
       <div class="contact-say">
-        <div class="flabel rv">fig. 05 — get in touch</div>
+        <div class="flabel rv">fig. 06 — get in touch</div>
         <h2 class="ftitle rv">Let's connect.</h2>
         <p class="fsub rv">I'm actively looking for internship and co-op opportunities in software engineering, AI, and systems. Feel free to reach out.</p>
         <div class="contact-status rv">
@@ -509,6 +534,8 @@
   </div>
 </footer>
 
+<script src="js/papers-data.js?v=20260710"></script>
+<script src="js/papers.js?v=20260710"></script>
 <script src="js/main.js?v=20260703"></script>
 </body>
 </html>
