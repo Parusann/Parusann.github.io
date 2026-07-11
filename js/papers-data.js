@@ -114,5 +114,41 @@ window.PAPERS = [
     tags: ['CERN', 'LHC', 'Dark Matter', 'Dark Sectors', 'Missing Transverse Momentum'],
     topics: ['Missing transverse momentum', 'Mono-X & simplified mediator models', 'Visible–invisible complementarity', 'Semi-visible & emerging jets', 'Long-lived particle signatures', 'Interpreting null results'],
     pdf: 'assets/papers/03-from-missing-energy-to-dark-sectors.pdf'
+  },
+  {
+    id: 'terascale-gravity',
+    status: 'live',
+    title: 'Gravity at the Terascale: How CERN Searches for Extra Dimensions, Gravitons, and Microscopic Black Holes',
+    short: 'Gravity at the Terascale',
+    stage: 'Terascale gravity searches',
+    type: 'Critical Review',
+    field: 'Experimental particle physics · beyond-Standard-Model searches',
+    topic: 'Terascale gravity',
+    year: '2026',
+    format: 'PDF · 16 pp.',
+    summary: 'A critical review of how higher-dimensional geometry becomes a collider observable at the LHC. It follows ADD and Randall–Sundrum models into graviton and microscopic-black-hole signatures at ATLAS and CMS, and argues that current exclusions are complementary, model-conditional tests rather than a universal bound on extra dimensions.',
+    abstract: 'Extra dimensions become experimentally meaningful at the Large Hadron Collider only when a model specifies how higher-dimensional gravity couples to proton collisions. This critical review follows that translation from the large, flat geometry of Arkani-Hamed-Dimopoulos-Dvali models and the warped geometry of Randall-Sundrum models to three graviton signatures: missing transverse momentum from real Kaluza-Klein emission, localized spin-2 resonances, and nonresonant spectral or angular distortions from virtual exchange. It then distinguishes semiclassical high-multiplicity black-hole and string-ball searches from quantum-black-hole few-body benchmarks. Representative ATLAS and CMS Run 2 analyses, including full-data results released in 2024 and 2026, show no compelling excess. Their exclusions nevertheless constrain different quantities: a fundamental gravity scale, convention-dependent effective cutoffs, resonance masses and couplings, or production thresholds tied to generator assumptions. The paper argues that these limits cannot be combined into a universal bound on extra dimensions, especially where effective-interaction or semiclassical descriptions approach their validity limits. CERN’s program is best understood as a network of complementary, model-conditional tests that progressively restricts terascale gravity while leaving the broader existence question open. Independent cosmic-ray and astrophysical arguments also show why hypothetical collider-scale black holes do not constitute a credible hazard.',
+    why: 'Null results only constrain what a model specifies precisely enough to test: ATLAS and CMS exclusions bound different quantities — gravity scales, effective cutoffs, resonance masses, production thresholds — and cannot be merged into one statement about extra dimensions. Keeping those distinctions straight, including the cosmic-ray safety argument, is what separates careful interpretation from headline claims.',
+    tags: ['CERN', 'LHC', 'Extra Dimensions', 'Gravitons', 'Microscopic Black Holes'],
+    topics: ['ADD & Randall–Sundrum geometries', 'Kaluza-Klein graviton signatures', 'Spin-2 resonances & virtual exchange', 'Black-hole & string-ball searches', 'Model-conditional exclusions', 'Collider safety arguments'],
+    pdf: 'assets/papers/04-gravity-at-the-terascale.pdf'
+  },
+  {
+    id: 'zboson-open-data',
+    status: 'live',
+    title: 'Reconstructing the Z-Boson Peak from CERN Open Data: A Reproducible Dimuon Analysis',
+    short: 'Z-Boson Peak from Open Data',
+    stage: 'Reproducible open-data analysis',
+    type: 'Reproducible Data Analysis',
+    field: 'Experimental particle physics · collider data analysis',
+    topic: 'Open-data analysis',
+    year: '2026',
+    format: 'PDF · 16 pp.',
+    summary: 'An independent, hands-on reconstruction of the CMS dimuon invariant-mass spectrum from CERN Open Data record 5202. It rebuilds the Z-boson peak from 83,761 Run 2011A events with provenance verification, data-quality auditing, a Voigt-plus-exponential resonance fit, and deliberately bounded statistical claims about what the education-derived dataset can support.',
+    abstract: 'A visible resonance is not yet a measurement: its interpretation depends on provenance, event selection, kinematic reconstruction, detector response, and the adequacy of the statistical model. This study reconstructs the dimuon invariant-mass spectrum from 83,761 preselected CMS Run2011A events released as CERN Open Data record 5202. The analysis verifies the file checksum and documented selection, recomputes each event’s mass from the two muons’ transverse momentum, pseudorapidity, and azimuth, and audits the redundant Cartesian four-vector fields. The primary reconstruction correlates with the supplied mass at 0.999999895, whereas 2,998 events show at least one material discrepancy between redundant coordinate representations under the stated consistency tolerance. A binned Voigt-plus-exponential fit to 12,108 events from 70 to 110 GeV returns a descriptive peak parameter of 90.7392 ± 0.0258 GeV; 200 bootstrap resamples give a 95% percentile interval of 90.6877–90.7850 GeV. The peak remains stable across tested windows and bin widths, but a Pearson chi-squared per degree of freedom of 3.893 rejects any precision interpretation of the compact line-shape model. The result reproduces the central model-to-observable-to-evidence chain of collider analysis while remaining deliberately bounded: the education-derived file lacks the luminosity, trigger, efficiency, calibration, simulation, and systematic information required for a cross section, electroweak parameter extraction, or competitive Z-mass measurement.',
+    why: 'This is the archive’s first hands-on analysis rather than a review: the full model-to-observable-to-evidence chain of collider physics executed end to end on public data. The bounded claims are the point — stating exactly what an education-derived open dataset can and cannot support treats reproducibility and honest inference as results in their own right.',
+    tags: ['CERN Open Data', 'CMS', 'Z Boson', 'Dimuon Analysis', 'Reproducibility'],
+    topics: ['CERN Open Data record 5202', 'Dimuon invariant-mass reconstruction', 'Provenance & data-quality auditing', 'Voigt-plus-exponential resonance fit', 'Bootstrap uncertainty estimation', 'Bounded statistical inference'],
+    pdf: 'assets/papers/05-reconstructing-the-z-boson-peak-from-cern-open-data.pdf'
   }
 ];
