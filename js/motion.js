@@ -431,6 +431,11 @@
             start: 'center center',
             end: '+=80%',
             pin: true,
+            // .proj-list is display:flex, where ScrollTrigger silently
+            // disables padding-based pin spacing (no travel reserved →
+            // the next case scrolls up over the pinned one). Margins DO
+            // push siblings in a flex column, so force margin spacing.
+            pinSpacing: 'margin',
             scrub: true
           },
           defaults: { ease: 'power2.out' }
