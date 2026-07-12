@@ -2330,6 +2330,153 @@ body.dialog-open {
 }
 
 /* ============================================
+   SIGNATURE MOTION — scaffolding for the
+   GSAP/Lenis layer (js/motion.js). Resting
+   states stay identical to the base styles;
+   everything here only exists for the
+   animated layer.
+   ============================================ */
+
+/* Lenis core — required while the smooth scroller owns the wheel */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Hero — typed kicker caret + masked name words (spans are
+   JS-generated; at rest they render identically to plain text) */
+.type-caret {
+  color: var(--pen);
+  animation: caretBlink 1.4s steps(1) infinite;
+}
+
+.hn-word {
+  display: inline-block;
+}
+
+/* Diagrams — the pen-green packet that runs the flow path
+   while a diagram draws itself (JS-created, removed after) */
+.flow {
+  position: relative;
+}
+
+.flow-packet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pen);
+  box-shadow: 0 0 10px rgba(31, 107, 69, 0.55);
+  pointer-events: none;
+}
+
+/* Lab-notebook margin rule (JS-created). The stylesheet default is the
+   full-height static rule — the motion layer scrubs its length and
+   reveals the riding figure label. Sits above the grid (0), below
+   everything else that matters (nav 100, grain 200). */
+.margin-rule {
+  position: fixed;
+  top: 96px;
+  bottom: 44px;
+  left: clamp(18px, calc((100vw - 1120px) / 2 - 44px), 64px);
+  width: 44px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mr-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--pen) 0%, rgba(31, 107, 69, 0.35) 100%);
+}
+
+.mr-fig {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--pen);
+  white-space: nowrap;
+  opacity: 0; /* the motion layer reveals it */
+}
+
+/* Below 1240px the riding label would crowd the content column */
+@media (max-width: 1239px) {
+  .margin-rule {
+    display: none;
+  }
+}
+
+/* Print — neutralize any in-flight motion states so an unscrolled page
+   prints complete, and drop the motion-only decorations. */
+@media print {
+  .margin-rule,
+  .flow-packet,
+  .type-caret {
+    display: none !important;
+  }
+
+  .proj-info > *,
+  .proj-hl li,
+  .proj-caption,
+  .flabel,
+  .ftitle,
+  .hn-word,
+  .mount img,
+  .dnode,
+  .darr,
+  .wire,
+  .wire *,
+  .fig-foot {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    clip-path: none !important;
+    transition: none !important;
+  }
+}
+
+/* Reduced motion — the motion layer never runs, so these only need to
+   neutralize its scaffolding: the rule stays a static full-height line,
+   the label stays hidden, nothing else transforms. */
+@media (prefers-reduced-motion: reduce) {
+  .mr-line {
+    transform: none !important;
+  }
+
+  .mr-fig {
+    opacity: 0 !important;
+  }
+
+  .type-caret {
+    animation: none;
+  }
+
+  .flow-packet {
+    display: none !important;
+  }
+
+  #grid-canvas {
+    transform: none !important;
+  }
+}
+
+/* ============================================
    NARROW PHONES
    ============================================ */
 @media (max-width: 520px) {

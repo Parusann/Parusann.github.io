@@ -51,7 +51,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=20260712">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -625,7 +625,7 @@
   <div class="colophon">
     <div class="colo-left">
       <div class="colo-mark">parusan.dev<span class="caret">_</span></div>
-      <div class="colo-set">Set in <em>Newsreader</em>, IBM Plex Sans &amp; JetBrains Mono. Hand-built and hand-tuned &mdash; no framework, no template, no shortcuts.</div>
+      <div class="colo-set">Set in <em>Newsreader</em>, IBM Plex Sans &amp; JetBrains Mono. Hand-built and hand-tuned &mdash; no framework, no template, no shortcuts. Motion drawn with GSAP &amp; Lenis.</div>
     </div>
     <div class="colo-meta">
       <div>&copy; 2026 Parusan Natheeswaran</div>
@@ -637,6 +637,13 @@
 
 <script src="js/papers-data.js?v=20260711"></script>
 <script src="js/papers.js?v=20260710"></script>
-<script src="js/main.js?v=20260703"></script>
+<script src="js/main.js?v=20260712"></script>
+<!-- Motion libraries (CDN) + the signature-motion layer — loaded last so
+     the base experience never waits on them. If any of these fail, the
+     site runs exactly as before. -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js" integrity="sha384-kdY9hFBPoAPpxcrLihsO3APivFOxtQwSeYdzFD5CIIfLurwhdMrEHhkQxZJDkxgk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" integrity="sha384-P8VzCVnT9NBUkMrpcIZrJbA7EBjJvh/fJS6PmP+4nLIM284DtsImIv8D0fFjIkeh" crossorigin="anonymous"></script>
+<script src="js/motion.js?v=20260712"></script>
 </body>
 </html>
