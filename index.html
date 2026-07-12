@@ -326,6 +326,107 @@
             </div>
           </div>
 
+          <div class="mini rv">
+            <div class="diagram" aria-hidden="true">
+              <div class="flow">
+                <div class="drow"><div class="dnode">Drafter<small>INT8/NF4 &middot; proposes</small></div></div>
+                <div class="darr">&darr; <small>calibrated confidence</small></div>
+                <div class="drow"><div class="dnode">Policy<small>verify length &#8467;</small></div></div>
+                <div class="darr">&darr;</div>
+                <div class="drow">
+                  <div class="dnode hit">Verifier<small>exact accept / reject</small></div>
+                  <div class="dnode">Output<small>token-identical</small></div>
+                </div>
+              </div>
+              <div class="fig-foot"><b>token-exact</b> output &middot; <b>+43%</b> modelled throughput</div>
+            </div>
+            <div class="proj-caption">fig. 02c — draft / verify loop &middot; <span class="status">ml systems</span></div>
+            <h3>EdgeSpark</h3>
+            <p class="proj-sum">Quantized speculative decoding on a single consumer AMD GPU — same model, same machine, faster, provably the same output — plus a study of what quantization does to a confidence head.</p>
+            <div class="tech-line">Python <span>&middot;</span> PyTorch <span>&middot;</span> ROCm <span>&middot;</span> Transformers <span>&middot;</span> NumPy</div>
+            <ul class="proj-hl">
+              <li>Exactness guarantee validated on real Qwen3-4B — greedy output token-for-token identical to the verifier alone</li>
+              <li>Calibration study: aggressive quantization breaks the confidence head; a one-parameter temperature fix recovers ECE 0.166 &rarr; 0.014</li>
+              <li>+43% code / +36% chat modelled throughput on an RX 7900 XTX, in 9.5 GB of VRAM measured</li>
+              <li>37 tests with an 18-check exactness suite, plus a 10-page technical preprint</li>
+            </ul>
+            <div class="proj-links">
+              <a href="https://github.com/Parusann/edgespark" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+            </div>
+          </div>
+
+          <div class="mini rv">
+            <div class="diagram" aria-hidden="true">
+              <div class="flow">
+                <div class="drow"><div class="dnode">Hotkey<small>hold &middot; 0.5s pre-roll</small></div></div>
+                <div class="darr">&darr; <small>TEN-VAD gate</small></div>
+                <div class="drow"><div class="dnode hit">Whisper<small>Vulkan GPU &middot; warm server</small></div></div>
+                <div class="darr">&darr; <small>vocab correction</small></div>
+                <div class="drow"><div class="dnode">Cursor<small>pastes in any app</small></div></div>
+              </div>
+              <div class="fig-foot"><b>~135 ms</b> round-trip &middot; <b>100%</b> offline</div>
+            </div>
+            <div class="proj-caption">fig. 02d — dictation pipeline &middot; <span class="status">desktop tool</span></div>
+            <h3>Parley</h3>
+            <p class="proj-sum">Push-to-talk voice dictation for Windows — hold a key, speak, and clean text lands at the cursor in any app. Whisper runs entirely on your machine: no account, no telemetry, no network.</p>
+            <div class="tech-line">Python <span>&middot;</span> whisper.cpp <span>&middot;</span> faster-whisper <span>&middot;</span> Vulkan <span>&middot;</span> Ollama <span>&middot;</span> Tkinter</div>
+            <ul class="proj-hl">
+              <li>~135 ms warm dictation round-trip with large-v3-turbo held in VRAM by a whisper.cpp Vulkan server</li>
+              <li>Deterministic fuzzy vocab correction snaps near-misses to your own terms with zero hallucination</li>
+              <li>Per-app rules, voice commands, AI transforms, and an optional local Ollama cleanup pass</li>
+              <li>Ships as a standalone exe and pip package, with --doctor and --selftest diagnostics</li>
+            </ul>
+            <div class="proj-links">
+              <!-- TODO: github.com/Parusann/parley was private (404) as of 2026-07-12 — make the repo public or this link dead-ends -->
+              <a href="https://github.com/Parusann/parley" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+            </div>
+          </div>
+
+          <div class="mini rv">
+            <div class="diagram" aria-hidden="true">
+              <div class="wire">
+                <div class="wire-top"><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-title">ZenithSpectra</span></div>
+                <div class="wire-toolbar">
+                  <div class="wire-search">Ask with sources&hellip;</div>
+                  <div class="wire-add">Ask AI</div>
+                  <div class="wire-count">live</div>
+                </div>
+                <div class="wire-body">
+                  <div class="wire-side">
+                    <div class="wire-nav on">Space</div>
+                    <div class="wire-nav">Quantum</div>
+                    <div class="wire-nav">Theoretical</div>
+                    <div class="wire-nav">Frontier</div>
+                  </div>
+                  <div class="wire-grid">
+                    <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                    <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                    <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                    <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                    <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                    <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="fig-foot"><b>credibility-ranked</b> sources &middot; <b>grounded</b> Q&amp;A</div>
+            </div>
+            <div class="proj-caption">fig. 02e — interface schematic &middot; <span class="status">full-stack ai</span></div>
+            <h3>ZenithSpectra</h3>
+            <p class="proj-sum">AI-powered science intelligence platform tracking live developments in space exploration and frontier physics — ranks source credibility, surfaces trending topics, and answers questions with source-backed summaries.</p>
+            <div class="tech-line">Next.js <span>&middot;</span> TypeScript <span>&middot;</span> Tailwind CSS <span>&middot;</span> FastAPI <span>&middot;</span> PostgreSQL <span>&middot;</span> Ollama <span>&middot;</span> Fly.io</div>
+            <ul class="proj-hl">
+              <li>Tracks four frontier-science fields — space exploration, quantum, theoretical physics, frontier ideas</li>
+              <li>Ranks source credibility so readers can judge where every claim comes from</li>
+              <li>Grounded summaries and source-backed Q&amp;A via Gemma (E4B) on Ollama, run as a private Fly GPU app</li>
+              <li>Next.js App Router frontend, FastAPI backend, and managed Fly Postgres — deployed as three Fly.io apps</li>
+            </ul>
+            <div class="proj-links">
+              <a href="https://github.com/Parusann/ZenithSpectra" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+              <!-- TODO: add a Live Demo button once the Fly apps are redeployed
+                   (zenithspectra-frontend.fly.dev was unreachable on 2026-07-12) -->
+            </div>
+          </div>
+
         </div>
       </div>
 
