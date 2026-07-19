@@ -873,240 +873,6 @@ nav.scrolled {
   margin: 14px 0 10px;
 }
 
-.diagram {
-  background: var(--glass-bg);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-brd);
-  border-radius: 14px;
-  box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-hi);
-  padding: 28px 24px;
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Flow diagram (URL shortener) — box pipeline, refined */
-.flow {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.drow {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-}
-
-.dnode {
-  background: rgba(251, 249, 243, 0.72);
-  border: 1px solid var(--rule-strong);
-  border-radius: 8px;
-  padding: 10px 16px;
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--ink);
-  text-align: center;
-  min-width: 118px;
-  box-shadow: 0 1px 2px rgba(27, 33, 29, 0.04);
-}
-
-.dnode small {
-  display: block;
-  font-size: 9.5px;
-  letter-spacing: 0.05em;
-  color: var(--faint);
-  margin-top: 3px;
-}
-
-.dnode.hit {
-  border-color: var(--pen);
-  color: var(--pen);
-  background: rgba(31, 107, 69, 0.07);
-}
-
-.dnode.hit small {
-  color: var(--pen);
-}
-
-.darr {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--pen);
-  padding: 6px 0;
-  line-height: 1;
-}
-
-.darr small {
-  color: var(--faint);
-  font-size: 9.5px;
-  letter-spacing: 0.05em;
-  margin-left: 6px;
-}
-
-.fig-foot {
-  margin-top: 18px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--rule-strong);
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.03em;
-  color: var(--faint);
-  line-height: 1.9;
-}
-
-.fig-foot b {
-  color: var(--pen);
-  font-weight: 500;
-}
-
-/* App mock (bookstore) — browser schematic, filled in */
-.wire {
-  width: 100%;
-  border: 1px solid var(--rule-strong);
-  border-radius: 10px;
-  overflow: hidden;
-  background: rgba(251, 249, 243, 0.72);
-  box-shadow: 0 4px 14px rgba(27, 33, 29, 0.06);
-}
-
-.wire-top {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 12px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.wire-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--rule-strong);
-}
-
-.wire-title {
-  margin-left: auto;
-  font-family: var(--mono);
-  font-size: 9.5px;
-  letter-spacing: 0.08em;
-  color: var(--faint);
-}
-
-.wire-toolbar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.wire-search {
-  flex: 1;
-  height: 24px;
-  border: 1px solid var(--rule);
-  border-radius: 6px;
-  background: var(--paper);
-  display: flex;
-  align-items: center;
-  padding: 0 9px;
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--faint);
-}
-
-.wire-add {
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--pen);
-  border: 1px solid var(--pen);
-  border-radius: 6px;
-  padding: 5px 9px;
-  white-space: nowrap;
-}
-
-.wire-count {
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--faint);
-  white-space: nowrap;
-}
-
-.wire-body {
-  display: flex;
-}
-
-.wire-side {
-  width: 92px;
-  border-right: 1px solid var(--rule);
-  padding: 10px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.wire-nav {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.03em;
-  color: var(--faint);
-  padding: 5px 8px;
-  border-radius: 5px;
-}
-
-.wire-nav.on {
-  background: rgba(31, 107, 69, 0.10);
-  color: var(--pen);
-}
-
-.wire-grid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 12px;
-}
-
-.wire-book {
-  border: 1px solid var(--rule);
-  border-radius: 5px;
-  overflow: hidden;
-  background: var(--paper);
-}
-
-.wire-cover {
-  height: 34px;
-  background: rgba(31, 107, 69, 0.08);
-  border-bottom: 1px solid var(--rule);
-}
-
-.wire-book:nth-child(3n+2) .wire-cover {
-  background: rgba(27, 33, 29, 0.07);
-}
-
-.wire-book:nth-child(3n) .wire-cover {
-  background: rgba(31, 107, 69, 0.05);
-}
-
-.wire-lines {
-  padding: 7px 8px;
-}
-
-.wire-line {
-  height: 4px;
-  border-radius: 2px;
-  background: var(--rule);
-  margin-bottom: 5px;
-}
-
-.wire-line.short {
-  width: 58%;
-  margin-bottom: 0;
-}
-
 /* Experience — catalogue of roles, on vellum */
 .exp-list {
   display: flex;
@@ -1734,7 +1500,6 @@ footer {
   .con-list a,
   .hero-links a,
   .btn-line,
-  .diagram,
   .ticker {
     background: var(--raised);
     -webkit-backdrop-filter: none;
@@ -2331,25 +2096,11 @@ body.dialog-open {
 
 /* ============================================
    SIGNATURE MOTION — scaffolding for the
-   GSAP/Lenis layer (js/motion.js). Resting
+   GSAP layer (js/motion.js). Resting
    states stay identical to the base styles;
    everything here only exists for the
    animated layer.
    ============================================ */
-
-/* Lenis core — required while the smooth scroller owns the wheel */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
 
 /* Hero — typed kicker caret + masked name words (spans are
    JS-generated; at rest they render identically to plain text) */
@@ -2360,24 +2111,6 @@ html.lenis body {
 
 .hn-word {
   display: inline-block;
-}
-
-/* Diagrams — the pen-green packet that runs the flow path
-   while a diagram draws itself (JS-created, removed after) */
-.flow {
-  position: relative;
-}
-
-.flow-packet {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--pen);
-  box-shadow: 0 0 10px rgba(31, 107, 69, 0.55);
-  pointer-events: none;
 }
 
 /* Lab-notebook margin rule (JS-created). The stylesheet default is the
@@ -2426,7 +2159,6 @@ html.lenis body {
    prints complete, and drop the motion-only decorations. */
 @media print {
   .margin-rule,
-  .flow-packet,
   .type-caret {
     display: none !important;
   }
@@ -2437,12 +2169,7 @@ html.lenis body {
   .flabel,
   .ftitle,
   .hn-word,
-  .mount img,
-  .dnode,
-  .darr,
-  .wire,
-  .wire *,
-  .fig-foot {
+  .mount img {
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
@@ -2467,10 +2194,6 @@ html.lenis body {
     animation: none;
   }
 
-  .flow-packet {
-    display: none !important;
-  }
-
   #grid-canvas {
     transform: none !important;
   }
@@ -2482,28 +2205,6 @@ html.lenis body {
 @media (max-width: 520px) {
   .hero-name {
     font-size: 2.7rem;
-  }
-
-  .diagram {
-    padding: 20px 16px;
-  }
-
-  .wire-side {
-    width: 74px;
-  }
-
-  .wire-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .wire-nav {
-    font-size: 8.5px;
-    padding: 5px 6px;
-  }
-
-  .flow .dnode {
-    min-width: 96px;
-    padding: 9px 12px;
   }
 }
 

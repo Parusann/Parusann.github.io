@@ -46,8 +46,6 @@
     var lastMove = 0;
     var running = false;
     var w = 0, h = 0;
-    var driftX = 0, driftY = 0;
-    var drawQueued = false;
 
     function resize() {
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -62,10 +60,8 @@
     function draw() {
       ctx.clearRect(0, 0, w, h);
       var x, y, dist, t;
-      var ox = ((driftX % SPACING) + SPACING) % SPACING - SPACING;
-      var oy = ((driftY % SPACING) + SPACING) % SPACING - SPACING;
 
-      for (x = ox; x <= w; x += SPACING) {
+      for (x = 0; x <= w; x += SPACING) {
         dist = Math.abs(x - mx);
         t = Math.max(0, 1 - dist / RADIUS);
         ctx.strokeStyle = 'rgba(31, 107, 69, ' + (BASE_ALPHA + t * 0.16) + ')';
@@ -76,7 +72,7 @@
         ctx.stroke();
       }
 
-      for (y = oy; y <= h; y += SPACING) {
+      for (y = 0; y <= h; y += SPACING) {
         dist = Math.abs(y - my);
         t = Math.max(0, 1 - dist / RADIUS);
         ctx.strokeStyle = 'rgba(31, 107, 69, ' + (BASE_ALPHA + t * 0.16) + ')';
@@ -89,8 +85,8 @@
 
       // Re-inked intersections near the pen
       if (mx > -500) {
-        for (x = ox; x <= w; x += SPACING) {
-          for (y = oy; y <= h; y += SPACING) {
+        for (x = 0; x <= w; x += SPACING) {
+          for (y = 0; y <= h; y += SPACING) {
             var dx = x - mx, dy = y - my;
             var d = Math.sqrt(dx * dx + dy * dy);
             var it = Math.max(0, 1 - d / RADIUS);
@@ -124,19 +120,6 @@
 
     window.addEventListener('resize', resize);
     resize();
-
-    // Scroll-driven drift, fed by js/motion.js (Lenis velocity substrate).
-    // One-shot rAF repaint unless the cursor loop is already painting.
-    window.__gridDrift = function (dx, dy) {
-      driftX = dx;
-      driftY = dy;
-      if (running || drawQueued) return;
-      drawQueued = true;
-      requestAnimationFrame(function () {
-        drawQueued = false;
-        draw();
-      });
-    };
 
     if (!REDUCED) {
       document.addEventListener('mousemove', function (e) {
@@ -275,7 +258,7 @@
     measure();
     update();
 
-    // Pin-spacers (js/motion.js) resize the document after load — the
+    // Webfonts and late images can shift section offsets after load — the
     // motion layer calls this to keep the scroll-spy offsets honest.
     window.__navMeasure = function () {
       measure();
@@ -317,11 +300,7 @@
         if (!target) return;
         e.preventDefault();
         var top = target.getBoundingClientRect().top + window.scrollY - 72;
-        if (!REDUCED && window.__lenis) {
-          window.__lenis.scrollTo(top);
-        } else {
-          window.scrollTo({ top: top, behavior: REDUCED ? 'auto' : 'smooth' });
-        }
+        window.scrollTo({ top: top, behavior: REDUCED ? 'auto' : 'smooth' });
         history.replaceState(null, '', anchor.getAttribute('href'));
       });
     });

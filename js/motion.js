@@ -1,8 +1,9 @@
 /* ============================================
-   PARUSAN.DEV — Signature motion
-   Lenis smooth scroll + GSAP/ScrollTrigger
-   choreography, layered over the existing
-   reveal system. Loads last; every effect
+   PARUSAN.DEV — Motion
+   GSAP/ScrollTrigger choreography layered over
+   the existing reveal system. Scrolling is
+   native — GSAP only animates content, never
+   the scroll itself. Loads last; every effect
    gates on prefers-reduced-motion and falls
    back to the base experience if a CDN
    library is missing.
@@ -14,7 +15,7 @@
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ==========================================
-  // 4a · MARGIN RULE — the lab-notebook
+  // 2a · MARGIN RULE — the lab-notebook
   // through-line. Built for every JS-on mode:
   // under reduced motion (or with no GSAP) the
   // stylesheet renders it as a static full-
@@ -39,7 +40,7 @@
   })();
 
   if (REDUCED) return;
-  if (!window.gsap || !window.ScrollTrigger || !window.Lenis) return;
+  if (!window.gsap || !window.ScrollTrigger) return;
 
   var gsap = window.gsap;
   var ScrollTrigger = window.ScrollTrigger;
@@ -48,58 +49,11 @@
   // JS mirror of --ease: cubic-bezier(0.22, 1, 0.36, 1) — keep in sync.
   var EASE = 'power4.out';
 
-  // ==========================================
-  // SUBSTRATE — one scroll clock. Lenis owns
-  // the wheel, gsap.ticker drives Lenis, and
-  // Lenis feeds ScrollTrigger plus the velocity
-  // consumers (ticker lean, grid drift).
-  // ==========================================
-  var lenis = new Lenis({ autoRaf: false });
-  window.__lenis = lenis;
-
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(function (time) {
-    lenis.raf(time * 1000);
-  });
-  gsap.ticker.lagSmoothing(0);
-
-  // Pin-spacers change section offsets after main.js cached them —
-  // re-measure the nav scroll-spy whenever ScrollTrigger re-measures.
+  // Webfonts and late images shift section offsets after main.js cached
+  // them — re-measure the nav scroll-spy whenever ScrollTrigger does.
   ScrollTrigger.addEventListener('refresh', function () {
     if (window.__navMeasure) window.__navMeasure();
   });
-
-  // ------------------------------------------
-  // Scroll velocity → ticker lean + grid drift.
-  // ------------------------------------------
-  (function initVelocity() {
-    var tickerEl = document.querySelector('.ticker');
-    var track = document.querySelector('.ticker-track');
-    var cssAnim = null;
-    if (track && track.getAnimations) {
-      track.getAnimations().forEach(function (a) {
-        if (a.animationName === 'tickerScroll') cssAnim = a;
-      });
-    }
-    var skewX = tickerEl ? gsap.quickSetter(tickerEl, 'skewX', 'deg') : null;
-    var vel = 0;
-
-    lenis.on('scroll', function (e) {
-      vel = e.velocity || 0;
-      if (window.__gridDrift) window.__gridDrift(0, -e.scroll * 0.06);
-    });
-
-    var applied = null;
-    gsap.ticker.add(function () {
-      vel *= 0.9;
-      if (vel > -0.01 && vel < 0.01) vel = 0;
-      var v = gsap.utils.clamp(-60, 60, vel);
-      if (v === applied) return; // idle — no style writes at rest
-      applied = v;
-      if (skewX) skewX(v * -0.045);
-      if (cssAnim) cssAnim.playbackRate = 1 + Math.min(Math.abs(v) / 32, 1.35);
-    });
-  })();
 
   // ------------------------------------------
   // Shared: type text into an element behind a
@@ -261,216 +215,7 @@
   }
 
   // ==========================================
-  // 2 · SELF-DRAWING DIAGRAMS — the five
-  // .mini .diagram blocks draw themselves once
-  // on entry. Every tween is a from()/fromTo()
-  // whose end state is the stylesheet value,
-  // and onComplete clears inline styles, so the
-  // resting diagram is pixel-identical to the
-  // static page. Packet + counters are
-  // ephemeral flourishes — on a deep link past
-  // a diagram its once-trigger still plays the
-  // timeline from 0 (off-screen) and everything
-  // converges to the recorded end states.
-  // ==========================================
-  var FAINT = (getComputedStyle(document.documentElement).getPropertyValue('--faint') || '#5F6B62').trim();
-
-  function runPacket(flow) {
-    var rows = flow.querySelectorAll('.drow');
-    if (rows.length < 2) return;
-    var frect = flow.getBoundingClientRect();
-    var pts = [];
-    rows.forEach(function (row) {
-      var node = row.querySelector('.dnode.hit') || row.querySelector('.dnode');
-      if (!node) return;
-      var r = node.getBoundingClientRect();
-      pts.push({ x: r.left + r.width / 2 - frect.left, y: r.top + r.height / 2 - frect.top });
-    });
-    if (pts.length < 2) return;
-    var dot = document.createElement('span');
-    dot.className = 'flow-packet';
-    dot.setAttribute('aria-hidden', 'true');
-    flow.appendChild(dot);
-    var tl = gsap.timeline({
-      onComplete: function () { dot.remove(); }
-    });
-    tl.set(dot, { xPercent: -50, yPercent: -50, x: pts[0].x, y: pts[0].y, autoAlpha: 0 })
-      .to(dot, { autoAlpha: 1, duration: 0.12 });
-    for (var i = 1; i < pts.length; i++) {
-      tl.to(dot, { x: pts[i].x, y: pts[i].y, duration: 0.26, ease: 'power1.inOut' });
-    }
-    tl.to(dot, { autoAlpha: 0, duration: 0.2 }, '-=0.05');
-  }
-
-  function countUp(tl, foot, at) {
-    foot.querySelectorAll('b').forEach(function (b) {
-      var original = b.textContent;
-      var m = original.match(/^([^\d]*)([\d][\d,]*(?:\.\d+)?)(.*)$/);
-      if (!m) return;
-      var prefix = m[1], numStr = m[2], suffix = m[3];
-      var target = parseFloat(numStr.replace(/,/g, ''));
-      var hasComma = numStr.indexOf(',') !== -1;
-      var decimals = (numStr.split('.')[1] || '').length;
-      var state = { v: 0 };
-      tl.to(state, {
-        v: target,
-        duration: 0.9,
-        ease: 'power2.out',
-        onUpdate: function () {
-          var v = state.v.toFixed(decimals);
-          if (hasComma) {
-            v = Number(v).toLocaleString('en-US', {
-              minimumFractionDigits: decimals,
-              maximumFractionDigits: decimals
-            });
-          }
-          b.textContent = prefix + v + suffix;
-        },
-        onComplete: function () { b.textContent = original; }
-      }, at);
-    });
-  }
-
-  function initDiagrams() {
-    document.querySelectorAll('.mini .diagram').forEach(function (dia) {
-      var flow = dia.querySelector('.flow');
-      var wire = dia.querySelector('.wire');
-      var foot = dia.querySelector('.fig-foot');
-      var animated = [];
-      var tl = gsap.timeline({
-        scrollTrigger: { trigger: dia, start: 'top 78%', once: true },
-        defaults: { ease: EASE },
-        onComplete: function () { gsap.set(animated, { clearProps: 'all' }); }
-      });
-
-      if (flow) {
-        var nodes = flow.querySelectorAll('.dnode');
-        var arrows = flow.querySelectorAll('.darr');
-        animated.push.apply(animated, nodes);
-        animated.push.apply(animated, arrows);
-        tl.from(nodes, { autoAlpha: 0, scale: 0.88, y: 8, duration: 0.5, stagger: 0.14 }, 0)
-          .from(arrows, { autoAlpha: 0, scaleY: 0.3, transformOrigin: '50% 0%', duration: 0.4, stagger: 0.14 }, 0.16)
-          .add(function () { runPacket(flow); }, '-=0.1');
-      }
-
-      if (wire) {
-        var dots = wire.querySelectorAll('.wire-dot');
-        var title = wire.querySelector('.wire-title');
-        var toolbarKids = wire.querySelectorAll('.wire-toolbar > *');
-        var navs = wire.querySelectorAll('.wire-nav');
-        var books = wire.querySelectorAll('.wire-book');
-        var navOn = wire.querySelector('.wire-nav.on');
-        animated.push(wire);
-        [dots, toolbarKids, navs, books].forEach(function (group) {
-          animated.push.apply(animated, group);
-        });
-        if (title) animated.push(title);
-        tl.fromTo(wire,
-            { clipPath: 'inset(0% 0% 100% 0% round 10px)' },
-            {
-              clipPath: 'inset(0% 0% 0% 0% round 10px)',
-              duration: 0.55,
-              ease: 'power2.inOut',
-              // release the clip as soon as the chrome is drawn so the
-              // wire's drop-shadow isn't clipped while the rest staggers in
-              onComplete: function () { gsap.set(wire, { clearProps: 'clipPath' }); }
-            }, 0)
-          .from(dots, { scale: 0, transformOrigin: '50% 50%', duration: 0.3, stagger: 0.07 }, 0.1)
-          .from(title, { autoAlpha: 0, x: 6, duration: 0.3 }, 0.25)
-          .from(toolbarKids, { autoAlpha: 0, y: 5, duration: 0.35, stagger: 0.08 }, 0.3)
-          .from(navs, { autoAlpha: 0, x: -8, duration: 0.3, stagger: 0.07 }, 0.45)
-          .from(books, { autoAlpha: 0, scale: 0.9, y: 4, transformOrigin: '50% 60%', duration: 0.35, stagger: 0.05 }, 0.55);
-        if (navOn) {
-          tl.from(navOn, { backgroundColor: 'rgba(31, 107, 69, 0)', color: FAINT, duration: 0.45, ease: 'none' }, 0.95);
-        }
-      }
-
-      if (foot) {
-        animated.push(foot);
-        var footAt = flow ? 1.0 : 1.1;
-        tl.from(foot, { autoAlpha: 0, y: 6, duration: 0.45 }, footAt);
-        countUp(tl, foot, footAt);
-      }
-    });
-  }
-
-  try {
-    initDiagrams();
-  } catch (err) {
-    gsap.set(document.querySelectorAll('.mini .diagram, .mini .diagram *'), { clearProps: 'all' });
-  }
-
-  // ==========================================
-  // 3 · PINNED CASE STUDIES — each .case pins
-  // briefly while the plate scrubs (inner img
-  // only — tilt owns the .mount transform) and
-  // the .proj-info beats reveal in sequence;
-  // the caption presses in like a letterpress
-  // stamp. Desktop two-column layouts only:
-  // below 961px (and under reduced motion, and
-  // with no GSAP) the cases keep the existing
-  // .rv reveal.
-  // ==========================================
-  function initCases() {
-    var mm = gsap.matchMedia();
-    mm.add('(min-width: 961px)', function () {
-      document.querySelectorAll('.case').forEach(function (kase) {
-        var flip = kase.classList.contains('flip');
-        var img = kase.querySelector('.proj-plate img');
-        var caption = kase.querySelector('.proj-caption');
-        var info = kase.querySelector('.proj-info');
-        if (!info) return;
-        var beats = info.querySelectorAll(
-          '.case-index, h3, .proj-sum, .case-note, .tech-line, .proj-hl li, .proj-links'
-        );
-        var dx = flip ? -26 : 26;
-
-        var tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: kase,
-            start: 'center center',
-            end: '+=80%',
-            pin: true,
-            // .proj-list is display:flex, where ScrollTrigger silently
-            // disables padding-based pin spacing (no travel reserved →
-            // the next case scrolls up over the pinned one). Margins DO
-            // push siblings in a flex column, so force margin spacing.
-            pinSpacing: 'margin',
-            scrub: true
-          },
-          defaults: { ease: 'power2.out' }
-        });
-        if (img) {
-          // stays within the mount's 10px mat at every progress value
-          tl.fromTo(img,
-            { scale: 1.03, yPercent: 1 },
-            { scale: 1, yPercent: 0, ease: 'none', duration: 3 }, 0);
-        }
-        if (caption) {
-          tl.from(caption, {
-            opacity: 0,
-            scale: 1.12,
-            transformOrigin: flip ? '100% 100%' : '0% 100%',
-            duration: 0.5
-          }, 0.15);
-        }
-        // opacity (not autoAlpha) so links and headings stay in the
-        // accessibility tree and tab order pre-scrub, like .rv does
-        tl.from(beats, { opacity: 0, x: dx, duration: 0.55, stagger: 0.28 }, 0.25);
-        tl.to({}, { duration: 0.5 }, '>'); // settle beat before the pin releases
-      });
-    });
-  }
-
-  try {
-    initCases();
-  } catch (err) {
-    gsap.set(document.querySelectorAll('.case .proj-info *, .case .proj-caption, .case .proj-plate img'),
-      { clearProps: 'all' });
-  }
-
-  // ==========================================
-  // 4b · NOTEBOOK THROUGH-LINE + SECTION
+  // 2b · NOTEBOOK THROUGH-LINE + SECTION
   // TRANSITIONS — the margin rule inks down
   // the left edge with scroll progress and its
   // figure label ticks 01 → 06 in step with
@@ -626,26 +371,6 @@
     gsap.set(document.querySelectorAll('.flabel, .ftitle, #grid-canvas, .mr-line, .mr-fig'),
       { clearProps: 'all' });
   }
-
-  // ------------------------------------------
-  // Papers dialog: halt the smooth scroller
-  // while the modal is open so the dialog pane
-  // scrolls natively behind the focus trap.
-  // ------------------------------------------
-  (function initDialogGuard() {
-    var dlg = document.querySelector('.paper-dialog');
-    if (!dlg) return;
-    dlg.setAttribute('data-lenis-prevent', '');
-    var papers = document.getElementById('papers');
-    if (papers) {
-      papers.addEventListener('click', function (e) {
-        if (e.target.closest('[data-paper]')) lenis.stop();
-      });
-    }
-    dlg.addEventListener('close', function () {
-      lenis.start();
-    });
-  })();
 
   // Webfonts shift metrics after first layout — re-measure trigger positions.
   if (document.fonts && document.fonts.ready) {
