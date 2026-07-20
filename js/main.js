@@ -374,30 +374,34 @@
             it.removeAttribute('style');
           }
         });
-        g.to(from, {
+        // Sequential, not simultaneous: the old card gets out of the way
+        // quickly and quietly, then the new one rises in with a small
+        // directional drift. Never two cards mid-flight at once.
+        g.set(to, { autoAlpha: 0 }); // pre-hide before .on — no flash frame
+        to.classList.add('on');
+        var tl = g.timeline({ defaults: { overwrite: 'auto' } });
+        tl.to(from, {
           autoAlpha: 0,
-          x: -26 * dir,
-          duration: 0.38,
-          ease: 'power2.in',
-          overwrite: 'auto',
+          x: -12 * dir,
+          duration: 0.2,
+          ease: 'power1.in',
           onComplete: function () {
             from.classList.remove('on');
             from.removeAttribute('style');
           }
         });
-        to.classList.add('on');
-        g.fromTo(to,
-          { autoAlpha: 0, x: 34 * dir },
+        tl.fromTo(to,
+          { autoAlpha: 0, x: 18 * dir, y: 8 },
           {
             autoAlpha: 1,
             x: 0,
-            duration: 0.55,
+            y: 0,
+            duration: 0.5,
             ease: 'power3.out',
-            overwrite: 'auto',
             onComplete: function () {
               to.removeAttribute('style');
             }
-          });
+          }, 0.16);
         g.fromTo(title,
           { y: '0.35em', clipPath: 'inset(-15% -5% 100% -5%)' },
           { y: 0, clipPath: 'inset(-15% -5% -20% -5%)', duration: 0.6, ease: 'power4.out', clearProps: 'all' });
