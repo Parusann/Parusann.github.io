@@ -252,12 +252,43 @@
         <div class="flabel rv">further work</div>
         <div class="car rv" id="fw-car" role="region" aria-roledescription="carousel" aria-label="Further work projects">
           <div class="car-head">
-            <h3 class="car-title" aria-live="polite">LaunchLedger</h3>
-            <div class="car-case">data analytics</div>
+            <h3 class="car-title" aria-live="polite">Pulsar-V</h3>
+            <div class="car-case">cpu design</div>
           </div>
           <div class="car-stage">
 
-            <article class="car-item on" data-name="LaunchLedger" data-case="data analytics" aria-roledescription="slide">
+            <article class="car-item on" data-name="Pulsar-V" data-case="cpu design" aria-roledescription="slide">
+              <h3 class="car-item-h">Pulsar-V</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="flow">
+                    <div class="drow"><div class="dnode">RV32I RTL<small>two cores &middot; SystemVerilog</small></div></div>
+                    <div class="darr">&darr; <small>cocotb &middot; riscv-tests 41/41</small></div>
+                    <div class="drow">
+                      <div class="dnode hit">riscof vs SAIL<small>38/38 compliant</small></div>
+                      <div class="dnode">riscv-formal<small>43/43 proofs</small></div>
+                    </div>
+                    <div class="darr">&darr; <small>yosys &middot; nextpnr</small></div>
+                    <div class="drow"><div class="dnode">ECP5-85F<small>38.8 MHz &middot; timed</small></div></div>
+                  </div>
+                  <div class="fig-foot"><b>38/38</b> arch-tests &middot; <b>43/43</b> formal checks</div>
+                </div>
+                <div class="proj-caption">fig. 02a — verification stack &middot; <span class="status">cpu design</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">A 5-stage pipelined RV32I CPU in SystemVerilog, built to be believed &mdash; full forwarding, a load-use interlock and a branch target buffer, with every claim backed by the official compliance suite, formal proofs, and FPGA timing reports committed to the repo.</p>
+                <ul class="proj-hl">
+                  <li>Passes the official RISC-V architecture tests against the SAIL reference model (38/38) plus 43/43 riscv-formal bounded proofs per core</li>
+                  <li>38.8 MHz post-route on an ECP5-85F, CPI 1.00&ndash;1.27 and 84&ndash;99.6% branch-prediction accuracy measured across four kernels</li>
+                </ul>
+                <div class="tech-line">SystemVerilog <span>&middot;</span> cocotb <span>&middot;</span> SymbiYosys <span>&middot;</span> riscof <span>&middot;</span> Yosys <span>&middot;</span> nextpnr</div>
+                <div class="proj-links">
+                  <a href="https://github.com/Parusann/pulsar-v" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-item" data-name="LaunchLedger" data-case="data analytics" aria-roledescription="slide">
               <h3 class="car-item-h">LaunchLedger</h3>
               <div class="car-plate">
                 <div class="diagram" aria-hidden="true">
@@ -275,7 +306,7 @@
                   </div>
                   <div class="fig-foot"><b>5.8&times;</b> first-flight failure multiple &middot; <b>44</b> dbt tests green</div>
                 </div>
-                <div class="proj-caption">fig. 02a — warehouse lineage &middot; <span class="status">data analytics</span></div>
+                <div class="proj-caption">fig. 02b — warehouse lineage &middot; <span class="status">data analytics</span></div>
               </div>
               <div class="car-info">
                 <p class="proj-sum">Vendor due diligence on the orbital launch market &mdash; a DuckDB + dbt warehouse over the full GCAT launch catalog, windowed SQL analyses, and a statistical notebook feeding a live dashboard.</p>
@@ -287,84 +318,6 @@
                 <div class="proj-links">
                   <a href="https://github.com/Parusann/LaunchLedger" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
                   <a href="https://parusann.github.io/LaunchLedger/" target="_blank" rel="noopener" class="btn btn-line btn-sm">Dashboard &rarr;</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="car-item" data-name="Distributed URL Shortener" data-case="backend" aria-roledescription="slide">
-              <h3 class="car-item-h">Distributed URL Shortener</h3>
-              <div class="car-plate">
-                <div class="diagram" aria-hidden="true">
-                  <div class="flow">
-                    <div class="drow"><div class="dnode">Client<small>GET /:slug</small></div></div>
-                    <div class="darr">&darr;</div>
-                    <div class="drow"><div class="dnode">Go API<small>REST handler</small></div></div>
-                    <div class="darr">&darr; <small>resolve</small></div>
-                    <div class="drow">
-                      <div class="dnode hit">Redis<small>cache hit</small></div>
-                      <div class="dnode">PostgreSQL<small>miss &middot; indexed</small></div>
-                    </div>
-                    <div class="darr">&darr;</div>
-                    <div class="drow"><div class="dnode">Docker<small>containerized</small></div></div>
-                  </div>
-                  <div class="fig-foot"><b>10,000+</b> concurrent &middot; <b>50%</b> &darr; latency</div>
-                </div>
-                <div class="proj-caption">fig. 02b — request path &middot; <span class="status">backend</span></div>
-              </div>
-              <div class="car-info">
-                <p class="proj-sum">Scalable backend service designed for high concurrency, low latency, and efficient caching with containerized deployment.</p>
-                <ul class="proj-hl">
-                  <li>Handles 10,000+ concurrent redirect requests</li>
-                  <li>50% latency reduction via Redis caching layer</li>
-                </ul>
-                <div class="tech-line">Go <span>&middot;</span> Redis <span>&middot;</span> PostgreSQL <span>&middot;</span> Docker <span>&middot;</span> REST APIs</div>
-                <div class="proj-links">
-                  <a href="https://github.com/Parusann/distributed-url-shortener" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="car-item" data-name="Bookstore Management System" data-case="oop design" aria-roledescription="slide">
-              <h3 class="car-item-h">Bookstore Management System</h3>
-              <div class="car-plate">
-                <div class="diagram" aria-hidden="true">
-                  <div class="wire">
-                    <div class="wire-top"><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-title">BookManager v1</span></div>
-                    <div class="wire-toolbar">
-                      <div class="wire-search">Search catalog&hellip;</div>
-                      <div class="wire-add">+ Add title</div>
-                      <div class="wire-count">5,000+</div>
-                    </div>
-                    <div class="wire-body">
-                      <div class="wire-side">
-                        <div class="wire-nav on">Catalog</div>
-                        <div class="wire-nav">Members</div>
-                        <div class="wire-nav">Orders</div>
-                        <div class="wire-nav">Rewards</div>
-                      </div>
-                      <div class="wire-grid">
-                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
-                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
-                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
-                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
-                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
-                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="fig-foot"><b>State</b> pattern &middot; <b>20%</b> &uarr; retention</div>
-                </div>
-                <div class="proj-caption">fig. 02c — interface schematic &middot; <span class="status">oop design</span></div>
-              </div>
-              <div class="car-info">
-                <p class="proj-sum">Java desktop application focused on inventory workflows, authentication, and maintainable OOP design using the State pattern.</p>
-                <ul class="proj-hl">
-                  <li>State Design Pattern for customer status transitions</li>
-                  <li>Dynamic reward points system boosting retention by 20%</li>
-                </ul>
-                <div class="tech-line">Java <span>&middot;</span> Java Swing <span>&middot;</span> UML <span>&middot;</span> OOP Design</div>
-                <div class="proj-links">
-                  <a href="https://github.com/Parusann/BookStoreApp" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
                 </div>
               </div>
             </article>
@@ -385,7 +338,7 @@
                   </div>
                   <div class="fig-foot"><b>token-exact</b> output &middot; <b>+43%</b> modelled throughput</div>
                 </div>
-                <div class="proj-caption">fig. 02d — draft / verify loop &middot; <span class="status">ml systems</span></div>
+                <div class="proj-caption">fig. 02c — draft / verify loop &middot; <span class="status">ml systems</span></div>
               </div>
               <div class="car-info">
                 <p class="proj-sum">Quantized speculative decoding on a single consumer AMD GPU — same model, same machine, faster, provably the same output — plus a study of what quantization does to a confidence head.</p>
@@ -413,7 +366,7 @@
                   </div>
                   <div class="fig-foot"><b>~135 ms</b> round-trip &middot; <b>100%</b> offline</div>
                 </div>
-                <div class="proj-caption">fig. 02e — dictation pipeline &middot; <span class="status">desktop tool</span></div>
+                <div class="proj-caption">fig. 02d — dictation pipeline &middot; <span class="status">desktop tool</span></div>
               </div>
               <div class="car-info">
                 <p class="proj-sum">Push-to-talk voice dictation for Windows — hold a key, speak, and clean text lands at the cursor in any app. Whisper runs entirely on your machine: no account, no telemetry, no network.</p>
@@ -425,6 +378,39 @@
                 <div class="proj-links">
                   <!-- TODO: github.com/Parusann/parley was private (404) as of 2026-07-12 — make the repo public or this link dead-ends -->
                   <a href="https://github.com/Parusann/parley" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-item" data-name="Distributed URL Shortener" data-case="backend" aria-roledescription="slide">
+              <h3 class="car-item-h">Distributed URL Shortener</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="flow">
+                    <div class="drow"><div class="dnode">Client<small>GET /:slug</small></div></div>
+                    <div class="darr">&darr;</div>
+                    <div class="drow"><div class="dnode">Go API<small>REST handler</small></div></div>
+                    <div class="darr">&darr; <small>resolve</small></div>
+                    <div class="drow">
+                      <div class="dnode hit">Redis<small>cache hit</small></div>
+                      <div class="dnode">PostgreSQL<small>miss &middot; indexed</small></div>
+                    </div>
+                    <div class="darr">&darr;</div>
+                    <div class="drow"><div class="dnode">Docker<small>containerized</small></div></div>
+                  </div>
+                  <div class="fig-foot"><b>10,000+</b> concurrent &middot; <b>50%</b> &darr; latency</div>
+                </div>
+                <div class="proj-caption">fig. 02e — request path &middot; <span class="status">backend</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">Scalable backend service designed for high concurrency, low latency, and efficient caching with containerized deployment.</p>
+                <ul class="proj-hl">
+                  <li>Handles 10,000+ concurrent redirect requests</li>
+                  <li>50% latency reduction via Redis caching layer</li>
+                </ul>
+                <div class="tech-line">Go <span>&middot;</span> Redis <span>&middot;</span> PostgreSQL <span>&middot;</span> Docker <span>&middot;</span> REST APIs</div>
+                <div class="proj-links">
+                  <a href="https://github.com/Parusann/distributed-url-shortener" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
                 </div>
               </div>
             </article>
@@ -475,19 +461,65 @@
                 </div>
               </div>
             </article>
+
+            <article class="car-item" data-name="Bookstore Management System" data-case="oop design" aria-roledescription="slide">
+              <h3 class="car-item-h">Bookstore Management System</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="wire">
+                    <div class="wire-top"><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-title">BookManager v1</span></div>
+                    <div class="wire-toolbar">
+                      <div class="wire-search">Search catalog&hellip;</div>
+                      <div class="wire-add">+ Add title</div>
+                      <div class="wire-count">5,000+</div>
+                    </div>
+                    <div class="wire-body">
+                      <div class="wire-side">
+                        <div class="wire-nav on">Catalog</div>
+                        <div class="wire-nav">Members</div>
+                        <div class="wire-nav">Orders</div>
+                        <div class="wire-nav">Rewards</div>
+                      </div>
+                      <div class="wire-grid">
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fig-foot"><b>State</b> pattern &middot; <b>20%</b> &uarr; retention</div>
+                </div>
+                <div class="proj-caption">fig. 02g — interface schematic &middot; <span class="status">oop design</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">Java desktop application focused on inventory workflows, authentication, and maintainable OOP design using the State pattern.</p>
+                <ul class="proj-hl">
+                  <li>State Design Pattern for customer status transitions</li>
+                  <li>Dynamic reward points system boosting retention by 20%</li>
+                </ul>
+                <div class="tech-line">Java <span>&middot;</span> Java Swing <span>&middot;</span> UML <span>&middot;</span> OOP Design</div>
+                <div class="proj-links">
+                  <a href="https://github.com/Parusann/BookStoreApp" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                </div>
+              </div>
+            </article>
           </div>
 
           <div class="car-nav">
             <button type="button" class="car-btn car-prev" aria-label="Previous project">&larr;</button>
             <div class="car-dots">
-              <button type="button" class="car-dot" aria-label="Go to LaunchLedger" aria-current="true"></button>
-              <button type="button" class="car-dot" aria-label="Go to Distributed URL Shortener" aria-current="false"></button>
-              <button type="button" class="car-dot" aria-label="Go to Bookstore Management System" aria-current="false"></button>
+              <button type="button" class="car-dot" aria-label="Go to Pulsar-V" aria-current="true"></button>
+              <button type="button" class="car-dot" aria-label="Go to LaunchLedger" aria-current="false"></button>
               <button type="button" class="car-dot" aria-label="Go to EdgeSpark" aria-current="false"></button>
               <button type="button" class="car-dot" aria-label="Go to Parley" aria-current="false"></button>
+              <button type="button" class="car-dot" aria-label="Go to Distributed URL Shortener" aria-current="false"></button>
               <button type="button" class="car-dot" aria-label="Go to ZenithSpectra" aria-current="false"></button>
+              <button type="button" class="car-dot" aria-label="Go to Bookstore Management System" aria-current="false"></button>
             </div>
-            <div class="car-count">01 / 06</div>
+            <div class="car-count">01 / 07</div>
             <button type="button" class="car-btn car-next" aria-label="Next project">&rarr;</button>
           </div>
         </div>
@@ -700,7 +732,7 @@
 
 <script src="js/papers-data.js?v=20260711"></script>
 <script src="js/papers.js?v=20260710"></script>
-<script src="js/main.js?v=20260720"></script>
+<script src="js/main.js?v=20260720b"></script>
 <!-- Motion libraries (CDN) + the motion layer — loaded last so the base
      experience never waits on them. If any of these fail, the site runs
      exactly as before. Scrolling is native; GSAP only animates content. -->
