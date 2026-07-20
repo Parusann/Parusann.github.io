@@ -412,6 +412,85 @@ nav.scrolled {
   opacity: 1;
 }
 
+/* Large screens — the hero is the opening plate; give it a wider stage
+   and let the type fill the frame. The margin rule occupies x 64–108px,
+   so the widened container's content edge must stay right of that. */
+@media (min-width: 1440px) {
+  .hero .container {
+    max-width: 1280px;
+  }
+
+  .hero-kicker {
+    font-size: 13.5px;
+    margin-bottom: 34px;
+  }
+
+  .hero-name {
+    font-size: clamp(5.5rem, 6vw, 6.25rem);
+    margin-bottom: 34px;
+  }
+
+  .hero-tag {
+    font-size: 1.35rem;
+    max-width: 580px;
+  }
+
+  .hero-seek {
+    font-size: 13px;
+  }
+
+  .hero-btns .btn {
+    font-size: 16px;
+  }
+
+  .hero-links a {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .hero-fig {
+    max-width: 500px;
+  }
+
+  .hero-fig figcaption {
+    font-size: 11.5px;
+    margin-top: 16px;
+  }
+
+  .scroll-cue {
+    font-size: 11.5px;
+  }
+}
+
+/* Very wide screens — full scale-up */
+@media (min-width: 1680px) {
+  .hero .container {
+    max-width: 1400px;
+  }
+
+  .hero-grid {
+    gap: 100px;
+  }
+
+  .hero-kicker {
+    font-size: 14px;
+  }
+
+  .hero-name {
+    font-size: clamp(6.25rem, 5.8vw, 7rem);
+  }
+
+  .hero-tag {
+    font-size: 1.5rem;
+    max-width: 640px;
+    line-height: 1.55;
+  }
+
+  .hero-fig {
+    max-width: 570px;
+  }
+}
+
 /* Hero footnote strip — replaces the marquee */
 .hero-foot {
   margin-top: 80px;
