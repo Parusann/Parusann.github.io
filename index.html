@@ -51,7 +51,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=20260719">
+<link rel="stylesheet" href="css/styles.css?v=20260719b">
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -250,90 +250,246 @@
 
       <div class="further" data-reveal>
         <div class="flabel rv">further work</div>
-        <div class="further-grid">
+        <div class="car rv" id="fw-car" role="region" aria-roledescription="carousel" aria-label="Further work projects">
+          <div class="car-head">
+            <h3 class="car-title" aria-live="polite">LaunchLedger</h3>
+            <div class="car-case">data analytics</div>
+          </div>
+          <div class="car-stage">
 
-          <div class="mini rv">
-            <h3>LaunchLedger</h3>
-            <p class="proj-sum">Vendor due diligence on the orbital launch market &mdash; a DuckDB + dbt warehouse over the full GCAT launch catalog, windowed SQL analyses, and a statistical notebook feeding a live dashboard.</p>
-            <ul class="proj-hl">
-              <li>New rockets fail 5.8&times; more &mdash; flights 1&ndash;5 fail 32.7% vs 5.6% after (two-proportion z-test, z&nbsp;=&nbsp;19.55)</li>
-              <li>Empirical-Bayes shrinkage re-ranks fleet reliability; 44 dbt schema tests keep the warehouse honest</li>
-            </ul>
-            <div class="tech-line">SQL <span>&middot;</span> DuckDB <span>&middot;</span> dbt <span>&middot;</span> Python <span>&middot;</span> GitHub Pages</div>
-            <div class="proj-links">
-              <a href="https://github.com/Parusann/LaunchLedger" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
-              <a href="https://parusann.github.io/LaunchLedger/" target="_blank" rel="noopener" class="btn btn-line btn-sm">Dashboard &rarr;</a>
-            </div>
+            <article class="car-item on" data-name="LaunchLedger" data-case="data analytics" aria-roledescription="slide">
+              <h3 class="car-item-h">LaunchLedger</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="flow">
+                    <div class="drow"><div class="dnode">GCAT<small>raw TSVs &middot; 2026-07 snapshot</small></div></div>
+                    <div class="darr">&darr; <small>load verbatim</small></div>
+                    <div class="drow"><div class="dnode">DuckDB<small>warehouse</small></div></div>
+                    <div class="darr">&darr; <small>dbt build &middot; 44 tests</small></div>
+                    <div class="drow">
+                      <div class="dnode hit">SQL analyses<small>windowed &middot; exports</small></div>
+                      <div class="dnode">Notebook<small>z-test &middot; shrinkage</small></div>
+                    </div>
+                    <div class="darr">&darr;</div>
+                    <div class="drow"><div class="dnode">Dashboard<small>GitHub Pages &middot; live</small></div></div>
+                  </div>
+                  <div class="fig-foot"><b>5.8&times;</b> first-flight failure multiple &middot; <b>44</b> dbt tests green</div>
+                </div>
+                <div class="proj-caption">fig. 02a — warehouse lineage &middot; <span class="status">data analytics</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">Vendor due diligence on the orbital launch market &mdash; a DuckDB + dbt warehouse over the full GCAT launch catalog, windowed SQL analyses, and a statistical notebook feeding a live dashboard.</p>
+                <ul class="proj-hl">
+                  <li>New rockets fail 5.8&times; more &mdash; flights 1&ndash;5 fail 32.7% vs 5.6% after (two-proportion z-test, z&nbsp;=&nbsp;19.55)</li>
+                  <li>Empirical-Bayes shrinkage re-ranks fleet reliability; 44 dbt schema tests keep the warehouse honest</li>
+                </ul>
+                <div class="tech-line">SQL <span>&middot;</span> DuckDB <span>&middot;</span> dbt <span>&middot;</span> Python <span>&middot;</span> GitHub Pages</div>
+                <div class="proj-links">
+                  <a href="https://github.com/Parusann/LaunchLedger" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                  <a href="https://parusann.github.io/LaunchLedger/" target="_blank" rel="noopener" class="btn btn-line btn-sm">Dashboard &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-item" data-name="Distributed URL Shortener" data-case="backend" aria-roledescription="slide">
+              <h3 class="car-item-h">Distributed URL Shortener</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="flow">
+                    <div class="drow"><div class="dnode">Client<small>GET /:slug</small></div></div>
+                    <div class="darr">&darr;</div>
+                    <div class="drow"><div class="dnode">Go API<small>REST handler</small></div></div>
+                    <div class="darr">&darr; <small>resolve</small></div>
+                    <div class="drow">
+                      <div class="dnode hit">Redis<small>cache hit</small></div>
+                      <div class="dnode">PostgreSQL<small>miss &middot; indexed</small></div>
+                    </div>
+                    <div class="darr">&darr;</div>
+                    <div class="drow"><div class="dnode">Docker<small>containerized</small></div></div>
+                  </div>
+                  <div class="fig-foot"><b>10,000+</b> concurrent &middot; <b>50%</b> &darr; latency</div>
+                </div>
+                <div class="proj-caption">fig. 02b — request path &middot; <span class="status">backend</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">Scalable backend service designed for high concurrency, low latency, and efficient caching with containerized deployment.</p>
+                <ul class="proj-hl">
+                  <li>Handles 10,000+ concurrent redirect requests</li>
+                  <li>50% latency reduction via Redis caching layer</li>
+                </ul>
+                <div class="tech-line">Go <span>&middot;</span> Redis <span>&middot;</span> PostgreSQL <span>&middot;</span> Docker <span>&middot;</span> REST APIs</div>
+                <div class="proj-links">
+                  <a href="https://github.com/Parusann/distributed-url-shortener" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-item" data-name="Bookstore Management System" data-case="oop design" aria-roledescription="slide">
+              <h3 class="car-item-h">Bookstore Management System</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="wire">
+                    <div class="wire-top"><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-title">BookManager v1</span></div>
+                    <div class="wire-toolbar">
+                      <div class="wire-search">Search catalog&hellip;</div>
+                      <div class="wire-add">+ Add title</div>
+                      <div class="wire-count">5,000+</div>
+                    </div>
+                    <div class="wire-body">
+                      <div class="wire-side">
+                        <div class="wire-nav on">Catalog</div>
+                        <div class="wire-nav">Members</div>
+                        <div class="wire-nav">Orders</div>
+                        <div class="wire-nav">Rewards</div>
+                      </div>
+                      <div class="wire-grid">
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fig-foot"><b>State</b> pattern &middot; <b>20%</b> &uarr; retention</div>
+                </div>
+                <div class="proj-caption">fig. 02c — interface schematic &middot; <span class="status">oop design</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">Java desktop application focused on inventory workflows, authentication, and maintainable OOP design using the State pattern.</p>
+                <ul class="proj-hl">
+                  <li>State Design Pattern for customer status transitions</li>
+                  <li>Dynamic reward points system boosting retention by 20%</li>
+                </ul>
+                <div class="tech-line">Java <span>&middot;</span> Java Swing <span>&middot;</span> UML <span>&middot;</span> OOP Design</div>
+                <div class="proj-links">
+                  <a href="https://github.com/Parusann/BookStoreApp" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-item" data-name="EdgeSpark" data-case="ml systems" aria-roledescription="slide">
+              <h3 class="car-item-h">EdgeSpark</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="flow">
+                    <div class="drow"><div class="dnode">Drafter<small>INT8/NF4 &middot; proposes</small></div></div>
+                    <div class="darr">&darr; <small>calibrated confidence</small></div>
+                    <div class="drow"><div class="dnode">Policy<small>verify length &#8467;</small></div></div>
+                    <div class="darr">&darr;</div>
+                    <div class="drow">
+                      <div class="dnode hit">Verifier<small>exact accept / reject</small></div>
+                      <div class="dnode">Output<small>token-identical</small></div>
+                    </div>
+                  </div>
+                  <div class="fig-foot"><b>token-exact</b> output &middot; <b>+43%</b> modelled throughput</div>
+                </div>
+                <div class="proj-caption">fig. 02d — draft / verify loop &middot; <span class="status">ml systems</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">Quantized speculative decoding on a single consumer AMD GPU — same model, same machine, faster, provably the same output — plus a study of what quantization does to a confidence head.</p>
+                <ul class="proj-hl">
+                  <li>Exactness guarantee validated on real Qwen3-4B — greedy output token-for-token identical to the verifier alone</li>
+                  <li>+43% code / +36% chat modelled throughput on an RX 7900 XTX, in 9.5 GB of VRAM measured</li>
+                </ul>
+                <div class="tech-line">Python <span>&middot;</span> PyTorch <span>&middot;</span> ROCm <span>&middot;</span> Transformers <span>&middot;</span> NumPy</div>
+                <div class="proj-links">
+                  <a href="https://github.com/Parusann/edgespark" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-item" data-name="Parley" data-case="desktop tool" aria-roledescription="slide">
+              <h3 class="car-item-h">Parley</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="flow">
+                    <div class="drow"><div class="dnode">Hotkey<small>hold &middot; 0.5s pre-roll</small></div></div>
+                    <div class="darr">&darr; <small>TEN-VAD gate</small></div>
+                    <div class="drow"><div class="dnode hit">Whisper<small>Vulkan GPU &middot; warm server</small></div></div>
+                    <div class="darr">&darr; <small>vocab correction</small></div>
+                    <div class="drow"><div class="dnode">Cursor<small>pastes in any app</small></div></div>
+                  </div>
+                  <div class="fig-foot"><b>~135 ms</b> round-trip &middot; <b>100%</b> offline</div>
+                </div>
+                <div class="proj-caption">fig. 02e — dictation pipeline &middot; <span class="status">desktop tool</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">Push-to-talk voice dictation for Windows — hold a key, speak, and clean text lands at the cursor in any app. Whisper runs entirely on your machine: no account, no telemetry, no network.</p>
+                <ul class="proj-hl">
+                  <li>~135 ms warm dictation round-trip with large-v3-turbo held in VRAM by a whisper.cpp Vulkan server</li>
+                  <li>Deterministic fuzzy vocab correction snaps near-misses to your own terms with zero hallucination</li>
+                </ul>
+                <div class="tech-line">Python <span>&middot;</span> whisper.cpp <span>&middot;</span> faster-whisper <span>&middot;</span> Vulkan <span>&middot;</span> Ollama <span>&middot;</span> Tkinter</div>
+                <div class="proj-links">
+                  <!-- TODO: github.com/Parusann/parley was private (404) as of 2026-07-12 — make the repo public or this link dead-ends -->
+                  <a href="https://github.com/Parusann/parley" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="car-item" data-name="ZenithSpectra" data-case="full-stack ai" aria-roledescription="slide">
+              <h3 class="car-item-h">ZenithSpectra</h3>
+              <div class="car-plate">
+                <div class="diagram" aria-hidden="true">
+                  <div class="wire">
+                    <div class="wire-top"><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-dot"></span><span class="wire-title">ZenithSpectra</span></div>
+                    <div class="wire-toolbar">
+                      <div class="wire-search">Ask with sources&hellip;</div>
+                      <div class="wire-add">Ask AI</div>
+                      <div class="wire-count">live</div>
+                    </div>
+                    <div class="wire-body">
+                      <div class="wire-side">
+                        <div class="wire-nav on">Space</div>
+                        <div class="wire-nav">Quantum</div>
+                        <div class="wire-nav">Theoretical</div>
+                        <div class="wire-nav">Frontier</div>
+                      </div>
+                      <div class="wire-grid">
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                        <div class="wire-book"><div class="wire-cover"></div><div class="wire-lines"><div class="wire-line"></div><div class="wire-line short"></div></div></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="fig-foot"><b>credibility-ranked</b> sources &middot; <b>grounded</b> Q&amp;A</div>
+                </div>
+                <div class="proj-caption">fig. 02f — interface schematic &middot; <span class="status">full-stack ai</span></div>
+              </div>
+              <div class="car-info">
+                <p class="proj-sum">AI-powered science intelligence platform tracking live developments in space exploration and frontier physics — ranks source credibility, surfaces trending topics, and answers questions with source-backed summaries.</p>
+                <ul class="proj-hl">
+                  <li>Ranks source credibility so readers can judge where every claim comes from</li>
+                  <li>Grounded summaries and source-backed Q&amp;A via Gemma (E4B) on Ollama, run as a private Fly GPU app</li>
+                </ul>
+                <div class="tech-line">Next.js <span>&middot;</span> TypeScript <span>&middot;</span> Tailwind CSS <span>&middot;</span> FastAPI <span>&middot;</span> PostgreSQL <span>&middot;</span> Ollama <span>&middot;</span> Fly.io</div>
+                <div class="proj-links">
+                  <a href="https://github.com/Parusann/ZenithSpectra" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+                  <!-- TODO: add a Live Demo button once the Fly apps are redeployed
+                       (zenithspectra-frontend.fly.dev was unreachable on 2026-07-12) -->
+                </div>
+              </div>
+            </article>
           </div>
 
-          <div class="mini rv">
-            <h3>Distributed URL Shortener</h3>
-            <p class="proj-sum">Scalable backend service designed for high concurrency, low latency, and efficient caching with containerized deployment.</p>
-            <ul class="proj-hl">
-              <li>Handles 10,000+ concurrent redirect requests</li>
-              <li>50% latency reduction via Redis caching layer</li>
-            </ul>
-            <div class="tech-line">Go <span>&middot;</span> Redis <span>&middot;</span> PostgreSQL <span>&middot;</span> Docker <span>&middot;</span> REST APIs</div>
-            <div class="proj-links">
-              <a href="https://github.com/Parusann/distributed-url-shortener" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
+          <div class="car-nav">
+            <button type="button" class="car-btn car-prev" aria-label="Previous project">&larr;</button>
+            <div class="car-dots">
+              <button type="button" class="car-dot" aria-label="Go to LaunchLedger" aria-current="true"></button>
+              <button type="button" class="car-dot" aria-label="Go to Distributed URL Shortener" aria-current="false"></button>
+              <button type="button" class="car-dot" aria-label="Go to Bookstore Management System" aria-current="false"></button>
+              <button type="button" class="car-dot" aria-label="Go to EdgeSpark" aria-current="false"></button>
+              <button type="button" class="car-dot" aria-label="Go to Parley" aria-current="false"></button>
+              <button type="button" class="car-dot" aria-label="Go to ZenithSpectra" aria-current="false"></button>
             </div>
+            <div class="car-count">01 / 06</div>
+            <button type="button" class="car-btn car-next" aria-label="Next project">&rarr;</button>
           </div>
-
-          <div class="mini rv">
-            <h3>Bookstore Management System</h3>
-            <p class="proj-sum">Java desktop application focused on inventory workflows, authentication, and maintainable OOP design using the State pattern.</p>
-            <ul class="proj-hl">
-              <li>State Design Pattern for customer status transitions</li>
-              <li>Dynamic reward points system boosting retention by 20%</li>
-            </ul>
-            <div class="tech-line">Java <span>&middot;</span> Java Swing <span>&middot;</span> UML <span>&middot;</span> OOP Design</div>
-            <div class="proj-links">
-              <a href="https://github.com/Parusann/BookStoreApp" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
-            </div>
-          </div>
-
-          <div class="mini rv">
-            <h3>EdgeSpark</h3>
-            <p class="proj-sum">Quantized speculative decoding on a single consumer AMD GPU — same model, same machine, faster, provably the same output — plus a study of what quantization does to a confidence head.</p>
-            <ul class="proj-hl">
-              <li>Exactness guarantee validated on real Qwen3-4B — greedy output token-for-token identical to the verifier alone</li>
-              <li>+43% code / +36% chat modelled throughput on an RX 7900 XTX, in 9.5 GB of VRAM measured</li>
-            </ul>
-            <div class="tech-line">Python <span>&middot;</span> PyTorch <span>&middot;</span> ROCm <span>&middot;</span> Transformers <span>&middot;</span> NumPy</div>
-            <div class="proj-links">
-              <a href="https://github.com/Parusann/edgespark" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
-            </div>
-          </div>
-
-          <div class="mini rv">
-            <h3>Parley</h3>
-            <p class="proj-sum">Push-to-talk voice dictation for Windows — hold a key, speak, and clean text lands at the cursor in any app. Whisper runs entirely on your machine: no account, no telemetry, no network.</p>
-            <ul class="proj-hl">
-              <li>~135 ms warm dictation round-trip with large-v3-turbo held in VRAM by a whisper.cpp Vulkan server</li>
-              <li>Deterministic fuzzy vocab correction snaps near-misses to your own terms with zero hallucination</li>
-            </ul>
-            <div class="tech-line">Python <span>&middot;</span> whisper.cpp <span>&middot;</span> faster-whisper <span>&middot;</span> Vulkan <span>&middot;</span> Ollama <span>&middot;</span> Tkinter</div>
-            <div class="proj-links">
-              <!-- TODO: github.com/Parusann/parley was private (404) as of 2026-07-12 — make the repo public or this link dead-ends -->
-              <a href="https://github.com/Parusann/parley" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
-            </div>
-          </div>
-
-          <div class="mini rv">
-            <h3>ZenithSpectra</h3>
-            <p class="proj-sum">AI-powered science intelligence platform tracking live developments in space exploration and frontier physics — ranks source credibility, surfaces trending topics, and answers questions with source-backed summaries.</p>
-            <ul class="proj-hl">
-              <li>Ranks source credibility so readers can judge where every claim comes from</li>
-              <li>Grounded summaries and source-backed Q&amp;A via Gemma (E4B) on Ollama, run as a private Fly GPU app</li>
-            </ul>
-            <div class="tech-line">Next.js <span>&middot;</span> TypeScript <span>&middot;</span> Tailwind CSS <span>&middot;</span> FastAPI <span>&middot;</span> PostgreSQL <span>&middot;</span> Ollama <span>&middot;</span> Fly.io</div>
-            <div class="proj-links">
-              <a href="https://github.com/Parusann/ZenithSpectra" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
-              <!-- TODO: add a Live Demo button once the Fly apps are redeployed
-                   (zenithspectra-frontend.fly.dev was unreachable on 2026-07-12) -->
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -429,25 +585,25 @@
       <div class="sk-cat rv">
         <h4>Languages</h4>
         <div class="sk-pills">
-          <span class="pill">Python</span><span class="pill">TypeScript</span><span class="pill">JavaScript</span><span class="pill">Java</span><span class="pill">C++</span><span class="pill">C</span><span class="pill">Go</span><span class="pill">Swift</span><span class="pill">HTML/CSS</span>
+          <span class="pill">Python</span><span class="pill">SQL</span><span class="pill">TypeScript</span><span class="pill">JavaScript</span><span class="pill">Java</span><span class="pill">C++</span><span class="pill">C</span><span class="pill">Go</span><span class="pill">Swift</span><span class="pill">HTML/CSS</span>
         </div>
       </div>
       <div class="sk-cat rv">
         <h4>Web &amp; Backend</h4>
         <div class="sk-pills">
-          <span class="pill">Flask</span><span class="pill">React</span><span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">Electron</span><span class="pill">Vite</span><span class="pill">Tailwind CSS</span><span class="pill">REST APIs</span><span class="pill">PostgreSQL</span><span class="pill">Redis</span><span class="pill">Docker</span>
+          <span class="pill">Flask</span><span class="pill">FastAPI</span><span class="pill">React</span><span class="pill">Next.js</span><span class="pill">Node.js</span><span class="pill">Express</span><span class="pill">Electron</span><span class="pill">Vite</span><span class="pill">Tailwind CSS</span><span class="pill">GSAP</span><span class="pill">REST APIs</span><span class="pill">PostgreSQL</span><span class="pill">Redis</span><span class="pill">Docker</span>
         </div>
       </div>
       <div class="sk-cat rv">
         <h4>AI &amp; Data</h4>
         <div class="sk-pills">
-          <span class="pill">Machine Learning</span><span class="pill">Conversational AI</span><span class="pill">LLM Integration</span><span class="pill">Ollama</span><span class="pill">EDA</span><span class="pill">Prompt Engineering</span>
+          <span class="pill">Machine Learning</span><span class="pill">PyTorch</span><span class="pill">pandas</span><span class="pill">NumPy</span><span class="pill">DuckDB</span><span class="pill">dbt</span><span class="pill">Conversational AI</span><span class="pill">LLM Integration</span><span class="pill">Claude API</span><span class="pill">Ollama</span><span class="pill">whisper.cpp</span><span class="pill">EDA</span><span class="pill">Prompt Engineering</span>
         </div>
       </div>
       <div class="sk-cat rv">
         <h4>Tools &amp; Platforms</h4>
         <div class="sk-pills">
-          <span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">MATLAB</span><span class="pill">Visual Studio</span><span class="pill">SwiftUI</span><span class="pill">AppKit</span><span class="pill">CI/CD</span>
+          <span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">Jupyter</span><span class="pill">Fly.io</span><span class="pill">MATLAB</span><span class="pill">Visual Studio</span><span class="pill">SwiftUI</span><span class="pill">AppKit</span><span class="pill">CI/CD</span>
         </div>
       </div>
     </div>
@@ -544,7 +700,7 @@
 
 <script src="js/papers-data.js?v=20260711"></script>
 <script src="js/papers.js?v=20260710"></script>
-<script src="js/main.js?v=20260719"></script>
+<script src="js/main.js?v=20260719d"></script>
 <!-- Motion libraries (CDN) + the motion layer — loaded last so the base
      experience never waits on them. If any of these fail, the site runs
      exactly as before. Scrolling is native; GSAP only animates content. -->

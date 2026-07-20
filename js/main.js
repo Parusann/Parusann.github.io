@@ -307,6 +307,140 @@
   })();
 
   // ==========================================
+  // FURTHER-WORK CAROUSEL — the base markup is
+  // a stacked list; this module upgrades it to
+  // a one-at-a-time stage with arrows, dots, a
+  // counter, swipe, and arrow keys. GSAP (if
+  // loaded) drives the transitions; without it
+  // (or under reduced motion) swaps are
+  // instant. If this module never runs, the
+  // stacked list stays — work is never hidden.
+  // ==========================================
+  (function initCarousel() {
+    var car = document.getElementById('fw-car');
+    if (!car) return;
+    var stage = car.querySelector('.car-stage');
+    var items = Array.prototype.slice.call(car.querySelectorAll('.car-item'));
+    var title = car.querySelector('.car-title');
+    var kase = car.querySelector('.car-case');
+    var count = car.querySelector('.car-count');
+    var dots = Array.prototype.slice.call(car.querySelectorAll('.car-dot'));
+    var prev = car.querySelector('.car-prev');
+    var next = car.querySelector('.car-next');
+    if (!stage || items.length < 2 || !title || !prev || !next) return;
+
+    car.classList.add('car-on');
+    var idx = 0;
+
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+    // All items are absolutely positioned on stage — reserve the height
+    // of the tallest so the page never jumps between cards.
+    function sizeStage() {
+      var h = 0;
+      items.forEach(function (it) { h = Math.max(h, it.offsetHeight); });
+      if (h) stage.style.minHeight = h + 'px';
+    }
+    sizeStage();
+    window.addEventListener('resize', sizeStage);
+    window.addEventListener('load', sizeStage);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sizeStage);
+
+    function goTo(i, dir) {
+      i = (i + items.length) % items.length;
+      if (i === idx) return;
+      var from = items[idx];
+      var to = items[i];
+      idx = i;
+
+      dots.forEach(function (d, j) {
+        d.setAttribute('aria-current', j === i ? 'true' : 'false');
+      });
+      if (count) count.textContent = pad(i + 1) + ' / ' + pad(items.length);
+      title.textContent = to.getAttribute('data-name') || '';
+      if (kase) kase.textContent = to.getAttribute('data-case') || '';
+
+      var g = window.gsap;
+      if (g && !REDUCED) {
+        g.killTweensOf(items);
+        g.killTweensOf(title);
+        // Sweep strays first — rapid clicking can leave a third card
+        // mid-exit; it must land hidden and style-free. This module is
+        // the only writer of inline styles on cards, so a hard wipe is
+        // safe and (unlike clearProps on a killed tween) deterministic.
+        items.forEach(function (it) {
+          if (it !== from && it !== to) {
+            it.classList.remove('on');
+            it.removeAttribute('style');
+          }
+        });
+        g.to(from, {
+          autoAlpha: 0,
+          x: -26 * dir,
+          duration: 0.38,
+          ease: 'power2.in',
+          overwrite: 'auto',
+          onComplete: function () {
+            from.classList.remove('on');
+            from.removeAttribute('style');
+          }
+        });
+        to.classList.add('on');
+        g.fromTo(to,
+          { autoAlpha: 0, x: 34 * dir },
+          {
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.55,
+            ease: 'power3.out',
+            overwrite: 'auto',
+            onComplete: function () {
+              to.removeAttribute('style');
+            }
+          });
+        g.fromTo(title,
+          { y: '0.35em', clipPath: 'inset(-15% -5% 100% -5%)' },
+          { y: 0, clipPath: 'inset(-15% -5% -20% -5%)', duration: 0.6, ease: 'power4.out', clearProps: 'all' });
+        if (kase) {
+          g.fromTo(kase,
+            { autoAlpha: 0, y: 5 },
+            { autoAlpha: 1, y: 0, duration: 0.4, delay: 0.1, clearProps: 'all' });
+        }
+      } else {
+        from.classList.remove('on');
+        to.classList.add('on');
+      }
+    }
+
+    prev.addEventListener('click', function () { goTo(idx - 1, -1); });
+    next.addEventListener('click', function () { goTo(idx + 1, 1); });
+    dots.forEach(function (d, j) {
+      d.addEventListener('click', function () { goTo(j, j > idx ? 1 : -1); });
+    });
+
+    car.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(idx - 1, -1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); goTo(idx + 1, 1); }
+    });
+
+    // Swipe — horizontal intent only, so vertical page scrolls pass through.
+    var px = null, py = null;
+    stage.addEventListener('pointerdown', function (e) {
+      px = e.clientX;
+      py = e.clientY;
+    }, { passive: true });
+    stage.addEventListener('pointerup', function (e) {
+      if (px === null) return;
+      var dx = e.clientX - px;
+      var dy = e.clientY - py;
+      px = py = null;
+      if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        goTo(idx + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+      }
+    }, { passive: true });
+  })();
+
+  // ==========================================
   // PLATE TILT — only elements marked
   // [data-tilt]. Max 3°, lerped rAF, glare via
   // CSS vars. Reading surfaces never tilt.
