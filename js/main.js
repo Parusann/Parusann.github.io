@@ -10,6 +10,13 @@
 
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Run a module in isolation: one module throwing (a denied canvas
+  // context, a quirky in-app browser) must never take down the ones after
+  // it. Same philosophy as the reveal failsafe below.
+  function safe(fn) {
+    try { fn(); } catch (e) { /* module disabled; the rest keep working */ }
+  }
+
   // ==========================================
   // REVEAL FAILSAFE — registered before any
   // other module so it survives even if one of
@@ -35,7 +42,7 @@
   // static print; the cursor re-inks nearby
   // lines. Loop idles out when the mouse rests.
   // ==========================================
-  (function initGrid() {
+  safe(function initGrid() {
     var canvas = document.getElementById('grid-canvas');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
@@ -134,13 +141,13 @@
         wake();
       });
     }
-  })();
+  });
 
   // ==========================================
   // GRAIN — one static frame of paper texture.
   // No animation loop; it's printed matter.
   // ==========================================
-  (function initGrain() {
+  safe(function initGrain() {
     var canvas = document.getElementById('grain');
     if (!canvas) return;
     var ctx = canvas.getContext('2d');
@@ -165,12 +172,12 @@
       t = setTimeout(paint, 200);
     });
     paint();
-  })();
+  });
 
   // ==========================================
   // REVEALS — IntersectionObserver, ink-in.
   // ==========================================
-  (function initReveals() {
+  safe(function initReveals() {
     var containers = document.querySelectorAll('[data-reveal]');
 
     function reveal(container) {
@@ -210,13 +217,13 @@
         }
       });
     });
-  })();
+  });
 
   // ==========================================
   // NAVBAR — scrolled state + active section.
   // rAF-throttled; offsets cached on resize.
   // ==========================================
-  (function initNavbar() {
+  safe(function initNavbar() {
     var navbar = document.getElementById('navbar');
     var links = document.querySelectorAll('.nav-links a[data-nav]');
     var sections = [];
@@ -264,12 +271,12 @@
       measure();
       update();
     };
-  })();
+  });
 
   // ==========================================
   // MOBILE MENU
   // ==========================================
-  (function initMobileMenu() {
+  safe(function initMobileMenu() {
     var toggle = document.querySelector('.mob-tog');
     var navLinks = document.querySelector('.nav-links');
     if (!toggle || !navLinks) return;
@@ -287,13 +294,13 @@
     navLinks.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () { setOpen(false); });
     });
-  })();
+  });
 
   // ==========================================
   // SMOOTH ANCHOR SCROLL — respects reduced
   // motion; keeps the hash without a jump.
   // ==========================================
-  (function initSmoothScroll() {
+  safe(function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
       anchor.addEventListener('click', function (e) {
         var target = document.querySelector(anchor.getAttribute('href'));
@@ -304,7 +311,7 @@
         history.replaceState(null, '', anchor.getAttribute('href'));
       });
     });
-  })();
+  });
 
   // ==========================================
   // FURTHER-WORK CAROUSEL — the base markup is
@@ -316,7 +323,7 @@
   // instant. If this module never runs, the
   // stacked list stays — work is never hidden.
   // ==========================================
-  (function initCarousel() {
+  safe(function initCarousel() {
     var car = document.getElementById('fw-car');
     if (!car) return;
     var stage = car.querySelector('.car-stage');
@@ -442,14 +449,14 @@
         goTo(idx + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
       }
     }, { passive: true });
-  })();
+  });
 
   // ==========================================
   // PLATE TILT — only elements marked
   // [data-tilt]. Max 3°, lerped rAF, glare via
   // CSS vars. Reading surfaces never tilt.
   // ==========================================
-  (function initTilt() {
+  safe(function initTilt() {
     if (REDUCED) return;
     var plates = document.querySelectorAll('[data-tilt]');
 
@@ -499,6 +506,6 @@
         wake();
       });
     });
-  })();
+  });
 
 })();
