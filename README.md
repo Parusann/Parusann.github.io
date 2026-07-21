@@ -200,7 +200,6 @@ Highlights:
 The experience section presents professional work with concise, impact-oriented summaries:
 
 - Machine Learning Engineer at Outlier AI
-- Game Developer experience at Riot Games
 - Shift Manager experience with operations, leadership, and customer-facing responsibility
 
 ### 5. Skills, Certifications, and Learning
