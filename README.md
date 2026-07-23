@@ -4,7 +4,7 @@
 
 ![Parusan Natheeswaran portfolio banner](assets/readme-banner.svg)
 
-Handcrafted portfolio website for showcasing software engineering, AI, backend systems, and full-stack work.
+Handcrafted portfolio website showcasing hardware design, software engineering, applied AI, and full-stack work.
 
 [![Live Site](https://img.shields.io/badge/Live%20Site-parusann.github.io-2E8F52?style=for-the-badge)](https://parusann.github.io/)
 [![HTML5](https://img.shields.io/badge/HTML5-Structure-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
@@ -38,38 +38,42 @@ This repository powers my personal portfolio website, branded as `parusan.dev` a
 The site is designed to do more than list experience. It presents my engineering profile like a product:
 
 - a bold landing section with motion and visual depth
-- project case studies with strong technical framing
-- a clear experience timeline
-- a skills section that shows both breadth and current growth areas
+- two flagship project case studies with strong technical framing
+- a further-work carousel covering the rest of the project portfolio, ordered strongest first
+- a self-authored research paper archive with in-page detail dialogs
+- a clear experience timeline and skills overview
 - a direct path for recruiters, collaborators, and hiring teams to contact me
 
-The entire site is built with plain HTML, CSS, and JavaScript. No framework, no heavy tooling, and no unnecessary complexity. The goal was to create something that feels polished, fast, and intentional while keeping the codebase simple and easy to maintain.
+The site is built with plain HTML, CSS, and JavaScript, plus GSAP and ScrollTrigger for motion choreography — scrolling itself stays native. No framework, no build step, and no unnecessary complexity. The goal was to create something that feels polished, fast, and intentional while keeping the codebase simple and easy to maintain.
 
 ## Quick Stats
 
 | Area | Snapshot |
 | --- | --- |
 | Live portfolio | [parusann.github.io](https://parusann.github.io/) |
-| Role focus | Software engineering, AI, backend, and systems |
+| Role focus | Hardware/CPU design, software engineering, applied AI, and backend systems |
 | Opportunity status | Open to internship and co-op roles |
-| Featured projects | 4 |
-| Experience entries | 3 |
-| Core implementation | Static front end with HTML, CSS, and JavaScript |
-| Signature interactions | Interactive grid, noise overlay, parallax, staggered reveals, 3D card tilt |
+| Flagship case studies | 2 (Xenolinguist, Bingery) |
+| Further-work carousel | 7 projects, ordered strongest first |
+| Research papers | Self-authored physics manuscripts with PDF downloads |
+| Experience entries | 2 |
+| Core implementation | Static front end: HTML, CSS, JavaScript, GSAP + ScrollTrigger |
+| Signature interactions | Interactive grid, film-grain overlay, scroll choreography, sequential carousel, 3D card tilt |
 
 ## Recruiter Snapshot
 
 If you are reviewing this repository as part of a hiring process, this portfolio is built to make three things immediately clear:
 
-- I build across the stack, from front-end presentation to backend systems and deployment-minded architecture
-- my strongest interests sit at the intersection of applied AI, scalable systems, and product-focused software engineering
+- I build across the full stack in the widest sense — from a formally verified RISC-V CPU in SystemVerilog, through backend systems and data pipelines, to polished front-end and desktop apps
+- my strongest interests sit at the intersection of computer architecture, applied AI, and product-focused software engineering
 - I am actively seeking internship and co-op opportunities where I can contribute quickly and keep growing as a builder
 
 What you will find in this repo and on the live site:
 
 - a custom portfolio instead of a recycled template
-- featured projects with concrete technical highlights
-- a clear view of experience, tools, and current learning direction
+- flagship case studies with concrete, verifiable technical claims
+- a carousel of further projects spanning hardware, data, ML systems, and backend work
+- self-authored technical manuscripts that show scientific writing ability
 - direct contact paths for follow-up
 
 ## Why This Portfolio Stands Out
@@ -81,148 +85,89 @@ This is not a generic template portfolio. It is a custom-built static site with 
 - deep-space green and amber color palette
 - glassmorphism-inspired cards with layered shadows and lighting
 - cinematic hero section with image, overlay, gradient, and scroll cues
+- real product screenshots for both flagship case studies
+- pure-CSS schematic diagrams for every carousel project — no image assets
 - technical typography using `Outfit` and `JetBrains Mono`
 
 ### Interaction design
 
 - canvas-based interactive grid that reacts to cursor position
 - animated film-grain noise overlay for atmosphere
-- staggered reveal animations using `IntersectionObserver`
-- parallax motion in the hero section
+- GSAP + ScrollTrigger choreography layered over an `IntersectionObserver` reveal system
+- sequential further-work carousel with keyboard and dot navigation
 - mouse-reactive 3D tilt and glare on glass cards
 - active navigation state tracking while scrolling
 - mobile navigation toggle for smaller screens
+- every interaction module runs in isolation, so one failure can never disable the rest
+- `prefers-reduced-motion` fallbacks for animated effects
 
 ### Content strategy
 
 - strong engineering-focused introduction
-- featured project breakdowns instead of shallow one-line summaries
-- balanced mix of AI, backend, full-stack, and systems work
+- two deep flagship case studies instead of shallow one-line summaries
+- a deliberate best-first ordering of further work, leading with CPU design
+- research writing presented with honest framing (independent manuscripts, clearly marked as not peer-reviewed)
 - professional experience, certifications, and active learning areas all in one place
 
 ## Project Highlights
 
 | Project | Focus Area | Stack | What Makes It Strong |
 | --- | --- | --- | --- |
-| Xenolinguist | Applied AI tooling | React 19, TypeScript, Node.js, Express, Ollama, Tailwind CSS, Vite | Local AI workflow, six-phase decoding system, streaming chat, keyboard-driven UX |
-| Bingery | Full-stack product build | Python, Flask, React, PostgreSQL, Claude API | Authenticated API platform with recommendations, live search, GraphQL data integration, deployment pipeline |
-| Distributed URL Shortener | Backend systems | Go, Redis, PostgreSQL, Docker, REST APIs | Built for concurrency, caching, low latency, and containerized deployment |
-| Bookstore Management System | Object-oriented desktop app | Java, Java Swing, UML, OOP Design | Strong fundamentals in architecture, state management, persistence, and inventory flows |
+| Xenolinguist | Offline AI desktop app | Electron, React 19, TypeScript, whisper.cpp, Transformers.js, Vite | Shipped v1.0.0 Windows release; fully offline voice pipeline (whisper.cpp transcription, wav2vec2 IPA, espeak-ng speech); six-phase language decoding workflow |
+| Bingery | Full-stack product build | Python, Flask, React, SQLite, Fly.io, Claude API | 13,000-title catalog behind 30+ REST endpoints, JWT auth, AniList GraphQL sync, 590+ automated tests, live as an installable PWA |
+| Pulsar-V | CPU design and verification | SystemVerilog, cocotb, riscv-formal, Yosys + nextpnr | Single-cycle and 5-stage pipelined RV32I cores; 39/39 riscv-arch-test compliance vs the SAIL golden model; 43/43 formal checks; 38.8 MHz post-route on ECP5-85F |
+| LaunchLedger | Data engineering and analytics | DuckDB, dbt, SQL, Python | Vendor due diligence on the orbital launch market: 44 passing dbt tests, window-function SQL analyses, empirical-Bayes reliability ranking, static SVG dashboard |
+| EdgeSpark | ML systems research | ROCm on RX 7900 XTX | Quantized speculative decoding on a single consumer AMD GPU, with a confidence-head calibration study |
+
+The further-work carousel also covers Parley (offline push-to-talk dictation for Windows), the Distributed URL Shortener (Go, Redis, PostgreSQL, Docker), ZenithSpectra (AI science-intelligence platform), and the Bookstore Management System (Java Swing, State pattern).
 
 ## Site Sections
 
 ### 1. Hero
 
-The landing section introduces the portfolio with a strong personal headline, positioning statement, internship/co-op availability, and fast-access calls to action for projects and contact.
-
-It also includes:
-
-- GitHub, LinkedIn, and email links
-- a continuously scrolling skills marquee
-- a layered background system made up of a hero image, overlays, and animated canvas effects
+The landing section introduces the portfolio with a strong personal headline, positioning statement, internship/co-op availability, and fast-access calls to action for projects and contact. It layers a hero image with overlays and animated canvas effects, and links out to GitHub, LinkedIn, and email.
 
 ### 2. About
 
 The About section frames the overall engineering profile:
 
 - Computer Engineering student at Toronto Metropolitan University
-- interested in applied AI, scalable backend systems, and full-stack development
+- interested in computer architecture, applied AI, scalable backend systems, and full-stack development
 - focused on building software that is both technically deep and practically useful
 
-It is supported by highlight cards covering:
-
-- full-stack development
-- AI and machine learning integration
-- systems thinking
-- cross-functional collaboration
+It is supported by highlight cards covering full-stack development, AI and machine learning integration, systems thinking, and cross-functional collaboration.
 
 ### 3. Featured Projects
 
-The project section is the core of the portfolio. Each entry is presented as a mini case study so visitors can quickly understand the problem space, technical depth, and engineering choices behind the work.
+The project section is the core of the portfolio, organized in two tiers.
 
-Each project includes:
+**Flagship case studies** — full-width articles with real product screenshots, tech stacks, and key technical achievements:
 
-- custom visual mockups
-- a short summary
-- the tech stack
-- key technical achievements
-- direct GitHub links
+- **Xenolinguist** — AI-powered language decoding workbench inspired by *Project Hail Mary*, shipped as a v1.0.0 Windows desktop app (Electron + React 19 + Vite). Runs a fully offline voice pipeline: whisper.cpp transcription, wav2vec2 IPA phoneme recognition, and espeak-ng speech. Six-phase decoding workflow with command palette, keyboard shortcuts, and undo system.
+- **Bingery** — AI-powered anime discovery platform with personalized Claude recommendations, live as an installable PWA. Flask + React over a 13,000-title SQLite catalog on Fly.io, with JWT auth, collaborative genre voting, live search autocomplete, AniList GraphQL integration, and 590+ automated tests.
 
-### Xenolinguist
-
-AI-powered language decoding workbench inspired by *Project Hail Mary*.
-
-Highlights:
-
-- React 19 + TypeScript front end
-- Node.js + Express backend
-- local AI integration with Ollama
-- multi-step decoding workflow
-- command palette, keyboard shortcuts, undo system, and audio support
-
-### Bingery
-
-AI-powered anime discovery platform with personalized recommendations.
-
-Highlights:
-
-- Flask + React + PostgreSQL architecture
-- JWT auth and relational data model
-- Claude API integration with tool use
-- AniList GraphQL integration
-- deployment pipeline on Render with GitHub CI/CD
-
-### Distributed URL Shortener
-
-Backend-focused systems project centered on concurrency and performance.
-
-Highlights:
-
-- Go API design
-- Redis caching layer
-- PostgreSQL persistence
-- Docker-based deployment
-- high-concurrency redirect handling
-
-### Bookstore Management System
-
-Java desktop application focused on object-oriented design and maintainability.
-
-Highlights:
-
-- Java Swing UI
-- file-based persistence
-- State pattern usage
-- authentication and inventory workflows
+**Further-work carousel** — seven more projects, ordered strongest first, each drawn as a pure-CSS schematic: Pulsar-V, LaunchLedger, EdgeSpark, Parley, Distributed URL Shortener, ZenithSpectra, and the Bookstore Management System.
 
 ### 4. Experience
 
 The experience section presents professional work with concise, impact-oriented summaries:
 
 - Machine Learning Engineer at Outlier AI
-- Shift Manager experience with operations, leadership, and customer-facing responsibility
+- operations, leadership, and customer-facing responsibility at the Town of Milton
 
-### 5. Skills, Certifications, and Learning
+### 5. Research Papers
 
-This section is intentionally broad so visitors can quickly understand both current strengths and growth direction.
+A data-driven archive of long-form technical manuscripts exploring CERN physics, antimatter precision systems, and collider searches for invisible matter. Each entry renders from a single data file into cards and detail dialogs with summaries, abstracts, topic tags, and PDF downloads.
 
-It covers:
+These are independent portfolio manuscripts written to practice professional scientific synthesis — the site explicitly marks them as not peer-reviewed journal publications.
 
-- languages
-- web and backend technologies
-- AI and data tooling
-- platforms and engineering tools
-- certifications
-- current learning areas such as cloud architecture, LLM app development, system design, and Rust
+### 6. Skills, Certifications, and Learning
 
-### 6. Contact
+This section is intentionally broad so visitors can quickly understand both current strengths and growth direction. It covers languages, hardware and verification tooling, web and backend technologies, AI and data tooling, platforms, certifications, and current learning areas.
 
-The final section makes outreach easy through:
+### 7. Contact
 
-- email
-- LinkedIn
-- GitHub
-- phone
+The final section makes outreach easy through email, LinkedIn, GitHub, and phone.
 
 ## Tech Stack
 
@@ -231,6 +176,7 @@ The final section makes outreach easy through:
 - HTML5
 - CSS3
 - JavaScript
+- GSAP + ScrollTrigger (motion only — scrolling stays native)
 
 ### Design and layout
 
@@ -238,24 +184,36 @@ The final section makes outreach easy through:
 - CSS Grid and Flexbox
 - responsive breakpoints for tablet and mobile layouts
 - handcrafted gradients, glass effects, and motion styling
+- pure-CSS project schematics (flow and wireframe diagrams) with no image dependencies
 
 ### JavaScript techniques used
 
 - `requestAnimationFrame` for smooth interaction loops
 - `IntersectionObserver` for efficient reveal-on-scroll animations
-- DOM event handling for mouse movement, scroll state, and mobile navigation
 - canvas rendering for the interactive background and noise overlay
+- data-driven rendering for the research paper archive
+- per-module fault isolation, so a failure in one interaction cannot break the others
+- DOM event handling for mouse movement, scroll state, carousel controls, and mobile navigation
 
 ## Project Structure
 
 ```text
 .
 |-- assets/
-|   `-- hero-bg.jpg
+|   |-- papers/              # self-authored research manuscript PDFs
+|   |-- hero-bg.jpg          # hero background
+|   |-- bingery-hero.jpg     # Bingery case study screenshot
+|   |-- xenolinguist-hero.jpg# Xenolinguist case study screenshot
+|   |-- favicon.svg, favicon-32.png, apple-touch-icon.png
+|   |-- og-cover.png, social-preview.png, social-preview.svg
+|   `-- readme-banner.svg
 |-- css/
-|   `-- styles.css
+|   `-- styles.css           # full visual system
 |-- js/
-|   `-- main.js
+|   |-- main.js              # isolated interaction modules
+|   |-- motion.js            # GSAP/ScrollTrigger choreography
+|   |-- papers.js            # renders the research paper archive
+|   `-- papers-data.js       # single source of truth for paper metadata
 |-- index.html
 `-- README.md
 ```
@@ -264,42 +222,23 @@ The final section makes outreach easy through:
 
 ### `index.html`
 
-Defines the complete site structure, including:
-
-- navigation
-- hero section
-- about section
-- featured projects
-- experience
-- skills and certifications
-- learning section
-- contact section
-- footer
+Defines the complete site structure: navigation, hero, about, featured projects (flagship cases plus the further-work carousel), experience, research papers, skills and certifications, contact, and footer. Includes structured data, Open Graph tags, and per-image dimensions for stable layout.
 
 ### `css/styles.css`
 
-Contains the full visual system for the site:
-
-- theme variables
-- layout rules
-- glass card styling
-- hero styling
-- project cards and mock interfaces
-- responsive behavior
-- animation states
+Contains the full visual system for the site: theme variables, layout rules, glass card styling, hero styling, flagship case layouts, carousel and schematic diagram styles, paper archive styling, responsive behavior, animation states, and `prefers-reduced-motion` fallbacks.
 
 ### `js/main.js`
 
-Handles site interactivity:
+Handles core site interactivity as independent modules — interactive grid canvas, noise overlay, reveal effects, navbar state, smooth in-page scrolling, mobile menu, 3D card tilt, and the further-work carousel. Each module is wrapped so one failure cannot disable the rest.
 
-- interactive grid canvas
-- noise overlay animation
-- scroll-triggered reveal effects
-- hero parallax
-- navbar state changes
-- mobile menu toggle
-- smooth scrolling
-- 3D tilt behavior for cards
+### `js/motion.js`
+
+GSAP + ScrollTrigger choreography layered over the reveal system. Animates content only — never hijacks scrolling — and respects reduced-motion preferences.
+
+### `js/papers.js` and `js/papers-data.js`
+
+The research paper archive. `papers-data.js` is the single source of truth; `papers.js` renders cards and detail dialogs from it, so adding a paper means adding one object and one PDF.
 
 ## Local Development
 
@@ -328,7 +267,7 @@ Then open [http://localhost:8000](http://localhost:8000).
 
 ## Deployment
 
-This repository is structured as a GitHub Pages portfolio site. Because the repository is named `Parusann.github.io`, it can be served as a user site through GitHub Pages with `index.html` at the project root.
+This repository is structured as a GitHub Pages portfolio site. Because the repository is named `Parusann.github.io`, it is served as a user site through GitHub Pages with `index.html` at the project root.
 
 Current live URL:
 
@@ -348,10 +287,9 @@ If this portfolio continues evolving, strong next additions could include:
 
 - project detail pages for deeper case studies
 - a downloadable resume button
-- analytics for visitor insights
-- dark/light theme switching if a second visual mode is ever desired
-- blog or writing section for engineering notes and project retrospectives
-- accessibility enhancements such as reduced-motion fallbacks for all animated effects
+- lightweight analytics for visitor insights
+- a live-demo button for ZenithSpectra once its deployment returns
+- additional research manuscripts as the archive grows
 
 ## Contact
 
@@ -361,7 +299,7 @@ For opportunities, collaborations, or questions:
 - LinkedIn: [linkedin.com/in/parusan](https://www.linkedin.com/in/parusan/)
 - Email: [pnatheeswaran@torontomu.ca](mailto:pnatheeswaran@torontomu.ca)
 
-I am especially interested in software engineering, AI, backend, and systems-focused internship or co-op roles.
+I am especially interested in software engineering, hardware/CPU design, AI, and systems-focused internship or co-op roles.
 
 ## Usage Note
 
