@@ -82,12 +82,12 @@ This is not a generic template portfolio. It is a custom-built static site with 
 
 ### Visual direction
 
-- deep-space green and amber color palette
-- glassmorphism-inspired cards with layered shadows and lighting
-- cinematic hero section with image, overlay, gradient, and scroll cues
+- warm paper-and-ink palette with pen-green accents and a faint plotting grid
+- editorial "field notes" framing with figure-numbered captions across every section
+- hero with a framed, duotone field-capture image on a sage mount and a skills ticker
 - real product screenshots for both flagship case studies
 - pure-CSS schematic diagrams for every carousel project — no image assets
-- technical typography using `Outfit` and `JetBrains Mono`
+- editorial typography using `Newsreader`, `IBM Plex Sans`, and `JetBrains Mono`
 
 ### Interaction design
 

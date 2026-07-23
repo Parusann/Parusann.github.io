@@ -1,125 +1,97 @@
 <svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Parusan Natheeswaran portfolio banner</title>
-  <desc id="desc">Decorative README banner for the Parusan Natheeswaran portfolio repository.</desc>
-  <defs>
-    <linearGradient id="bg" x1="80" y1="60" x2="1160" y2="600" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#07100E"/>
-      <stop offset="0.55" stop-color="#0D1915"/>
-      <stop offset="1" stop-color="#101713"/>
-    </linearGradient>
-    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(310 230) rotate(43.4526) scale(448.631 328.405)">
-      <stop stop-color="#2E8F52" stop-opacity="0.26"/>
-      <stop offset="1" stop-color="#2E8F52" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1020 190) rotate(113.543) scale(366.819 290.347)">
-      <stop stop-color="#D9A33A" stop-opacity="0.22"/>
-      <stop offset="1" stop-color="#D9A33A" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#73D96A"/>
-      <stop offset="1" stop-color="#D9A33A"/>
-    </linearGradient>
-    <linearGradient id="cardStroke" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="rgba(115,217,106,0.35)"/>
-      <stop offset="1" stop-color="rgba(217,163,58,0.28)"/>
-    </linearGradient>
-    <filter id="blur" x="-120" y="-120" width="1520" height="880" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feGaussianBlur stdDeviation="36"/>
-    </filter>
-  </defs>
+  <desc id="desc">Paper-styled README banner for the Parusan Natheeswaran portfolio repository, drawn in the site's field-notes visual language.</desc>
 
-  <rect width="1280" height="640" rx="28" fill="url(#bg)"/>
-  <g opacity="0.42">
-    <path d="M0 120H1280" stroke="#17352B"/>
-    <path d="M0 220H1280" stroke="#17352B"/>
-    <path d="M0 320H1280" stroke="#17352B"/>
-    <path d="M0 420H1280" stroke="#17352B"/>
-    <path d="M0 520H1280" stroke="#17352B"/>
-    <path d="M120 0V640" stroke="#17352B"/>
-    <path d="M240 0V640" stroke="#17352B"/>
-    <path d="M360 0V640" stroke="#17352B"/>
-    <path d="M480 0V640" stroke="#17352B"/>
-    <path d="M600 0V640" stroke="#17352B"/>
-    <path d="M720 0V640" stroke="#17352B"/>
-    <path d="M840 0V640" stroke="#17352B"/>
-    <path d="M960 0V640" stroke="#17352B"/>
-    <path d="M1080 0V640" stroke="#17352B"/>
-    <path d="M1200 0V640" stroke="#17352B"/>
+  <!-- paper sheet -->
+  <rect width="1280" height="640" fill="#F3F0E8"/>
+
+  <!-- faint pen-green grid -->
+  <g stroke="rgba(31,107,69,0.08)" stroke-width="1">
+    <path d="M80 0V640"/><path d="M160 0V640"/><path d="M240 0V640"/><path d="M320 0V640"/><path d="M400 0V640"/><path d="M480 0V640"/><path d="M560 0V640"/><path d="M640 0V640"/><path d="M720 0V640"/><path d="M800 0V640"/><path d="M880 0V640"/><path d="M960 0V640"/><path d="M1040 0V640"/><path d="M1120 0V640"/><path d="M1200 0V640"/>
+    <path d="M0 80H1280"/><path d="M0 160H1280"/><path d="M0 240H1280"/><path d="M0 320H1280"/><path d="M0 400H1280"/><path d="M0 480H1280"/><path d="M0 560H1280"/>
   </g>
 
-  <rect width="1280" height="640" rx="28" fill="url(#glowLeft)"/>
-  <rect width="1280" height="640" rx="28" fill="url(#glowRight)"/>
+  <!-- top bar -->
+  <path d="M0 56H1280" stroke="rgba(27,33,29,0.16)"/>
+  <text x="48" y="36" fill="#1B211D" font-family="'JetBrains Mono', Consolas, monospace" font-size="17" font-weight="700">parusan.dev_</text>
+  <text x="1232" y="35" text-anchor="end" fill="#5F6B62" font-family="'JetBrains Mono', Consolas, monospace" font-size="13">parusann.github.io</text>
 
-  <g opacity="0.6" filter="url(#blur)">
-    <circle cx="316" cy="212" r="86" fill="#2E8F52"/>
-    <circle cx="1060" cy="168" r="72" fill="#D9A33A"/>
-  </g>
+  <!-- kicker -->
+  <text x="72" y="128" fill="#1F6B45" font-family="'JetBrains Mono', Consolas, monospace" font-size="15" letter-spacing="1">parusan.dev — field notes of a computer engineer</text>
 
+  <!-- name -->
+  <text x="68" y="240" fill="#1B211D" font-family="'Newsreader', Georgia, serif" font-size="96" font-weight="500">Parusan</text>
+  <text x="68" y="342" fill="#1B211D" font-family="'Newsreader', Georgia, serif" font-size="96" font-weight="500">Natheeswaran</text>
+
+  <!-- tagline -->
+  <text x="72" y="402" fill="#4A554E" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24">Computer Engineering student building <tspan fill="#1B211D" font-family="'Newsreader', Georgia, serif" font-style="italic">AI-driven</tspan>,</text>
+  <text x="72" y="436" fill="#4A554E" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="24">full-stack, and scalable backend systems.</text>
+
+  <!-- status -->
+  <circle cx="78" cy="474" r="4.5" fill="#1F6B45" opacity="0.9"/>
+  <text x="92" y="480" fill="#1F6B45" font-family="'JetBrains Mono', Consolas, monospace" font-size="15">Seeking internship &amp; co-op opportunities</text>
+
+  <!-- buttons -->
   <g>
-    <rect x="72" y="74" width="180" height="34" rx="17" fill="rgba(17,31,26,0.84)" stroke="#264E3E"/>
-    <text x="102" y="96" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="700">parusan.dev</text>
-    <circle cx="89" cy="91" r="5" fill="#73D96A"/>
+    <rect x="72" y="508" width="198" height="48" rx="10" fill="#141A16"/>
+    <text x="171" y="538" text-anchor="middle" fill="#F3F0E8" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="16" font-weight="600">View projects ↓</text>
+    <rect x="286.5" y="508.5" width="169" height="47" rx="10" fill="#FBF9F3" stroke="rgba(27,33,29,0.34)"/>
+    <text x="371" y="538" text-anchor="middle" fill="#1B211D" font-family="'IBM Plex Sans', 'Segoe UI', sans-serif" font-size="16" font-weight="600">Get in touch</text>
   </g>
 
-  <text x="74" y="176" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="62" font-weight="800">Parusan Natheeswaran</text>
-  <text x="74" y="238" fill="url(#accent)" font-family="'Segoe UI', Arial, sans-serif" font-size="42" font-weight="700">Portfolio Repository</text>
-
-  <text x="74" y="304" fill="#A7B8B3" font-family="'Segoe UI', Arial, sans-serif" font-size="26">
-    <tspan x="74" dy="0">Computer Engineering student building AI-driven,</tspan>
-    <tspan x="74" dy="38">full-stack, and scalable backend systems.</tspan>
-  </text>
-
+  <!-- framed figure: pipeline schematic on a sage mount -->
   <g>
-    <rect x="74" y="372" width="332" height="48" rx="24" fill="rgba(17,31,26,0.92)" stroke="#315B49"/>
-    <circle cx="104" cy="396" r="7" fill="#73D96A"/>
-    <text x="124" y="404" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="600">Open to internship and co-op roles</text>
+    <rect x="816" y="92" width="400" height="440" rx="8" fill="#BFD5C4"/>
+    <rect x="832" y="108" width="368" height="376" fill="#FBF9F3" stroke="rgba(27,33,29,0.10)"/>
+    <g stroke="rgba(31,107,69,0.08)" stroke-width="1">
+      <path d="M832 180H1200"/><path d="M832 260H1200"/><path d="M832 340H1200"/><path d="M832 420H1200"/>
+      <path d="M912 108V484"/><path d="M992 108V484"/><path d="M1072 108V484"/><path d="M1152 108V484"/>
+    </g>
+    <text x="852" y="140" fill="#5F6B62" font-family="'JetBrains Mono', Consolas, monospace" font-size="12" letter-spacing="1.5">PULSAR-V — 5-STAGE PIPELINE</text>
+
+    <!-- forwarding arcs -->
+    <path d="M1014 196 C 980 168, 924 168, 900 196" stroke="#1F6B45" stroke-width="1.4" stroke-dasharray="3 3" opacity="0.75"/>
+    <path d="M1078 196 C 1030 156, 940 156, 902 194" stroke="#1F6B45" stroke-width="1.4" stroke-dasharray="3 3" opacity="0.55"/>
+
+    <!-- pipeline stages -->
+    <g font-family="'JetBrains Mono', Consolas, monospace" font-size="13" font-weight="700">
+      <rect x="852" y="200" width="52" height="40" rx="4" stroke="#1F6B45" stroke-width="1.5" fill="none"/>
+      <text x="878" y="225" text-anchor="middle" fill="#1B211D">IF</text>
+      <path d="M904 220H916" stroke="#1F6B45" stroke-width="1.5"/><path d="M916 220l-4 -3v6z" fill="#1F6B45"/>
+      <rect x="918" y="200" width="52" height="40" rx="4" stroke="#1F6B45" stroke-width="1.5" fill="none"/>
+      <text x="944" y="225" text-anchor="middle" fill="#1B211D">ID</text>
+      <path d="M970 220H982" stroke="#1F6B45" stroke-width="1.5"/><path d="M982 220l-4 -3v6z" fill="#1F6B45"/>
+      <rect x="984" y="200" width="52" height="40" rx="4" stroke="#1F6B45" stroke-width="1.5" fill="none"/>
+      <text x="1010" y="225" text-anchor="middle" fill="#1B211D">EX</text>
+      <path d="M1036 220H1048" stroke="#1F6B45" stroke-width="1.5"/><path d="M1048 220l-4 -3v6z" fill="#1F6B45"/>
+      <rect x="1050" y="200" width="56" height="40" rx="4" stroke="#1F6B45" stroke-width="1.5" fill="none"/>
+      <text x="1078" y="225" text-anchor="middle" fill="#1B211D">MEM</text>
+      <path d="M1106 220H1118" stroke="#1F6B45" stroke-width="1.5"/><path d="M1118 220l-4 -3v6z" fill="#1F6B45"/>
+      <rect x="1120" y="200" width="52" height="40" rx="4" stroke="#1F6B45" stroke-width="1.5" fill="none"/>
+      <text x="1146" y="225" text-anchor="middle" fill="#1B211D">WB</text>
+    </g>
+
+    <!-- hazard / regfile row -->
+    <rect x="884" y="272" width="264" height="36" rx="4" stroke="rgba(27,33,29,0.34)" stroke-dasharray="4 3" fill="none"/>
+    <text x="1016" y="295" text-anchor="middle" fill="#5F6B62" font-family="'JetBrains Mono', Consolas, monospace" font-size="12">hazard unit · regfile · forwarding</text>
+    <path d="M944 272V246" stroke="rgba(27,33,29,0.34)" stroke-width="1"/>
+    <path d="M1010 272V246" stroke="rgba(27,33,29,0.34)" stroke-width="1"/>
+    <path d="M1078 272V246" stroke="rgba(27,33,29,0.34)" stroke-width="1"/>
+
+    <!-- verification notes -->
+    <text x="852" y="352" fill="#1F6B45" font-family="'JetBrains Mono', Consolas, monospace" font-size="13">riscv-formal 43/43 · arch-tests 39/39</text>
+    <text x="852" y="376" fill="#5F6B62" font-family="'JetBrains Mono', Consolas, monospace" font-size="13">38.8 MHz post-route · ECP5-85F</text>
+
+    <!-- terminal plate -->
+    <rect x="852" y="404" width="296" height="44" rx="6" fill="#0E1210"/>
+    <text x="868" y="431" fill="#62C97A" font-family="'JetBrains Mono', Consolas, monospace" font-size="13">$ make verify → ALL PASS</text>
   </g>
+  <text x="816" y="560" fill="#5F6B62" font-family="'JetBrains Mono', Consolas, monospace" font-size="13">fig. 01 — five-stage pipeline, drawn in pen-green ink.</text>
 
-  <g font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="700">
-    <rect x="74" y="458" width="146" height="42" rx="21" fill="rgba(46,143,82,0.14)" stroke="#316A45"/>
-    <text x="103" y="484" fill="#73D96A">AI + ML</text>
-    <rect x="234" y="458" width="164" height="42" rx="21" fill="rgba(46,143,82,0.14)" stroke="#316A45"/>
-    <text x="267" y="484" fill="#73D96A">Full-Stack</text>
-    <rect x="414" y="458" width="152" height="42" rx="21" fill="rgba(46,143,82,0.14)" stroke="#316A45"/>
-    <text x="450" y="484" fill="#73D96A">Backends</text>
-    <rect x="582" y="458" width="196" height="42" rx="21" fill="rgba(217,163,58,0.14)" stroke="#88662B"/>
-    <text x="618" y="484" fill="#E0B95B">Systems Design</text>
-  </g>
+  <!-- bottom ticker -->
+  <path d="M0 592H1280" stroke="rgba(27,33,29,0.16)"/>
+  <text x="72" y="622" fill="#5F6B62" font-family="'JetBrains Mono', Consolas, monospace" font-size="12.5" letter-spacing="1.5">APPLIED AI <tspan fill="#1F6B45">·</tspan> SCALABLE BACKENDS <tspan fill="#1F6B45">·</tspan> SYSTEMS DESIGN <tspan fill="#1F6B45">·</tspan> LLM INTEGRATION <tspan fill="#1F6B45">·</tspan> REACT &amp; TYPESCRIPT <tspan fill="#1F6B45">·</tspan> DOCKER &amp; DEVOPS</text>
 
-  <g>
-    <rect x="788" y="102" width="428" height="438" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)"/>
-    <rect x="820" y="136" width="364" height="42" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(115,217,106,0.14)"/>
-    <circle cx="844" cy="157" r="6" fill="#FF5F57"/>
-    <circle cx="866" cy="157" r="6" fill="#FFBD2E"/>
-    <circle cx="888" cy="157" r="6" fill="#28CA42"/>
-    <text x="928" y="163" fill="#7C9490" font-family="Consolas, 'Courier New', monospace" font-size="15">featured-projects</text>
-
-    <rect x="820" y="198" width="164" height="122" rx="18" fill="rgba(46,143,82,0.12)" stroke="rgba(115,217,106,0.22)"/>
-    <text x="844" y="232" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="700">Xenolinguist</text>
-    <text x="844" y="262" fill="#B4C2BE" font-family="'Segoe UI', Arial, sans-serif" font-size="13.5">
-      <tspan x="844" dy="0">AI language decoding</tspan>
-      <tspan x="844" dy="24">with local LLM</tspan>
-      <tspan x="844" dy="24">workflows</tspan>
-    </text>
-
-    <rect x="1002" y="198" width="164" height="122" rx="18" fill="rgba(217,163,58,0.11)" stroke="rgba(217,163,58,0.22)"/>
-    <text x="1027" y="232" fill="#E0B95B" font-family="Consolas, 'Courier New', monospace" font-size="16" font-weight="700">Bingery</text>
-    <text x="1027" y="262" fill="#B4C2BE" font-family="'Segoe UI', Arial, sans-serif" font-size="13.5">
-      <tspan x="1027" dy="0">AI recommendations</tspan>
-      <tspan x="1027" dy="24">search, and</tspan>
-      <tspan x="1027" dy="24">full-stack APIs</tspan>
-    </text>
-
-    <rect x="820" y="342" width="364" height="166" rx="22" fill="rgba(10,19,17,0.88)" stroke="rgba(115,217,106,0.14)"/>
-    <text x="848" y="378" fill="#73D96A" font-family="Consolas, 'Courier New', monospace" font-size="15" font-weight="700">// engineering profile</text>
-    <text x="848" y="412" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600">Applied AI</text>
-    <text x="848" y="444" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600">Scalable backends</text>
-    <text x="848" y="476" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600">Product-minded full-stack</text>
-    <text x="848" y="500" fill="#EAF4E8" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600">development</text>
-    <text x="848" y="524" fill="#91A5A0" font-family="'Segoe UI', Arial, sans-serif" font-size="13.5">
-      <tspan x="848" dy="0">Custom static site with canvas effects, motion,</tspan>
-      <tspan x="848" dy="20">glassmorphism, responsive layouts, and</tspan>
-      <tspan x="848" dy="20">curated case studies.</tspan>
-    </text>
-  </g>
+  <!-- sheet border -->
+  <rect x="0.5" y="0.5" width="1279" height="639" stroke="rgba(27,33,29,0.34)"/>
 </svg>
