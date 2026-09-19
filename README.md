@@ -56,7 +56,7 @@ The site is built with plain HTML, CSS, and JavaScript, plus GSAP and ScrollTrig
 | Flagship case studies | 2 (Xenolinguist, Bingery) |
 | Further-work carousel | 7 projects, ordered strongest first |
 | Research papers | Self-authored physics manuscripts with PDF downloads |
-| Experience entries | 2 |
+| Experience entries | 3 |
 | Core implementation | Static front end: HTML, CSS, JavaScript, GSAP + ScrollTrigger |
 | Signature interactions | Interactive grid, film-grain overlay, scroll choreography, sequential carousel, 3D card tilt |
 
@@ -152,6 +152,7 @@ The project section is the core of the portfolio, organized in two tiers.
 
 The experience section presents professional work with concise, impact-oriented summaries:
 
+- Game Developer at Riot Games (May–August 2024, remote): playable-character implementation, Python prototyping, and cross-functional testing that reduced crash rates by 15%
 - Machine Learning Engineer at Outlier AI
 - operations, leadership, and customer-facing responsibility at the Town of Milton
 
@@ -286,7 +287,7 @@ If you want GitHub links to this repository to have a custom visual preview, upl
 If this portfolio continues evolving, strong next additions could include:
 
 - project detail pages for deeper case studies
-- a downloadable resume button
+- additional role-specific resume downloads (the current resume is available from the hero)
 - lightweight analytics for visitor insights
 - a live-demo button for ZenithSpectra once its deployment returns
 - additional research manuscripts as the archive grows
