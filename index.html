@@ -212,8 +212,9 @@
           <div class="tech-line">React 19 <span>&middot;</span> TypeScript <span>&middot;</span> Electron <span>&middot;</span> Node.js <span>&middot;</span> Ollama <span>&middot;</span> whisper.cpp <span>&middot;</span> Transformers.js</div>
           <ul class="proj-hl">
             <li>Six-phase decoding workflow from raw audio samples to full translation</li>
-            <li>Streaming local AI via Ollama with multi-model routing and task prompts</li>
-            <li>Fully offline voice pipeline — espeak-ng speech, whisper.cpp transcription, and wav2vec2 IPA phoneme recognition</li>
+            <li>Streaming local AI via Ollama with heavy/light model routing per task and a chat primed with your dictionary, grammar, and samples</li>
+            <li>Fully offline voice pipeline — whisper.cpp transcription that flags phonetic guesses honestly, time-aligned wav2vec2 IPA phones, and espeak-ng speech</li>
+            <li>Auto-detects a language's number base (the Eridian demo counts in base 8) and scores every finding 0&ndash;100 for confidence</li>
             <li>Desktop release with auto-update, sandbox conlang mode, and a public download site</li>
           </ul>
           <div class="proj-links">
@@ -240,7 +241,7 @@
             <li>AI Guide chat: Claude tool-use grounded by an IDF-weighted tag-similarity engine over a catalog of 14,000+ titles</li>
             <li>Personalized recommendations from an 8-signal taste profile — ratings, watchlist, fan-genre votes, review text</li>
             <li>Hand-built design system: motion tokens, glassmorphism, fluid type, full reduced-motion support</li>
-            <li>72 REST endpoints with JWT auth, AniList GraphQL sync, and 619 automated tests written TDD-first</li>
+            <li>75 REST routes with JWT auth, AniList GraphQL sync, and 690+ automated tests (577 backend, 117 frontend) written TDD-first</li>
           </ul>
           <div class="proj-links">
             <a href="https://github.com/Parusann/bingery" target="_blank" rel="noopener" class="btn btn-ink btn-sm">GitHub &rarr;</a>
@@ -374,10 +375,11 @@
                 <ul class="proj-hl">
                   <li>~135 ms warm dictation round-trip with large-v3-turbo held in VRAM by a whisper.cpp Vulkan server</li>
                   <li>Deterministic fuzzy vocab correction snaps near-misses to your own terms with zero hallucination</li>
+                  <li>SHA-256-pinned GPU runtime, automatic CPU fallback, built-in doctor and self-test commands, and 186 pytest tests in CI</li>
                 </ul>
+                <p class="case-note">Built on the MIT-licensed <a href="https://github.com/drajb/whisper-local" target="_blank" rel="noopener">whisper-local</a>, extended with the GPU path, overlay, and vocabulary engine.</p>
                 <div class="tech-line">Python <span>&middot;</span> whisper.cpp <span>&middot;</span> faster-whisper <span>&middot;</span> Vulkan <span>&middot;</span> Ollama <span>&middot;</span> Tkinter</div>
                 <div class="proj-links">
-                  <!-- TODO: github.com/Parusann/parley was private (404) as of 2026-07-12 — make the repo public or this link dead-ends -->
                   <a href="https://github.com/Parusann/parley" target="_blank" rel="noopener" class="btn btn-line btn-sm">GitHub &rarr;</a>
                 </div>
               </div>
@@ -399,15 +401,15 @@
                     <div class="darr">&darr;</div>
                     <div class="drow"><div class="dnode">Docker<small>containerized</small></div></div>
                   </div>
-                  <div class="fig-foot"><b>10,000+</b> concurrent &middot; <b>50%</b> &darr; latency</div>
+                  <div class="fig-foot"><b>~3,500</b> req/s &middot; <b>0%</b> errors (k6)</div>
                 </div>
                 <div class="proj-caption">fig. 02e — request path &middot; <span class="status">backend</span></div>
               </div>
               <div class="car-info">
-                <p class="proj-sum">Scalable backend service designed for high concurrency, low latency, and efficient caching with containerized deployment.</p>
+                <p class="proj-sum">Horizontally scalable link shortener: stateless Go replicas behind nginx, coordination-free ID generation, a Redis-fronted read path, and write-behind click analytics.</p>
                 <ul class="proj-hl">
-                  <li>Handles 10,000+ concurrent redirect requests</li>
-                  <li>50% latency reduction via Redis caching layer</li>
+                  <li>~3,500 req/s at 0% errors on the cached redirect path (k6, 100 VUs, 3 replicas), measured and reproducible</li>
+                  <li>Cache-aside with singleflight and negative caching, Redis Lua rate limiting, Prometheus + Grafana</li>
                 </ul>
                 <div class="tech-line">Go <span>&middot;</span> Redis <span>&middot;</span> PostgreSQL <span>&middot;</span> Docker <span>&middot;</span> REST APIs</div>
                 <div class="proj-links">
@@ -452,7 +454,8 @@
                 <p class="proj-sum">AI-powered science intelligence platform tracking live developments in space exploration and frontier physics — ranks source credibility, surfaces trending topics, and answers questions with source-backed summaries.</p>
                 <ul class="proj-hl">
                   <li>Ranks source credibility so readers can judge where every claim comes from</li>
-                  <li>Grounded summaries and source-backed Q&amp;A via Gemma (E4B) on Ollama, run as a private Fly GPU app</li>
+                  <li>Grounded summaries and source-backed Q&amp;A via Gemma 4 (E4B) on Ollama, run as a private Fly GPU app</li>
+                  <li>Fine-tuned Gemma 4 E4B with QLoRA (PEFT + TRL) on generated training data matched to the platform's prompts</li>
                 </ul>
                 <div class="tech-line">Next.js <span>&middot;</span> TypeScript <span>&middot;</span> Tailwind CSS <span>&middot;</span> FastAPI <span>&middot;</span> PostgreSQL <span>&middot;</span> Ollama <span>&middot;</span> Fly.io</div>
                 <div class="proj-links">
