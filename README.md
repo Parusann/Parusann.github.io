@@ -113,9 +113,9 @@ This is not a generic template portfolio. It is a custom-built static site with 
 
 | Project | Focus Area | Stack | What Makes It Strong |
 | --- | --- | --- | --- |
-| Xenolinguist | Offline AI desktop app | Electron, React 19, TypeScript, whisper.cpp, Transformers.js, Vite | Shipped v1.0.0 Windows release; fully offline voice pipeline (whisper.cpp transcription, wav2vec2 IPA, espeak-ng speech); six-phase language decoding workflow |
+| Xenolinguist | Linguistic research workbench | Electron, React 19, TypeScript, whisper.cpp, Transformers.js, Vite | Published unsigned v1.1.0-rc.1 Windows prerelease; typed parsing, grounded induction and active elicitation; 529 unit tests and 56 workbench checks per platform at the frozen release checkpoint |
 | Bingery | Full-stack product build | Python, Flask, React, SQLite, Fly.io, Claude API | 14,000+ titles served by 75 REST routes, JWT auth, AniList GraphQL sync, 690+ automated tests, live as an installable PWA |
-| Pulsar-V | CPU design and verification | SystemVerilog, cocotb, riscv-formal, Yosys + nextpnr | Single-cycle and 5-stage pipelined RV32I cores; 39/39 riscv-arch-test compliance vs the SAIL golden model; 43/43 formal checks; 38.8 MHz post-route on ECP5-85F |
+| Pulsar-V | CPU design and verification | SystemVerilog, cocotb, riscv-formal, Yosys + nextpnr | Single-cycle and 5-stage pipelined RV32I cores; 38/38 RV32I and 1/1 Zifencei architecture checks vs the SAIL golden model; 43/43 formal checks; 38.8 MHz post-route on ECP5-85F |
 | LaunchLedger | Data engineering and analytics | DuckDB, dbt, SQL, Python | Vendor due diligence on the orbital launch market: 44 passing dbt tests, window-function SQL analyses, empirical-Bayes reliability ranking, static SVG dashboard |
 | EdgeSpark | ML systems research | ROCm on RX 7900 XTX | Quantized speculative decoding on a single consumer AMD GPU, with a confidence-head calibration study |
 
@@ -143,7 +143,7 @@ The project section is the core of the portfolio, organized in two tiers.
 
 **Flagship case studies** — full-width articles with real product screenshots, tech stacks, and key technical achievements:
 
-- **Xenolinguist** — AI-powered language decoding workbench inspired by *Project Hail Mary*, shipped as a v1.0.0 Windows desktop app (Electron + React 19 + Vite). Runs a fully offline voice pipeline: whisper.cpp transcription, wav2vec2 IPA phoneme recognition, and espeak-ng speech. Six-phase decoding workflow with command palette, keyboard shortcuts, and undo system.
+- **Xenolinguist** — local linguistic research workbench with typed parsing, grounded grammar induction, arithmetic grammars, active questions and controlled AI proposals. Published unsigned Windows v1.1.0-rc.1 prerelease. The frozen release passes 529 unit tests and 56 workbench browser checks per platform; independent installation and upgrade acceptance verifies 3,779 files and nine archive round trips. The supplied-grammar synthetic experiment scores 150/150 withheld meanings across 30 languages. [Evidence and limitations](https://github.com/Parusann/Xenolinguist/blob/main/docs/verification/w25-release/README.md).
 - **Bingery** — AI-powered anime discovery platform with personalized Claude recommendations, live as an installable PWA. Flask + React over a SQLite catalog of 14,000+ titles on Fly.io, with 75 REST routes, JWT auth, collaborative genre voting, live search autocomplete, AniList GraphQL integration, and 690+ automated tests.
 
 **Further-work carousel** — seven more projects, ordered strongest first, each drawn as a pure-CSS schematic: Pulsar-V, LaunchLedger, EdgeSpark, Parley, Distributed URL Shortener, ZenithSpectra, and the Bookstore Management System.
@@ -204,7 +204,7 @@ The final section makes outreach easy through email, LinkedIn, GitHub, and phone
 |   |-- papers/              # self-authored research manuscript PDFs
 |   |-- hero-bg.jpg          # hero background
 |   |-- bingery-hero.jpg     # Bingery case study screenshot
-|   |-- xenolinguist-hero.jpg# Xenolinguist case study screenshot
+|   |-- xenolinguist-research.png # Xenolinguist symbolic derivation capture
 |   |-- favicon.svg, favicon-32.png, apple-touch-icon.png
 |   |-- og-cover.png, social-preview.png, social-preview.svg
 |   `-- readme-banner.svg
